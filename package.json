@@ -1,0 +1,21 @@
+{
+  "name": "galera-client-axios",
+  "version": "0.0.0",
+  "private": true,
+  "description": "",
+  "main": "index.ts",
+  "scripts": {
+    "build": "tsc",
+    "lint:check": "prettier --check --ignore-path .gitignore .",
+    "lint:fixall": "prettier --write --ignore-path .gitignore .",
+    "generate": "TS_POST_PROCESS_FILE='npx prettier --write' openapi-generator-cli generate -i http://localhost:8000/openapi.json -g typescript-axios --additional-properties=supportsES6=true --additional-properties=useSingleRequestParameter=true --additional-properties=withSeparateModelsAndApi=true --additional-properties=modelPackage=models --additional-properties=apiPackage=api --enable-post-process-file"
+  },
+  "author": "Ondřej Pešek",
+  "license": "MIT",
+  "devDependencies": {
+    "@openapitools/openapi-generator-cli": "^2.3.10",
+    "@types/node": "^16.6.1",
+    "prettier": "^2.3.2",
+    "typescript": "^4.2.4"
+  }
+}
