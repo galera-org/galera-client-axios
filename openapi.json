@@ -1,0 +1,270 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "galera",
+    "version": "0.1.0"
+  },
+  "paths": {
+    "/": {
+      "get": {
+        "operationId": "routes_index",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/login": {
+      "post": {
+        "description": "You must provide either a username or an email together with a password.",
+        "operationId": "routes_login",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserLogin"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "boolean"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/media": {
+      "get": {
+        "operationId": "routes_media_structure",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/MediaResponse"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ]
+      }
+    },
+    "/media/{media_uuid}": {
+      "get": {
+        "operationId": "routes_get_media_by_uuid",
+        "parameters": [
+          {
+            "name": "media_uuid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/octet-stream": {}
+            }
+          },
+          "404": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ]
+      }
+    },
+    "/scan_media": {
+      "get": {
+        "operationId": "routes_scan_media",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ]
+      }
+    },
+    "/test": {
+      "get": {
+        "operationId": "routes_test",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/user": {
+      "post": {
+        "operationId": "routes_create_user",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NewUser"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "boolean"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "MediaResponse": {
+        "type": "object",
+        "required": [
+          "date_taken",
+          "filename",
+          "height",
+          "owner_id",
+          "uuid",
+          "width"
+        ],
+        "properties": {
+          "album_id": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "date_taken": {
+            "type": "string",
+            "format": "partial-date-time"
+          },
+          "filename": {
+            "type": "string"
+          },
+          "height": {
+            "type": "integer",
+            "format": "uint32",
+            "minimum": 0.0
+          },
+          "owner_id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "uuid": {
+            "type": "string"
+          },
+          "width": {
+            "type": "integer",
+            "format": "uint32",
+            "minimum": 0.0
+          }
+        }
+      },
+      "NewUser": {
+        "description": "Struct for inserting new users.",
+        "type": "object",
+        "required": [
+          "email",
+          "password",
+          "username"
+        ],
+        "properties": {
+          "email": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          },
+          "username": {
+            "type": "string"
+          }
+        }
+      },
+      "UserLogin": {
+        "description": "Struct for signing in.",
+        "type": "object",
+        "required": [
+          "password"
+        ],
+        "properties": {
+          "email": {
+            "type": "string",
+            "nullable": true
+          },
+          "password": {
+            "type": "string"
+          },
+          "username": {
+            "type": "string",
+            "nullable": true
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "BearerAuth": {
+        "description": "requires a bearer token to access",
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    }
+  }
+}
