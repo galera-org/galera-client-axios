@@ -8,13 +8,17 @@
     "build": "tsc",
     "lint:check": "prettier --check --ignore-path .gitignore .",
     "lint:fixall": "prettier --write --ignore-path .gitignore .",
-    "generate": "TS_POST_PROCESS_FILE='npx prettier --write' openapi-generator-cli generate -i openapi.json -g typescript-axios --additional-properties=supportsES6=true --additional-properties=useSingleRequestParameter=true --additional-properties=withSeparateModelsAndApi=true --additional-properties=modelPackage=models --additional-properties=apiPackage=api --enable-post-process-file"
+    "generate": "TS_POST_PROCESS_FILE='npx prettier --write' openapi-generator-cli generate -i openapi.json -g typescript-axios --additional-properties=supportsES6=true --additional-properties=useSingleRequestParameter=true --additional-properties=withSeparateModelsAndApi=true --additional-properties=modelPackage=models --additional-properties=apiPackage=api --enable-post-process-file",
+    "prepare": "husky install"
   },
   "author": "Ondřej Pešek",
   "license": "MIT",
   "devDependencies": {
+    "@commitlint/cli": "^13.1.0",
+    "@commitlint/config-conventional": "^13.1.0",
     "@openapitools/openapi-generator-cli": "^2.3.10",
     "@types/node": "^16.6.1",
+    "husky": "^7.0.2",
     "prettier": "^2.3.2",
     "typescript": "^4.2.4"
   }
