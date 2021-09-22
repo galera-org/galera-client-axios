@@ -7,7 +7,11 @@ common.ts
 configuration.ts
 git_push.sh
 index.ts
+models/album-insert-data.ts
+models/album-response.ts
+models/album-update-data.ts
 models/index.ts
 models/media-response.ts
+models/new-album-media.ts
 models/new-user.ts
 models/user-login.ts

@@ -15,43 +15,43 @@
 /**
  *
  * @export
- * @interface MediaResponse
+ * @interface AlbumResponse
  */
-export interface MediaResponse {
+export interface AlbumResponse {
   /**
    *
    * @type {string}
-   * @memberof MediaResponse
+   * @memberof AlbumResponse
    */
-  date_taken: string;
+  created_at: string;
   /**
    *
    * @type {string}
-   * @memberof MediaResponse
+   * @memberof AlbumResponse
    */
-  filename: string;
+  description?: string | null;
+  /**
+   *
+   * @type {string}
+   * @memberof AlbumResponse
+   */
+  link: string;
+  /**
+   *
+   * @type {string}
+   * @memberof AlbumResponse
+   */
+  name: string;
   /**
    *
    * @type {number}
-   * @memberof MediaResponse
-   */
-  height: number;
-  /**
-   *
-   * @type {number}
-   * @memberof MediaResponse
+   * @memberof AlbumResponse
    */
   owner_id: number;
   /**
    *
    * @type {string}
-   * @memberof MediaResponse
+   * @memberof AlbumResponse
    */
-  uuid: string;
-  /**
-   *
-   * @type {number}
-   * @memberof MediaResponse
-   */
-  width: number;
+  thumbnail_link?: string | null;
 }

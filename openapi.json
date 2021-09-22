@@ -22,6 +22,157 @@
         }
       }
     },
+    "/album": {
+      "get": {
+        "description": "Retrieves a list of albums of an authenticated user",
+        "operationId": "routes_get_album_list",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/AlbumResponse"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ]
+      },
+      "post": {
+        "description": "Creates a new album",
+        "operationId": "routes_create_album",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AlbumInsertData"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AlbumResponse",
+                  "nullable": true
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ]
+      }
+    },
+    "/album/media": {
+      "post": {
+        "operationId": "routes_album_add_media",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/NewAlbumMedia"
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": ""
+          },
+          "default": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ]
+      }
+    },
+    "/album/{album_id}": {
+      "put": {
+        "description": "Updates already existing album",
+        "operationId": "routes_update_album",
+        "parameters": [
+          {
+            "name": "album_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AlbumUpdateData"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ]
+      },
+      "delete": {
+        "description": "Creates a new album",
+        "operationId": "routes_delete_album",
+        "parameters": [
+          {
+            "name": "album_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ]
+      }
+    },
     "/login": {
       "post": {
         "description": "You must provide either a username or an email together with a password.",
@@ -175,6 +326,67 @@
   },
   "components": {
     "schemas": {
+      "AlbumInsertData": {
+        "type": "object",
+        "required": [
+          "name"
+        ],
+        "properties": {
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "name": {
+            "type": "string"
+          }
+        }
+      },
+      "AlbumResponse": {
+        "type": "object",
+        "required": [
+          "created_at",
+          "link",
+          "name",
+          "owner_id"
+        ],
+        "properties": {
+          "created_at": {
+            "type": "string",
+            "format": "partial-date-time"
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "link": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "owner_id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "thumbnail_link": {
+            "type": "string",
+            "nullable": true
+          }
+        }
+      },
+      "AlbumUpdateData": {
+        "type": "object",
+        "properties": {
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          }
+        }
+      },
       "MediaResponse": {
         "type": "object",
         "required": [
@@ -186,11 +398,6 @@
           "width"
         ],
         "properties": {
-          "album_id": {
-            "type": "integer",
-            "format": "int32",
-            "nullable": true
-          },
           "date_taken": {
             "type": "string",
             "format": "partial-date-time"
@@ -214,6 +421,23 @@
             "type": "integer",
             "format": "uint32",
             "minimum": 0.0
+          }
+        }
+      },
+      "NewAlbumMedia": {
+        "type": "object",
+        "required": [
+          "album_id",
+          "media_id"
+        ],
+        "properties": {
+          "album_id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "media_id": {
+            "type": "integer",
+            "format": "int32"
           }
         }
       },

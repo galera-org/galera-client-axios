@@ -37,7 +37,15 @@ import {
   RequiredError,
 } from "../base";
 // @ts-ignore
+import { AlbumInsertData } from "../models";
+// @ts-ignore
+import { AlbumResponse } from "../models";
+// @ts-ignore
+import { AlbumUpdateData } from "../models";
+// @ts-ignore
 import { MediaResponse } from "../models";
+// @ts-ignore
+import { NewAlbumMedia } from "../models";
 // @ts-ignore
 import { NewUser } from "../models";
 // @ts-ignore
@@ -50,6 +58,116 @@ export const DefaultApiAxiosParamCreator = function (
   configuration?: Configuration
 ) {
   return {
+    /**
+     *
+     * @param {Array<NewAlbumMedia>} newAlbumMedia
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    routesAlbumAddMedia: async (
+      newAlbumMedia: Array<NewAlbumMedia>,
+      options: any = {}
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'newAlbumMedia' is not null or undefined
+      assertParamExists("routesAlbumAddMedia", "newAlbumMedia", newAlbumMedia);
+      const localVarPath = `/album/media`;
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+      let baseOptions;
+      if (configuration) {
+        baseOptions = configuration.baseOptions;
+      }
+
+      const localVarRequestOptions = {
+        method: "POST",
+        ...baseOptions,
+        ...options,
+      };
+      const localVarHeaderParameter = {} as any;
+      const localVarQueryParameter = {} as any;
+
+      // authentication BearerAuth required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration);
+
+      localVarHeaderParameter["Content-Type"] = "application/json";
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+      let headersFromBaseOptions =
+        baseOptions && baseOptions.headers ? baseOptions.headers : {};
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      };
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        newAlbumMedia,
+        localVarRequestOptions,
+        configuration
+      );
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      };
+    },
+    /**
+     * Creates a new album
+     * @param {AlbumInsertData} albumInsertData
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    routesCreateAlbum: async (
+      albumInsertData: AlbumInsertData,
+      options: any = {}
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'albumInsertData' is not null or undefined
+      assertParamExists(
+        "routesCreateAlbum",
+        "albumInsertData",
+        albumInsertData
+      );
+      const localVarPath = `/album`;
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+      let baseOptions;
+      if (configuration) {
+        baseOptions = configuration.baseOptions;
+      }
+
+      const localVarRequestOptions = {
+        method: "POST",
+        ...baseOptions,
+        ...options,
+      };
+      const localVarHeaderParameter = {} as any;
+      const localVarQueryParameter = {} as any;
+
+      // authentication BearerAuth required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration);
+
+      localVarHeaderParameter["Content-Type"] = "application/json";
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+      let headersFromBaseOptions =
+        baseOptions && baseOptions.headers ? baseOptions.headers : {};
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      };
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        albumInsertData,
+        localVarRequestOptions,
+        configuration
+      );
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      };
+    },
     /**
      *
      * @param {NewUser} newUser
@@ -93,6 +211,95 @@ export const DefaultApiAxiosParamCreator = function (
         localVarRequestOptions,
         configuration
       );
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      };
+    },
+    /**
+     * Creates a new album
+     * @param {number} albumId
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    routesDeleteAlbum: async (
+      albumId: number,
+      options: any = {}
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'albumId' is not null or undefined
+      assertParamExists("routesDeleteAlbum", "albumId", albumId);
+      const localVarPath = `/album/{album_id}`.replace(
+        `{${"album_id"}}`,
+        encodeURIComponent(String(albumId))
+      );
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+      let baseOptions;
+      if (configuration) {
+        baseOptions = configuration.baseOptions;
+      }
+
+      const localVarRequestOptions = {
+        method: "DELETE",
+        ...baseOptions,
+        ...options,
+      };
+      const localVarHeaderParameter = {} as any;
+      const localVarQueryParameter = {} as any;
+
+      // authentication BearerAuth required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration);
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+      let headersFromBaseOptions =
+        baseOptions && baseOptions.headers ? baseOptions.headers : {};
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      };
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      };
+    },
+    /**
+     * Retrieves a list of albums of an authenticated user
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    routesGetAlbumList: async (options: any = {}): Promise<RequestArgs> => {
+      const localVarPath = `/album`;
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+      let baseOptions;
+      if (configuration) {
+        baseOptions = configuration.baseOptions;
+      }
+
+      const localVarRequestOptions = {
+        method: "GET",
+        ...baseOptions,
+        ...options,
+      };
+      const localVarHeaderParameter = {} as any;
+      const localVarQueryParameter = {} as any;
+
+      // authentication BearerAuth required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration);
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+      let headersFromBaseOptions =
+        baseOptions && baseOptions.headers ? baseOptions.headers : {};
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      };
 
       return {
         url: toPathString(localVarUrlObj),
@@ -349,6 +556,70 @@ export const DefaultApiAxiosParamCreator = function (
         options: localVarRequestOptions,
       };
     },
+    /**
+     * Updates already existing album
+     * @param {number} albumId
+     * @param {AlbumUpdateData} albumUpdateData
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    routesUpdateAlbum: async (
+      albumId: number,
+      albumUpdateData: AlbumUpdateData,
+      options: any = {}
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'albumId' is not null or undefined
+      assertParamExists("routesUpdateAlbum", "albumId", albumId);
+      // verify required parameter 'albumUpdateData' is not null or undefined
+      assertParamExists(
+        "routesUpdateAlbum",
+        "albumUpdateData",
+        albumUpdateData
+      );
+      const localVarPath = `/album/{album_id}`.replace(
+        `{${"album_id"}}`,
+        encodeURIComponent(String(albumId))
+      );
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+      let baseOptions;
+      if (configuration) {
+        baseOptions = configuration.baseOptions;
+      }
+
+      const localVarRequestOptions = {
+        method: "PUT",
+        ...baseOptions,
+        ...options,
+      };
+      const localVarHeaderParameter = {} as any;
+      const localVarQueryParameter = {} as any;
+
+      // authentication BearerAuth required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration);
+
+      localVarHeaderParameter["Content-Type"] = "application/json";
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+      let headersFromBaseOptions =
+        baseOptions && baseOptions.headers ? baseOptions.headers : {};
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      };
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        albumUpdateData,
+        localVarRequestOptions,
+        configuration
+      );
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      };
+    },
   };
 };
 
@@ -359,6 +630,54 @@ export const DefaultApiAxiosParamCreator = function (
 export const DefaultApiFp = function (configuration?: Configuration) {
   const localVarAxiosParamCreator = DefaultApiAxiosParamCreator(configuration);
   return {
+    /**
+     *
+     * @param {Array<NewAlbumMedia>} newAlbumMedia
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async routesAlbumAddMedia(
+      newAlbumMedia: Array<NewAlbumMedia>,
+      options?: any
+    ): Promise<
+      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>
+    > {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.routesAlbumAddMedia(
+          newAlbumMedia,
+          options
+        );
+      return createRequestFunction(
+        localVarAxiosArgs,
+        globalAxios,
+        BASE_PATH,
+        configuration
+      );
+    },
+    /**
+     * Creates a new album
+     * @param {AlbumInsertData} albumInsertData
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async routesCreateAlbum(
+      albumInsertData: AlbumInsertData,
+      options?: any
+    ): Promise<
+      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<AlbumResponse>
+    > {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.routesCreateAlbum(
+          albumInsertData,
+          options
+        );
+      return createRequestFunction(
+        localVarAxiosArgs,
+        globalAxios,
+        BASE_PATH,
+        configuration
+      );
+    },
     /**
      *
      * @param {NewUser} newUser
@@ -373,6 +692,49 @@ export const DefaultApiFp = function (configuration?: Configuration) {
     > {
       const localVarAxiosArgs =
         await localVarAxiosParamCreator.routesCreateUser(newUser, options);
+      return createRequestFunction(
+        localVarAxiosArgs,
+        globalAxios,
+        BASE_PATH,
+        configuration
+      );
+    },
+    /**
+     * Creates a new album
+     * @param {number} albumId
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async routesDeleteAlbum(
+      albumId: number,
+      options?: any
+    ): Promise<
+      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>
+    > {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.routesDeleteAlbum(albumId, options);
+      return createRequestFunction(
+        localVarAxiosArgs,
+        globalAxios,
+        BASE_PATH,
+        configuration
+      );
+    },
+    /**
+     * Retrieves a list of albums of an authenticated user
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async routesGetAlbumList(
+      options?: any
+    ): Promise<
+      (
+        axios?: AxiosInstance,
+        basePath?: string
+      ) => AxiosPromise<Array<AlbumResponse>>
+    > {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.routesGetAlbumList(options);
       return createRequestFunction(
         localVarAxiosArgs,
         globalAxios,
@@ -509,6 +871,33 @@ export const DefaultApiFp = function (configuration?: Configuration) {
         configuration
       );
     },
+    /**
+     * Updates already existing album
+     * @param {number} albumId
+     * @param {AlbumUpdateData} albumUpdateData
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async routesUpdateAlbum(
+      albumId: number,
+      albumUpdateData: AlbumUpdateData,
+      options?: any
+    ): Promise<
+      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>
+    > {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.routesUpdateAlbum(
+          albumId,
+          albumUpdateData,
+          options
+        );
+      return createRequestFunction(
+        localVarAxiosArgs,
+        globalAxios,
+        BASE_PATH,
+        configuration
+      );
+    },
   };
 };
 
@@ -525,6 +914,34 @@ export const DefaultApiFactory = function (
   return {
     /**
      *
+     * @param {Array<NewAlbumMedia>} newAlbumMedia
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    routesAlbumAddMedia(
+      newAlbumMedia: Array<NewAlbumMedia>,
+      options?: any
+    ): AxiosPromise<void> {
+      return localVarFp
+        .routesAlbumAddMedia(newAlbumMedia, options)
+        .then((request) => request(axios, basePath));
+    },
+    /**
+     * Creates a new album
+     * @param {AlbumInsertData} albumInsertData
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    routesCreateAlbum(
+      albumInsertData: AlbumInsertData,
+      options?: any
+    ): AxiosPromise<AlbumResponse> {
+      return localVarFp
+        .routesCreateAlbum(albumInsertData, options)
+        .then((request) => request(axios, basePath));
+    },
+    /**
+     *
      * @param {NewUser} newUser
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -532,6 +949,27 @@ export const DefaultApiFactory = function (
     routesCreateUser(newUser: NewUser, options?: any): AxiosPromise<boolean> {
       return localVarFp
         .routesCreateUser(newUser, options)
+        .then((request) => request(axios, basePath));
+    },
+    /**
+     * Creates a new album
+     * @param {number} albumId
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    routesDeleteAlbum(albumId: number, options?: any): AxiosPromise<void> {
+      return localVarFp
+        .routesDeleteAlbum(albumId, options)
+        .then((request) => request(axios, basePath));
+    },
+    /**
+     * Retrieves a list of albums of an authenticated user
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    routesGetAlbumList(options?: any): AxiosPromise<Array<AlbumResponse>> {
+      return localVarFp
+        .routesGetAlbumList(options)
         .then((request) => request(axios, basePath));
     },
     /**
@@ -596,8 +1034,52 @@ export const DefaultApiFactory = function (
         .routesTest(options)
         .then((request) => request(axios, basePath));
     },
+    /**
+     * Updates already existing album
+     * @param {number} albumId
+     * @param {AlbumUpdateData} albumUpdateData
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    routesUpdateAlbum(
+      albumId: number,
+      albumUpdateData: AlbumUpdateData,
+      options?: any
+    ): AxiosPromise<void> {
+      return localVarFp
+        .routesUpdateAlbum(albumId, albumUpdateData, options)
+        .then((request) => request(axios, basePath));
+    },
   };
 };
+
+/**
+ * Request parameters for routesAlbumAddMedia operation in DefaultApi.
+ * @export
+ * @interface DefaultApiRoutesAlbumAddMediaRequest
+ */
+export interface DefaultApiRoutesAlbumAddMediaRequest {
+  /**
+   *
+   * @type {Array<NewAlbumMedia>}
+   * @memberof DefaultApiRoutesAlbumAddMedia
+   */
+  readonly newAlbumMedia: Array<NewAlbumMedia>;
+}
+
+/**
+ * Request parameters for routesCreateAlbum operation in DefaultApi.
+ * @export
+ * @interface DefaultApiRoutesCreateAlbumRequest
+ */
+export interface DefaultApiRoutesCreateAlbumRequest {
+  /**
+   *
+   * @type {AlbumInsertData}
+   * @memberof DefaultApiRoutesCreateAlbum
+   */
+  readonly albumInsertData: AlbumInsertData;
+}
 
 /**
  * Request parameters for routesCreateUser operation in DefaultApi.
@@ -611,6 +1093,20 @@ export interface DefaultApiRoutesCreateUserRequest {
    * @memberof DefaultApiRoutesCreateUser
    */
   readonly newUser: NewUser;
+}
+
+/**
+ * Request parameters for routesDeleteAlbum operation in DefaultApi.
+ * @export
+ * @interface DefaultApiRoutesDeleteAlbumRequest
+ */
+export interface DefaultApiRoutesDeleteAlbumRequest {
+  /**
+   *
+   * @type {number}
+   * @memberof DefaultApiRoutesDeleteAlbum
+   */
+  readonly albumId: number;
 }
 
 /**
@@ -642,12 +1138,65 @@ export interface DefaultApiRoutesLoginRequest {
 }
 
 /**
+ * Request parameters for routesUpdateAlbum operation in DefaultApi.
+ * @export
+ * @interface DefaultApiRoutesUpdateAlbumRequest
+ */
+export interface DefaultApiRoutesUpdateAlbumRequest {
+  /**
+   *
+   * @type {number}
+   * @memberof DefaultApiRoutesUpdateAlbum
+   */
+  readonly albumId: number;
+
+  /**
+   *
+   * @type {AlbumUpdateData}
+   * @memberof DefaultApiRoutesUpdateAlbum
+   */
+  readonly albumUpdateData: AlbumUpdateData;
+}
+
+/**
  * DefaultApi - object-oriented interface
  * @export
  * @class DefaultApi
  * @extends {BaseAPI}
  */
 export class DefaultApi extends BaseAPI {
+  /**
+   *
+   * @param {DefaultApiRoutesAlbumAddMediaRequest} requestParameters Request parameters.
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof DefaultApi
+   */
+  public routesAlbumAddMedia(
+    requestParameters: DefaultApiRoutesAlbumAddMediaRequest,
+    options?: any
+  ) {
+    return DefaultApiFp(this.configuration)
+      .routesAlbumAddMedia(requestParameters.newAlbumMedia, options)
+      .then((request) => request(this.axios, this.basePath));
+  }
+
+  /**
+   * Creates a new album
+   * @param {DefaultApiRoutesCreateAlbumRequest} requestParameters Request parameters.
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof DefaultApi
+   */
+  public routesCreateAlbum(
+    requestParameters: DefaultApiRoutesCreateAlbumRequest,
+    options?: any
+  ) {
+    return DefaultApiFp(this.configuration)
+      .routesCreateAlbum(requestParameters.albumInsertData, options)
+      .then((request) => request(this.axios, this.basePath));
+  }
+
   /**
    *
    * @param {DefaultApiRoutesCreateUserRequest} requestParameters Request parameters.
@@ -661,6 +1210,34 @@ export class DefaultApi extends BaseAPI {
   ) {
     return DefaultApiFp(this.configuration)
       .routesCreateUser(requestParameters.newUser, options)
+      .then((request) => request(this.axios, this.basePath));
+  }
+
+  /**
+   * Creates a new album
+   * @param {DefaultApiRoutesDeleteAlbumRequest} requestParameters Request parameters.
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof DefaultApi
+   */
+  public routesDeleteAlbum(
+    requestParameters: DefaultApiRoutesDeleteAlbumRequest,
+    options?: any
+  ) {
+    return DefaultApiFp(this.configuration)
+      .routesDeleteAlbum(requestParameters.albumId, options)
+      .then((request) => request(this.axios, this.basePath));
+  }
+
+  /**
+   * Retrieves a list of albums of an authenticated user
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof DefaultApi
+   */
+  public routesGetAlbumList(options?: any) {
+    return DefaultApiFp(this.configuration)
+      .routesGetAlbumList(options)
       .then((request) => request(this.axios, this.basePath));
   }
 
@@ -741,6 +1318,26 @@ export class DefaultApi extends BaseAPI {
   public routesTest(options?: any) {
     return DefaultApiFp(this.configuration)
       .routesTest(options)
+      .then((request) => request(this.axios, this.basePath));
+  }
+
+  /**
+   * Updates already existing album
+   * @param {DefaultApiRoutesUpdateAlbumRequest} requestParameters Request parameters.
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof DefaultApi
+   */
+  public routesUpdateAlbum(
+    requestParameters: DefaultApiRoutesUpdateAlbumRequest,
+    options?: any
+  ) {
+    return DefaultApiFp(this.configuration)
+      .routesUpdateAlbum(
+        requestParameters.albumId,
+        requestParameters.albumUpdateData,
+        options
+      )
       .then((request) => request(this.axios, this.basePath));
   }
 }
