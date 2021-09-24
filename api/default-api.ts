@@ -219,19 +219,19 @@ export const DefaultApiAxiosParamCreator = function (
     },
     /**
      * Creates a new album
-     * @param {number} albumId
+     * @param {string} albumUuid
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     routesDeleteAlbum: async (
-      albumId: number,
+      albumUuid: string,
       options: any = {}
     ): Promise<RequestArgs> => {
-      // verify required parameter 'albumId' is not null or undefined
-      assertParamExists("routesDeleteAlbum", "albumId", albumId);
-      const localVarPath = `/album/{album_id}`.replace(
-        `{${"album_id"}}`,
-        encodeURIComponent(String(albumId))
+      // verify required parameter 'albumUuid' is not null or undefined
+      assertParamExists("routesDeleteAlbum", "albumUuid", albumUuid);
+      const localVarPath = `/album/{album_uuid}`.replace(
+        `{${"album_uuid"}}`,
+        encodeURIComponent(String(albumUuid))
       );
       // use dummy base URL string because the URL constructor only accepts absolute URLs.
       const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -356,6 +356,48 @@ export const DefaultApiAxiosParamCreator = function (
       };
     },
     /**
+     * Returns a list of liked media.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    routesGetMediaLikedList: async (
+      options: any = {}
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/media/liked`;
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+      let baseOptions;
+      if (configuration) {
+        baseOptions = configuration.baseOptions;
+      }
+
+      const localVarRequestOptions = {
+        method: "GET",
+        ...baseOptions,
+        ...options,
+      };
+      const localVarHeaderParameter = {} as any;
+      const localVarQueryParameter = {} as any;
+
+      // authentication BearerAuth required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration);
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+      let headersFromBaseOptions =
+        baseOptions && baseOptions.headers ? baseOptions.headers : {};
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      };
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      };
+    },
+    /**
      *
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -441,6 +483,55 @@ export const DefaultApiAxiosParamCreator = function (
       };
     },
     /**
+     * Likes the media.
+     * @param {string} mediaUuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    routesMediaLike: async (
+      mediaUuid: string,
+      options: any = {}
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'mediaUuid' is not null or undefined
+      assertParamExists("routesMediaLike", "mediaUuid", mediaUuid);
+      const localVarPath = `/media/{media_uuid}/like`.replace(
+        `{${"media_uuid"}}`,
+        encodeURIComponent(String(mediaUuid))
+      );
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+      let baseOptions;
+      if (configuration) {
+        baseOptions = configuration.baseOptions;
+      }
+
+      const localVarRequestOptions = {
+        method: "POST",
+        ...baseOptions,
+        ...options,
+      };
+      const localVarHeaderParameter = {} as any;
+      const localVarQueryParameter = {} as any;
+
+      // authentication BearerAuth required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration);
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+      let headersFromBaseOptions =
+        baseOptions && baseOptions.headers ? baseOptions.headers : {};
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      };
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      };
+    },
+    /**
      *
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -456,6 +547,55 @@ export const DefaultApiAxiosParamCreator = function (
 
       const localVarRequestOptions = {
         method: "GET",
+        ...baseOptions,
+        ...options,
+      };
+      const localVarHeaderParameter = {} as any;
+      const localVarQueryParameter = {} as any;
+
+      // authentication BearerAuth required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration);
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+      let headersFromBaseOptions =
+        baseOptions && baseOptions.headers ? baseOptions.headers : {};
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      };
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      };
+    },
+    /**
+     * Unlikes the media.
+     * @param {string} mediaUuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    routesMediaUnlike: async (
+      mediaUuid: string,
+      options: any = {}
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'mediaUuid' is not null or undefined
+      assertParamExists("routesMediaUnlike", "mediaUuid", mediaUuid);
+      const localVarPath = `/media/{media_uuid}/like`.replace(
+        `{${"media_uuid"}}`,
+        encodeURIComponent(String(mediaUuid))
+      );
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+      let baseOptions;
+      if (configuration) {
+        baseOptions = configuration.baseOptions;
+      }
+
+      const localVarRequestOptions = {
+        method: "DELETE",
         ...baseOptions,
         ...options,
       };
@@ -558,27 +698,27 @@ export const DefaultApiAxiosParamCreator = function (
     },
     /**
      * Updates already existing album
-     * @param {number} albumId
+     * @param {string} albumUuid
      * @param {AlbumUpdateData} albumUpdateData
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     routesUpdateAlbum: async (
-      albumId: number,
+      albumUuid: string,
       albumUpdateData: AlbumUpdateData,
       options: any = {}
     ): Promise<RequestArgs> => {
-      // verify required parameter 'albumId' is not null or undefined
-      assertParamExists("routesUpdateAlbum", "albumId", albumId);
+      // verify required parameter 'albumUuid' is not null or undefined
+      assertParamExists("routesUpdateAlbum", "albumUuid", albumUuid);
       // verify required parameter 'albumUpdateData' is not null or undefined
       assertParamExists(
         "routesUpdateAlbum",
         "albumUpdateData",
         albumUpdateData
       );
-      const localVarPath = `/album/{album_id}`.replace(
-        `{${"album_id"}}`,
-        encodeURIComponent(String(albumId))
+      const localVarPath = `/album/{album_uuid}`.replace(
+        `{${"album_uuid"}}`,
+        encodeURIComponent(String(albumUuid))
       );
       // use dummy base URL string because the URL constructor only accepts absolute URLs.
       const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -701,18 +841,18 @@ export const DefaultApiFp = function (configuration?: Configuration) {
     },
     /**
      * Creates a new album
-     * @param {number} albumId
+     * @param {string} albumUuid
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async routesDeleteAlbum(
-      albumId: number,
+      albumUuid: string,
       options?: any
     ): Promise<
       (axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>
     > {
       const localVarAxiosArgs =
-        await localVarAxiosParamCreator.routesDeleteAlbum(albumId, options);
+        await localVarAxiosParamCreator.routesDeleteAlbum(albumUuid, options);
       return createRequestFunction(
         localVarAxiosArgs,
         globalAxios,
@@ -767,6 +907,28 @@ export const DefaultApiFp = function (configuration?: Configuration) {
       );
     },
     /**
+     * Returns a list of liked media.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async routesGetMediaLikedList(
+      options?: any
+    ): Promise<
+      (
+        axios?: AxiosInstance,
+        basePath?: string
+      ) => AxiosPromise<Array<MediaResponse>>
+    > {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.routesGetMediaLikedList(options);
+      return createRequestFunction(
+        localVarAxiosArgs,
+        globalAxios,
+        BASE_PATH,
+        configuration
+      );
+    },
+    /**
      *
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -810,6 +972,29 @@ export const DefaultApiFp = function (configuration?: Configuration) {
       );
     },
     /**
+     * Likes the media.
+     * @param {string} mediaUuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async routesMediaLike(
+      mediaUuid: string,
+      options?: any
+    ): Promise<
+      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>
+    > {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.routesMediaLike(
+        mediaUuid,
+        options
+      );
+      return createRequestFunction(
+        localVarAxiosArgs,
+        globalAxios,
+        BASE_PATH,
+        configuration
+      );
+    },
+    /**
      *
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -824,6 +1009,27 @@ export const DefaultApiFp = function (configuration?: Configuration) {
     > {
       const localVarAxiosArgs =
         await localVarAxiosParamCreator.routesMediaStructure(options);
+      return createRequestFunction(
+        localVarAxiosArgs,
+        globalAxios,
+        BASE_PATH,
+        configuration
+      );
+    },
+    /**
+     * Unlikes the media.
+     * @param {string} mediaUuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async routesMediaUnlike(
+      mediaUuid: string,
+      options?: any
+    ): Promise<
+      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>
+    > {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.routesMediaUnlike(mediaUuid, options);
       return createRequestFunction(
         localVarAxiosArgs,
         globalAxios,
@@ -873,13 +1079,13 @@ export const DefaultApiFp = function (configuration?: Configuration) {
     },
     /**
      * Updates already existing album
-     * @param {number} albumId
+     * @param {string} albumUuid
      * @param {AlbumUpdateData} albumUpdateData
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async routesUpdateAlbum(
-      albumId: number,
+      albumUuid: string,
       albumUpdateData: AlbumUpdateData,
       options?: any
     ): Promise<
@@ -887,7 +1093,7 @@ export const DefaultApiFp = function (configuration?: Configuration) {
     > {
       const localVarAxiosArgs =
         await localVarAxiosParamCreator.routesUpdateAlbum(
-          albumId,
+          albumUuid,
           albumUpdateData,
           options
         );
@@ -953,13 +1159,13 @@ export const DefaultApiFactory = function (
     },
     /**
      * Creates a new album
-     * @param {number} albumId
+     * @param {string} albumUuid
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    routesDeleteAlbum(albumId: number, options?: any): AxiosPromise<void> {
+    routesDeleteAlbum(albumUuid: string, options?: any): AxiosPromise<void> {
       return localVarFp
-        .routesDeleteAlbum(albumId, options)
+        .routesDeleteAlbum(albumUuid, options)
         .then((request) => request(axios, basePath));
     },
     /**
@@ -984,6 +1190,16 @@ export const DefaultApiFactory = function (
         .then((request) => request(axios, basePath));
     },
     /**
+     * Returns a list of liked media.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    routesGetMediaLikedList(options?: any): AxiosPromise<Array<MediaResponse>> {
+      return localVarFp
+        .routesGetMediaLikedList(options)
+        .then((request) => request(axios, basePath));
+    },
+    /**
      *
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -1005,6 +1221,17 @@ export const DefaultApiFactory = function (
         .then((request) => request(axios, basePath));
     },
     /**
+     * Likes the media.
+     * @param {string} mediaUuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    routesMediaLike(mediaUuid: string, options?: any): AxiosPromise<void> {
+      return localVarFp
+        .routesMediaLike(mediaUuid, options)
+        .then((request) => request(axios, basePath));
+    },
+    /**
      *
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -1012,6 +1239,17 @@ export const DefaultApiFactory = function (
     routesMediaStructure(options?: any): AxiosPromise<Array<MediaResponse>> {
       return localVarFp
         .routesMediaStructure(options)
+        .then((request) => request(axios, basePath));
+    },
+    /**
+     * Unlikes the media.
+     * @param {string} mediaUuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    routesMediaUnlike(mediaUuid: string, options?: any): AxiosPromise<void> {
+      return localVarFp
+        .routesMediaUnlike(mediaUuid, options)
         .then((request) => request(axios, basePath));
     },
     /**
@@ -1036,18 +1274,18 @@ export const DefaultApiFactory = function (
     },
     /**
      * Updates already existing album
-     * @param {number} albumId
+     * @param {string} albumUuid
      * @param {AlbumUpdateData} albumUpdateData
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     routesUpdateAlbum(
-      albumId: number,
+      albumUuid: string,
       albumUpdateData: AlbumUpdateData,
       options?: any
     ): AxiosPromise<void> {
       return localVarFp
-        .routesUpdateAlbum(albumId, albumUpdateData, options)
+        .routesUpdateAlbum(albumUuid, albumUpdateData, options)
         .then((request) => request(axios, basePath));
     },
   };
@@ -1103,10 +1341,10 @@ export interface DefaultApiRoutesCreateUserRequest {
 export interface DefaultApiRoutesDeleteAlbumRequest {
   /**
    *
-   * @type {number}
+   * @type {string}
    * @memberof DefaultApiRoutesDeleteAlbum
    */
-  readonly albumId: number;
+  readonly albumUuid: string;
 }
 
 /**
@@ -1138,6 +1376,34 @@ export interface DefaultApiRoutesLoginRequest {
 }
 
 /**
+ * Request parameters for routesMediaLike operation in DefaultApi.
+ * @export
+ * @interface DefaultApiRoutesMediaLikeRequest
+ */
+export interface DefaultApiRoutesMediaLikeRequest {
+  /**
+   *
+   * @type {string}
+   * @memberof DefaultApiRoutesMediaLike
+   */
+  readonly mediaUuid: string;
+}
+
+/**
+ * Request parameters for routesMediaUnlike operation in DefaultApi.
+ * @export
+ * @interface DefaultApiRoutesMediaUnlikeRequest
+ */
+export interface DefaultApiRoutesMediaUnlikeRequest {
+  /**
+   *
+   * @type {string}
+   * @memberof DefaultApiRoutesMediaUnlike
+   */
+  readonly mediaUuid: string;
+}
+
+/**
  * Request parameters for routesUpdateAlbum operation in DefaultApi.
  * @export
  * @interface DefaultApiRoutesUpdateAlbumRequest
@@ -1145,10 +1411,10 @@ export interface DefaultApiRoutesLoginRequest {
 export interface DefaultApiRoutesUpdateAlbumRequest {
   /**
    *
-   * @type {number}
+   * @type {string}
    * @memberof DefaultApiRoutesUpdateAlbum
    */
-  readonly albumId: number;
+  readonly albumUuid: string;
 
   /**
    *
@@ -1225,7 +1491,7 @@ export class DefaultApi extends BaseAPI {
     options?: any
   ) {
     return DefaultApiFp(this.configuration)
-      .routesDeleteAlbum(requestParameters.albumId, options)
+      .routesDeleteAlbum(requestParameters.albumUuid, options)
       .then((request) => request(this.axios, this.basePath));
   }
 
@@ -1258,6 +1524,18 @@ export class DefaultApi extends BaseAPI {
   }
 
   /**
+   * Returns a list of liked media.
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof DefaultApi
+   */
+  public routesGetMediaLikedList(options?: any) {
+    return DefaultApiFp(this.configuration)
+      .routesGetMediaLikedList(options)
+      .then((request) => request(this.axios, this.basePath));
+  }
+
+  /**
    *
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
@@ -1286,6 +1564,22 @@ export class DefaultApi extends BaseAPI {
   }
 
   /**
+   * Likes the media.
+   * @param {DefaultApiRoutesMediaLikeRequest} requestParameters Request parameters.
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof DefaultApi
+   */
+  public routesMediaLike(
+    requestParameters: DefaultApiRoutesMediaLikeRequest,
+    options?: any
+  ) {
+    return DefaultApiFp(this.configuration)
+      .routesMediaLike(requestParameters.mediaUuid, options)
+      .then((request) => request(this.axios, this.basePath));
+  }
+
+  /**
    *
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
@@ -1294,6 +1588,22 @@ export class DefaultApi extends BaseAPI {
   public routesMediaStructure(options?: any) {
     return DefaultApiFp(this.configuration)
       .routesMediaStructure(options)
+      .then((request) => request(this.axios, this.basePath));
+  }
+
+  /**
+   * Unlikes the media.
+   * @param {DefaultApiRoutesMediaUnlikeRequest} requestParameters Request parameters.
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof DefaultApi
+   */
+  public routesMediaUnlike(
+    requestParameters: DefaultApiRoutesMediaUnlikeRequest,
+    options?: any
+  ) {
+    return DefaultApiFp(this.configuration)
+      .routesMediaUnlike(requestParameters.mediaUuid, options)
       .then((request) => request(this.axios, this.basePath));
   }
 
@@ -1334,7 +1644,7 @@ export class DefaultApi extends BaseAPI {
   ) {
     return DefaultApiFp(this.configuration)
       .routesUpdateAlbum(
-        requestParameters.albumId,
+        requestParameters.albumUuid,
         requestParameters.albumUpdateData,
         options
       )

@@ -111,18 +111,17 @@
         ]
       }
     },
-    "/album/{album_id}": {
+    "/album/{album_uuid}": {
       "put": {
         "description": "Updates already existing album",
         "operationId": "routes_update_album",
         "parameters": [
           {
-            "name": "album_id",
+            "name": "album_uuid",
             "in": "path",
             "required": true,
             "schema": {
-              "type": "integer",
-              "format": "int32"
+              "type": "string"
             }
           }
         ],
@@ -152,12 +151,11 @@
         "operationId": "routes_delete_album",
         "parameters": [
           {
-            "name": "album_id",
+            "name": "album_uuid",
             "in": "path",
             "required": true,
             "schema": {
-              "type": "integer",
-              "format": "int32"
+              "type": "string"
             }
           }
         ],
@@ -226,6 +224,35 @@
         ]
       }
     },
+    "/media/liked": {
+      "get": {
+        "description": "Returns a list of liked media.",
+        "operationId": "routes_get_media_liked_list",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/MediaResponse"
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ]
+      }
+    },
     "/media/{media_uuid}": {
       "get": {
         "operationId": "routes_get_media_by_uuid",
@@ -247,6 +274,56 @@
             }
           },
           "404": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ]
+      }
+    },
+    "/media/{media_uuid}/like": {
+      "post": {
+        "description": "Likes the media.",
+        "operationId": "routes_media_like",
+        "parameters": [
+          {
+            "name": "media_uuid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ]
+      },
+      "delete": {
+        "description": "Unlikes the media.",
+        "operationId": "routes_media_unlike",
+        "parameters": [
+          {
+            "name": "media_uuid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "default": {
             "description": ""
           }
         },
