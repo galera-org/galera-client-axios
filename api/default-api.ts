@@ -218,7 +218,7 @@ export const DefaultApiAxiosParamCreator = function (
       };
     },
     /**
-     * Creates a new album
+     * Deletes the album
      * @param {string} albumUuid
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -273,6 +273,55 @@ export const DefaultApiAxiosParamCreator = function (
      */
     routesGetAlbumList: async (options: any = {}): Promise<RequestArgs> => {
       const localVarPath = `/album`;
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+      let baseOptions;
+      if (configuration) {
+        baseOptions = configuration.baseOptions;
+      }
+
+      const localVarRequestOptions = {
+        method: "GET",
+        ...baseOptions,
+        ...options,
+      };
+      const localVarHeaderParameter = {} as any;
+      const localVarQueryParameter = {} as any;
+
+      // authentication BearerAuth required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration);
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+      let headersFromBaseOptions =
+        baseOptions && baseOptions.headers ? baseOptions.headers : {};
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      };
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      };
+    },
+    /**
+     *
+     * @param {string} albumUuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    routesGetAlbumStructure: async (
+      albumUuid: string,
+      options: any = {}
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'albumUuid' is not null or undefined
+      assertParamExists("routesGetAlbumStructure", "albumUuid", albumUuid);
+      const localVarPath = `/album/{album_uuid}/media`.replace(
+        `{${"album_uuid"}}`,
+        encodeURIComponent(String(albumUuid))
+      );
       // use dummy base URL string because the URL constructor only accepts absolute URLs.
       const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
       let baseOptions;
@@ -840,7 +889,7 @@ export const DefaultApiFp = function (configuration?: Configuration) {
       );
     },
     /**
-     * Creates a new album
+     * Deletes the album
      * @param {string} albumUuid
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -875,6 +924,33 @@ export const DefaultApiFp = function (configuration?: Configuration) {
     > {
       const localVarAxiosArgs =
         await localVarAxiosParamCreator.routesGetAlbumList(options);
+      return createRequestFunction(
+        localVarAxiosArgs,
+        globalAxios,
+        BASE_PATH,
+        configuration
+      );
+    },
+    /**
+     *
+     * @param {string} albumUuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async routesGetAlbumStructure(
+      albumUuid: string,
+      options?: any
+    ): Promise<
+      (
+        axios?: AxiosInstance,
+        basePath?: string
+      ) => AxiosPromise<Array<MediaResponse>>
+    > {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.routesGetAlbumStructure(
+          albumUuid,
+          options
+        );
       return createRequestFunction(
         localVarAxiosArgs,
         globalAxios,
@@ -1158,7 +1234,7 @@ export const DefaultApiFactory = function (
         .then((request) => request(axios, basePath));
     },
     /**
-     * Creates a new album
+     * Deletes the album
      * @param {string} albumUuid
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -1176,6 +1252,20 @@ export const DefaultApiFactory = function (
     routesGetAlbumList(options?: any): AxiosPromise<Array<AlbumResponse>> {
       return localVarFp
         .routesGetAlbumList(options)
+        .then((request) => request(axios, basePath));
+    },
+    /**
+     *
+     * @param {string} albumUuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    routesGetAlbumStructure(
+      albumUuid: string,
+      options?: any
+    ): AxiosPromise<Array<MediaResponse>> {
+      return localVarFp
+        .routesGetAlbumStructure(albumUuid, options)
         .then((request) => request(axios, basePath));
     },
     /**
@@ -1348,6 +1438,20 @@ export interface DefaultApiRoutesDeleteAlbumRequest {
 }
 
 /**
+ * Request parameters for routesGetAlbumStructure operation in DefaultApi.
+ * @export
+ * @interface DefaultApiRoutesGetAlbumStructureRequest
+ */
+export interface DefaultApiRoutesGetAlbumStructureRequest {
+  /**
+   *
+   * @type {string}
+   * @memberof DefaultApiRoutesGetAlbumStructure
+   */
+  readonly albumUuid: string;
+}
+
+/**
  * Request parameters for routesGetMediaByUuid operation in DefaultApi.
  * @export
  * @interface DefaultApiRoutesGetMediaByUuidRequest
@@ -1480,7 +1584,7 @@ export class DefaultApi extends BaseAPI {
   }
 
   /**
-   * Creates a new album
+   * Deletes the album
    * @param {DefaultApiRoutesDeleteAlbumRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
@@ -1504,6 +1608,22 @@ export class DefaultApi extends BaseAPI {
   public routesGetAlbumList(options?: any) {
     return DefaultApiFp(this.configuration)
       .routesGetAlbumList(options)
+      .then((request) => request(this.axios, this.basePath));
+  }
+
+  /**
+   *
+   * @param {DefaultApiRoutesGetAlbumStructureRequest} requestParameters Request parameters.
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof DefaultApi
+   */
+  public routesGetAlbumStructure(
+    requestParameters: DefaultApiRoutesGetAlbumStructureRequest,
+    options?: any
+  ) {
+    return DefaultApiFp(this.configuration)
+      .routesGetAlbumStructure(requestParameters.albumUuid, options)
       .then((request) => request(this.axios, this.basePath));
   }
 

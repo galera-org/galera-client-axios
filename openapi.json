@@ -147,7 +147,7 @@
         ]
       },
       "delete": {
-        "description": "Creates a new album",
+        "description": "Deletes the album",
         "operationId": "routes_delete_album",
         "parameters": [
           {
@@ -160,6 +160,44 @@
           }
         ],
         "responses": {
+          "default": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ]
+      }
+    },
+    "/album/{album_uuid}/media": {
+      "get": {
+        "operationId": "routes_get_album_structure",
+        "parameters": [
+          {
+            "name": "album_uuid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/MediaResponse"
+                  }
+                }
+              }
+            }
+          },
           "default": {
             "description": ""
           }
