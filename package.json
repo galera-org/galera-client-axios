@@ -16,7 +16,7 @@
   "devDependencies": {
     "@commitlint/cli": "^13.1.0",
     "@commitlint/config-conventional": "^13.1.0",
-    "@openapitools/openapi-generator-cli": "^2.4.5",
+    "@openapitools/openapi-generator-cli": "^2.4.12",
     "@types/node": "^16.7.13",
     "husky": "^7.0.2",
     "prettier": "^2.3.2",
