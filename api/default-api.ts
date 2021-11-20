@@ -43,6 +43,10 @@ import { AlbumResponse } from "../models";
 // @ts-ignore
 import { AlbumUpdateData } from "../models";
 // @ts-ignore
+import { ClaimsEncoded } from "../models";
+// @ts-ignore
+import { LoginResponse } from "../models";
+// @ts-ignore
 import { MediaResponse } from "../models";
 // @ts-ignore
 import { NewAlbumMedia } from "../models";
@@ -218,7 +222,7 @@ export const DefaultApiAxiosParamCreator = function (
       };
     },
     /**
-     * Deletes the album
+     * Deletes an album
      * @param {string} albumUuid
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -674,8 +678,8 @@ export const DefaultApiAxiosParamCreator = function (
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    routesScanMedia: async (options: any = {}): Promise<RequestArgs> => {
-      const localVarPath = `/scan_media`;
+    routesRefreshToken: async (options: any = {}): Promise<RequestArgs> => {
+      const localVarPath = `/login/refresh`;
       // use dummy base URL string because the URL constructor only accepts absolute URLs.
       const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
       let baseOptions;
@@ -684,7 +688,7 @@ export const DefaultApiAxiosParamCreator = function (
       }
 
       const localVarRequestOptions = {
-        method: "GET",
+        method: "POST",
         ...baseOptions,
         ...options,
       };
@@ -710,12 +714,12 @@ export const DefaultApiAxiosParamCreator = function (
       };
     },
     /**
-     *
+     * Searches for new media
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    routesTest: async (options: any = {}): Promise<RequestArgs> => {
-      const localVarPath = `/test`;
+    routesScanMedia: async (options: any = {}): Promise<RequestArgs> => {
+      const localVarPath = `/scan_media`;
       // use dummy base URL string because the URL constructor only accepts absolute URLs.
       const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
       let baseOptions;
@@ -730,6 +734,10 @@ export const DefaultApiAxiosParamCreator = function (
       };
       const localVarHeaderParameter = {} as any;
       const localVarQueryParameter = {} as any;
+
+      // authentication BearerAuth required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration);
 
       setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
       let headersFromBaseOptions =
@@ -877,7 +885,7 @@ export const DefaultApiFp = function (configuration?: Configuration) {
       newUser: NewUser,
       options?: any
     ): Promise<
-      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<boolean>
+      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>
     > {
       const localVarAxiosArgs =
         await localVarAxiosParamCreator.routesCreateUser(newUser, options);
@@ -889,7 +897,7 @@ export const DefaultApiFp = function (configuration?: Configuration) {
       );
     },
     /**
-     * Deletes the album
+     * Deletes an album
      * @param {string} albumUuid
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -1034,7 +1042,7 @@ export const DefaultApiFp = function (configuration?: Configuration) {
       userLogin: UserLogin,
       options?: any
     ): Promise<
-      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<boolean>
+      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<LoginResponse>
     > {
       const localVarAxiosArgs = await localVarAxiosParamCreator.routesLogin(
         userLogin,
@@ -1118,14 +1126,13 @@ export const DefaultApiFp = function (configuration?: Configuration) {
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async routesScanMedia(
+    async routesRefreshToken(
       options?: any
     ): Promise<
-      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<string>
+      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<ClaimsEncoded>
     > {
-      const localVarAxiosArgs = await localVarAxiosParamCreator.routesScanMedia(
-        options
-      );
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.routesRefreshToken(options);
       return createRequestFunction(
         localVarAxiosArgs,
         globalAxios,
@@ -1134,16 +1141,16 @@ export const DefaultApiFp = function (configuration?: Configuration) {
       );
     },
     /**
-     *
+     * Searches for new media
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    async routesTest(
+    async routesScanMedia(
       options?: any
     ): Promise<
-      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<string>
+      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>
     > {
-      const localVarAxiosArgs = await localVarAxiosParamCreator.routesTest(
+      const localVarAxiosArgs = await localVarAxiosParamCreator.routesScanMedia(
         options
       );
       return createRequestFunction(
@@ -1228,13 +1235,13 @@ export const DefaultApiFactory = function (
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    routesCreateUser(newUser: NewUser, options?: any): AxiosPromise<boolean> {
+    routesCreateUser(newUser: NewUser, options?: any): AxiosPromise<void> {
       return localVarFp
         .routesCreateUser(newUser, options)
         .then((request) => request(axios, basePath));
     },
     /**
-     * Deletes the album
+     * Deletes an album
      * @param {string} albumUuid
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -1305,7 +1312,10 @@ export const DefaultApiFactory = function (
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    routesLogin(userLogin: UserLogin, options?: any): AxiosPromise<boolean> {
+    routesLogin(
+      userLogin: UserLogin,
+      options?: any
+    ): AxiosPromise<LoginResponse> {
       return localVarFp
         .routesLogin(userLogin, options)
         .then((request) => request(axios, basePath));
@@ -1347,19 +1357,19 @@ export const DefaultApiFactory = function (
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    routesScanMedia(options?: any): AxiosPromise<string> {
+    routesRefreshToken(options?: any): AxiosPromise<ClaimsEncoded> {
       return localVarFp
-        .routesScanMedia(options)
+        .routesRefreshToken(options)
         .then((request) => request(axios, basePath));
     },
     /**
-     *
+     * Searches for new media
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    routesTest(options?: any): AxiosPromise<string> {
+    routesScanMedia(options?: any): AxiosPromise<void> {
       return localVarFp
-        .routesTest(options)
+        .routesScanMedia(options)
         .then((request) => request(axios, basePath));
     },
     /**
@@ -1584,7 +1594,7 @@ export class DefaultApi extends BaseAPI {
   }
 
   /**
-   * Deletes the album
+   * Deletes an album
    * @param {DefaultApiRoutesDeleteAlbumRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
@@ -1733,21 +1743,21 @@ export class DefaultApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof DefaultApi
    */
-  public routesScanMedia(options?: any) {
+  public routesRefreshToken(options?: any) {
     return DefaultApiFp(this.configuration)
-      .routesScanMedia(options)
+      .routesRefreshToken(options)
       .then((request) => request(this.axios, this.basePath));
   }
 
   /**
-   *
+   * Searches for new media
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof DefaultApi
    */
-  public routesTest(options?: any) {
+  public routesScanMedia(options?: any) {
     return DefaultApiFp(this.configuration)
-      .routesTest(options)
+      .routesScanMedia(options)
       .then((request) => request(this.axios, this.basePath));
   }
 

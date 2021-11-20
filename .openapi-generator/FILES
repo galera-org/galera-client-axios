@@ -10,8 +10,11 @@ index.ts
 models/album-insert-data.ts
 models/album-response.ts
 models/album-update-data.ts
+models/claims-encoded.ts
 models/index.ts
+models/login-response.ts
 models/media-response.ts
 models/new-album-media.ts
 models/new-user.ts
+models/user-info.ts
 models/user-login.ts

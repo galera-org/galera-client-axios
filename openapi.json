@@ -147,7 +147,7 @@
         ]
       },
       "delete": {
-        "description": "Deletes the album",
+        "description": "Deletes an album",
         "operationId": "routes_delete_album",
         "parameters": [
           {
@@ -229,12 +229,40 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "boolean"
+                  "$ref": "#/components/schemas/LoginResponse"
                 }
               }
             }
+          },
+          "default": {
+            "description": ""
           }
         }
+      }
+    },
+    "/login/refresh": {
+      "post": {
+        "operationId": "routes_refresh_token",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ClaimsEncoded"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ]
       }
     },
     "/media": {
@@ -374,17 +402,11 @@
     },
     "/scan_media": {
       "get": {
+        "description": "Searches for new media",
         "operationId": "routes_scan_media",
         "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
+          "default": {
+            "description": ""
           }
         },
         "security": [
@@ -392,23 +414,6 @@
             "BearerAuth": []
           }
         ]
-      }
-    },
-    "/test": {
-      "get": {
-        "operationId": "routes_test",
-        "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
-          }
-        }
       }
     },
     "/user": {
@@ -425,15 +430,8 @@
           "required": true
         },
         "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "boolean"
-                }
-              }
-            }
+          "default": {
+            "description": ""
           }
         }
       }
@@ -499,6 +497,34 @@
           "name": {
             "type": "string",
             "nullable": true
+          }
+        }
+      },
+      "ClaimsEncoded": {
+        "description": "Encoded bearer token # Example decode an encoded bearer token ``` let encoded_token = Claims::new(1).encode().unwrap();\n\nlet decoded_token = encoded_token.decode(); ```",
+        "type": "object",
+        "required": [
+          "encoded_claims"
+        ],
+        "properties": {
+          "encoded_claims": {
+            "type": "string"
+          }
+        }
+      },
+      "LoginResponse": {
+        "description": "Response when logging in.",
+        "type": "object",
+        "required": [
+          "bearer_token",
+          "user_info"
+        ],
+        "properties": {
+          "bearer_token": {
+            "type": "string"
+          },
+          "user_info": {
+            "$ref": "#/components/schemas/UserInfo"
           }
         }
       },
@@ -576,23 +602,35 @@
           }
         }
       },
-      "UserLogin": {
-        "description": "Struct for signing in.",
+      "UserInfo": {
+        "description": "Used for sending information about user.",
         "type": "object",
         "required": [
-          "password"
+          "email",
+          "username"
         ],
         "properties": {
           "email": {
-            "type": "string",
-            "nullable": true
-          },
-          "password": {
             "type": "string"
           },
           "username": {
-            "type": "string",
-            "nullable": true
+            "type": "string"
+          }
+        }
+      },
+      "UserLogin": {
+        "description": "Used for receiving login data.",
+        "type": "object",
+        "required": [
+          "password",
+          "username_or_email"
+        ],
+        "properties": {
+          "password": {
+            "type": "string"
+          },
+          "username_or_email": {
+            "type": "string"
           }
         }
       }

@@ -13,21 +13,21 @@
  */
 
 /**
- * Used for receiving login data.
+ * Used for sending information about user.
  * @export
- * @interface UserLogin
+ * @interface UserInfo
  */
-export interface UserLogin {
+export interface UserInfo {
   /**
    *
    * @type {string}
-   * @memberof UserLogin
+   * @memberof UserInfo
    */
-  password: string;
+  email: string;
   /**
    *
    * @type {string}
-   * @memberof UserLogin
+   * @memberof UserInfo
    */
-  username_or_email: string;
+  username: string;
 }

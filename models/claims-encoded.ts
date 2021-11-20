@@ -13,21 +13,15 @@
  */
 
 /**
- * Used for receiving login data.
+ * Encoded bearer token # Example decode an encoded bearer token ``` let encoded_token = Claims::new(1).encode().unwrap();  let decoded_token = encoded_token.decode(); ```
  * @export
- * @interface UserLogin
+ * @interface ClaimsEncoded
  */
-export interface UserLogin {
+export interface ClaimsEncoded {
   /**
    *
    * @type {string}
-   * @memberof UserLogin
+   * @memberof ClaimsEncoded
    */
-  password: string;
-  /**
-   *
-   * @type {string}
-   * @memberof UserLogin
-   */
-  username_or_email: string;
+  encoded_claims: string;
 }

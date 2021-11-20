@@ -12,22 +12,24 @@
  * Do not edit the class manually.
  */
 
+import { UserInfo } from "./user-info";
+
 /**
- * Used for receiving login data.
+ * Response when logging in.
  * @export
- * @interface UserLogin
+ * @interface LoginResponse
  */
-export interface UserLogin {
+export interface LoginResponse {
   /**
    *
    * @type {string}
-   * @memberof UserLogin
+   * @memberof LoginResponse
    */
-  password: string;
+  bearer_token: string;
   /**
    *
-   * @type {string}
-   * @memberof UserLogin
+   * @type {UserInfo}
+   * @memberof LoginResponse
    */
-  username_or_email: string;
+  user_info: UserInfo;
 }
