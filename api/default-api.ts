@@ -12,7 +12,11 @@
  * Do not edit the class manually.
  */
 
-import globalAxios, { AxiosPromise, AxiosInstance } from "axios";
+import globalAxios, {
+  AxiosPromise,
+  AxiosInstance,
+  AxiosRequestConfig,
+} from "axios";
 import { Configuration } from "../configuration";
 // Some imports not used depending on template conditions
 // @ts-ignore
@@ -70,7 +74,7 @@ export const DefaultApiAxiosParamCreator = function (
      */
     routesAlbumAddMedia: async (
       newAlbumMedia: Array<NewAlbumMedia>,
-      options: any = {}
+      options: AxiosRequestConfig = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'newAlbumMedia' is not null or undefined
       assertParamExists("routesAlbumAddMedia", "newAlbumMedia", newAlbumMedia);
@@ -96,7 +100,7 @@ export const DefaultApiAxiosParamCreator = function (
 
       localVarHeaderParameter["Content-Type"] = "application/json";
 
-      setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+      setSearchParams(localVarUrlObj, localVarQueryParameter);
       let headersFromBaseOptions =
         baseOptions && baseOptions.headers ? baseOptions.headers : {};
       localVarRequestOptions.headers = {
@@ -123,7 +127,7 @@ export const DefaultApiAxiosParamCreator = function (
      */
     routesCreateAlbum: async (
       albumInsertData: AlbumInsertData,
-      options: any = {}
+      options: AxiosRequestConfig = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'albumInsertData' is not null or undefined
       assertParamExists(
@@ -153,7 +157,7 @@ export const DefaultApiAxiosParamCreator = function (
 
       localVarHeaderParameter["Content-Type"] = "application/json";
 
-      setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+      setSearchParams(localVarUrlObj, localVarQueryParameter);
       let headersFromBaseOptions =
         baseOptions && baseOptions.headers ? baseOptions.headers : {};
       localVarRequestOptions.headers = {
@@ -180,7 +184,7 @@ export const DefaultApiAxiosParamCreator = function (
      */
     routesCreateUser: async (
       newUser: NewUser,
-      options: any = {}
+      options: AxiosRequestConfig = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'newUser' is not null or undefined
       assertParamExists("routesCreateUser", "newUser", newUser);
@@ -202,7 +206,7 @@ export const DefaultApiAxiosParamCreator = function (
 
       localVarHeaderParameter["Content-Type"] = "application/json";
 
-      setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+      setSearchParams(localVarUrlObj, localVarQueryParameter);
       let headersFromBaseOptions =
         baseOptions && baseOptions.headers ? baseOptions.headers : {};
       localVarRequestOptions.headers = {
@@ -229,7 +233,7 @@ export const DefaultApiAxiosParamCreator = function (
      */
     routesDeleteAlbum: async (
       albumUuid: string,
-      options: any = {}
+      options: AxiosRequestConfig = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'albumUuid' is not null or undefined
       assertParamExists("routesDeleteAlbum", "albumUuid", albumUuid);
@@ -256,7 +260,7 @@ export const DefaultApiAxiosParamCreator = function (
       // http bearer authentication required
       await setBearerAuthToObject(localVarHeaderParameter, configuration);
 
-      setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+      setSearchParams(localVarUrlObj, localVarQueryParameter);
       let headersFromBaseOptions =
         baseOptions && baseOptions.headers ? baseOptions.headers : {};
       localVarRequestOptions.headers = {
@@ -275,7 +279,9 @@ export const DefaultApiAxiosParamCreator = function (
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    routesGetAlbumList: async (options: any = {}): Promise<RequestArgs> => {
+    routesGetAlbumList: async (
+      options: AxiosRequestConfig = {}
+    ): Promise<RequestArgs> => {
       const localVarPath = `/album`;
       // use dummy base URL string because the URL constructor only accepts absolute URLs.
       const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -296,7 +302,7 @@ export const DefaultApiAxiosParamCreator = function (
       // http bearer authentication required
       await setBearerAuthToObject(localVarHeaderParameter, configuration);
 
-      setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+      setSearchParams(localVarUrlObj, localVarQueryParameter);
       let headersFromBaseOptions =
         baseOptions && baseOptions.headers ? baseOptions.headers : {};
       localVarRequestOptions.headers = {
@@ -318,7 +324,7 @@ export const DefaultApiAxiosParamCreator = function (
      */
     routesGetAlbumStructure: async (
       albumUuid: string,
-      options: any = {}
+      options: AxiosRequestConfig = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'albumUuid' is not null or undefined
       assertParamExists("routesGetAlbumStructure", "albumUuid", albumUuid);
@@ -345,7 +351,7 @@ export const DefaultApiAxiosParamCreator = function (
       // http bearer authentication required
       await setBearerAuthToObject(localVarHeaderParameter, configuration);
 
-      setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+      setSearchParams(localVarUrlObj, localVarQueryParameter);
       let headersFromBaseOptions =
         baseOptions && baseOptions.headers ? baseOptions.headers : {};
       localVarRequestOptions.headers = {
@@ -367,7 +373,7 @@ export const DefaultApiAxiosParamCreator = function (
      */
     routesGetMediaByUuid: async (
       mediaUuid: string,
-      options: any = {}
+      options: AxiosRequestConfig = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'mediaUuid' is not null or undefined
       assertParamExists("routesGetMediaByUuid", "mediaUuid", mediaUuid);
@@ -394,7 +400,7 @@ export const DefaultApiAxiosParamCreator = function (
       // http bearer authentication required
       await setBearerAuthToObject(localVarHeaderParameter, configuration);
 
-      setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+      setSearchParams(localVarUrlObj, localVarQueryParameter);
       let headersFromBaseOptions =
         baseOptions && baseOptions.headers ? baseOptions.headers : {};
       localVarRequestOptions.headers = {
@@ -414,7 +420,7 @@ export const DefaultApiAxiosParamCreator = function (
      * @throws {RequiredError}
      */
     routesGetMediaLikedList: async (
-      options: any = {}
+      options: AxiosRequestConfig = {}
     ): Promise<RequestArgs> => {
       const localVarPath = `/media/liked`;
       // use dummy base URL string because the URL constructor only accepts absolute URLs.
@@ -436,7 +442,7 @@ export const DefaultApiAxiosParamCreator = function (
       // http bearer authentication required
       await setBearerAuthToObject(localVarHeaderParameter, configuration);
 
-      setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+      setSearchParams(localVarUrlObj, localVarQueryParameter);
       let headersFromBaseOptions =
         baseOptions && baseOptions.headers ? baseOptions.headers : {};
       localVarRequestOptions.headers = {
@@ -455,7 +461,9 @@ export const DefaultApiAxiosParamCreator = function (
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    routesIndex: async (options: any = {}): Promise<RequestArgs> => {
+    routesIndex: async (
+      options: AxiosRequestConfig = {}
+    ): Promise<RequestArgs> => {
       const localVarPath = `/`;
       // use dummy base URL string because the URL constructor only accepts absolute URLs.
       const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -472,7 +480,7 @@ export const DefaultApiAxiosParamCreator = function (
       const localVarHeaderParameter = {} as any;
       const localVarQueryParameter = {} as any;
 
-      setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+      setSearchParams(localVarUrlObj, localVarQueryParameter);
       let headersFromBaseOptions =
         baseOptions && baseOptions.headers ? baseOptions.headers : {};
       localVarRequestOptions.headers = {
@@ -494,7 +502,7 @@ export const DefaultApiAxiosParamCreator = function (
      */
     routesLogin: async (
       userLogin: UserLogin,
-      options: any = {}
+      options: AxiosRequestConfig = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'userLogin' is not null or undefined
       assertParamExists("routesLogin", "userLogin", userLogin);
@@ -516,7 +524,7 @@ export const DefaultApiAxiosParamCreator = function (
 
       localVarHeaderParameter["Content-Type"] = "application/json";
 
-      setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+      setSearchParams(localVarUrlObj, localVarQueryParameter);
       let headersFromBaseOptions =
         baseOptions && baseOptions.headers ? baseOptions.headers : {};
       localVarRequestOptions.headers = {
@@ -543,7 +551,7 @@ export const DefaultApiAxiosParamCreator = function (
      */
     routesMediaLike: async (
       mediaUuid: string,
-      options: any = {}
+      options: AxiosRequestConfig = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'mediaUuid' is not null or undefined
       assertParamExists("routesMediaLike", "mediaUuid", mediaUuid);
@@ -570,7 +578,7 @@ export const DefaultApiAxiosParamCreator = function (
       // http bearer authentication required
       await setBearerAuthToObject(localVarHeaderParameter, configuration);
 
-      setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+      setSearchParams(localVarUrlObj, localVarQueryParameter);
       let headersFromBaseOptions =
         baseOptions && baseOptions.headers ? baseOptions.headers : {};
       localVarRequestOptions.headers = {
@@ -589,7 +597,9 @@ export const DefaultApiAxiosParamCreator = function (
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    routesMediaStructure: async (options: any = {}): Promise<RequestArgs> => {
+    routesMediaStructure: async (
+      options: AxiosRequestConfig = {}
+    ): Promise<RequestArgs> => {
       const localVarPath = `/media`;
       // use dummy base URL string because the URL constructor only accepts absolute URLs.
       const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -610,7 +620,7 @@ export const DefaultApiAxiosParamCreator = function (
       // http bearer authentication required
       await setBearerAuthToObject(localVarHeaderParameter, configuration);
 
-      setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+      setSearchParams(localVarUrlObj, localVarQueryParameter);
       let headersFromBaseOptions =
         baseOptions && baseOptions.headers ? baseOptions.headers : {};
       localVarRequestOptions.headers = {
@@ -632,7 +642,7 @@ export const DefaultApiAxiosParamCreator = function (
      */
     routesMediaUnlike: async (
       mediaUuid: string,
-      options: any = {}
+      options: AxiosRequestConfig = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'mediaUuid' is not null or undefined
       assertParamExists("routesMediaUnlike", "mediaUuid", mediaUuid);
@@ -659,7 +669,7 @@ export const DefaultApiAxiosParamCreator = function (
       // http bearer authentication required
       await setBearerAuthToObject(localVarHeaderParameter, configuration);
 
-      setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+      setSearchParams(localVarUrlObj, localVarQueryParameter);
       let headersFromBaseOptions =
         baseOptions && baseOptions.headers ? baseOptions.headers : {};
       localVarRequestOptions.headers = {
@@ -678,7 +688,9 @@ export const DefaultApiAxiosParamCreator = function (
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    routesRefreshToken: async (options: any = {}): Promise<RequestArgs> => {
+    routesRefreshToken: async (
+      options: AxiosRequestConfig = {}
+    ): Promise<RequestArgs> => {
       const localVarPath = `/login/refresh`;
       // use dummy base URL string because the URL constructor only accepts absolute URLs.
       const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -699,7 +711,7 @@ export const DefaultApiAxiosParamCreator = function (
       // http bearer authentication required
       await setBearerAuthToObject(localVarHeaderParameter, configuration);
 
-      setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+      setSearchParams(localVarUrlObj, localVarQueryParameter);
       let headersFromBaseOptions =
         baseOptions && baseOptions.headers ? baseOptions.headers : {};
       localVarRequestOptions.headers = {
@@ -718,7 +730,9 @@ export const DefaultApiAxiosParamCreator = function (
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    routesScanMedia: async (options: any = {}): Promise<RequestArgs> => {
+    routesScanMedia: async (
+      options: AxiosRequestConfig = {}
+    ): Promise<RequestArgs> => {
       const localVarPath = `/scan_media`;
       // use dummy base URL string because the URL constructor only accepts absolute URLs.
       const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -739,7 +753,7 @@ export const DefaultApiAxiosParamCreator = function (
       // http bearer authentication required
       await setBearerAuthToObject(localVarHeaderParameter, configuration);
 
-      setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+      setSearchParams(localVarUrlObj, localVarQueryParameter);
       let headersFromBaseOptions =
         baseOptions && baseOptions.headers ? baseOptions.headers : {};
       localVarRequestOptions.headers = {
@@ -763,7 +777,7 @@ export const DefaultApiAxiosParamCreator = function (
     routesUpdateAlbum: async (
       albumUuid: string,
       albumUpdateData: AlbumUpdateData,
-      options: any = {}
+      options: AxiosRequestConfig = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'albumUuid' is not null or undefined
       assertParamExists("routesUpdateAlbum", "albumUuid", albumUuid);
@@ -798,7 +812,7 @@ export const DefaultApiAxiosParamCreator = function (
 
       localVarHeaderParameter["Content-Type"] = "application/json";
 
-      setSearchParams(localVarUrlObj, localVarQueryParameter, options.query);
+      setSearchParams(localVarUrlObj, localVarQueryParameter);
       let headersFromBaseOptions =
         baseOptions && baseOptions.headers ? baseOptions.headers : {};
       localVarRequestOptions.headers = {
@@ -835,7 +849,7 @@ export const DefaultApiFp = function (configuration?: Configuration) {
      */
     async routesAlbumAddMedia(
       newAlbumMedia: Array<NewAlbumMedia>,
-      options?: any
+      options?: AxiosRequestConfig
     ): Promise<
       (axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>
     > {
@@ -859,7 +873,7 @@ export const DefaultApiFp = function (configuration?: Configuration) {
      */
     async routesCreateAlbum(
       albumInsertData: AlbumInsertData,
-      options?: any
+      options?: AxiosRequestConfig
     ): Promise<
       (axios?: AxiosInstance, basePath?: string) => AxiosPromise<AlbumResponse>
     > {
@@ -883,7 +897,7 @@ export const DefaultApiFp = function (configuration?: Configuration) {
      */
     async routesCreateUser(
       newUser: NewUser,
-      options?: any
+      options?: AxiosRequestConfig
     ): Promise<
       (axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>
     > {
@@ -904,7 +918,7 @@ export const DefaultApiFp = function (configuration?: Configuration) {
      */
     async routesDeleteAlbum(
       albumUuid: string,
-      options?: any
+      options?: AxiosRequestConfig
     ): Promise<
       (axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>
     > {
@@ -923,7 +937,7 @@ export const DefaultApiFp = function (configuration?: Configuration) {
      * @throws {RequiredError}
      */
     async routesGetAlbumList(
-      options?: any
+      options?: AxiosRequestConfig
     ): Promise<
       (
         axios?: AxiosInstance,
@@ -947,7 +961,7 @@ export const DefaultApiFp = function (configuration?: Configuration) {
      */
     async routesGetAlbumStructure(
       albumUuid: string,
-      options?: any
+      options?: AxiosRequestConfig
     ): Promise<
       (
         axios?: AxiosInstance,
@@ -974,7 +988,7 @@ export const DefaultApiFp = function (configuration?: Configuration) {
      */
     async routesGetMediaByUuid(
       mediaUuid: string,
-      options?: any
+      options?: AxiosRequestConfig
     ): Promise<
       (axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>
     > {
@@ -996,7 +1010,7 @@ export const DefaultApiFp = function (configuration?: Configuration) {
      * @throws {RequiredError}
      */
     async routesGetMediaLikedList(
-      options?: any
+      options?: AxiosRequestConfig
     ): Promise<
       (
         axios?: AxiosInstance,
@@ -1018,7 +1032,7 @@ export const DefaultApiFp = function (configuration?: Configuration) {
      * @throws {RequiredError}
      */
     async routesIndex(
-      options?: any
+      options?: AxiosRequestConfig
     ): Promise<
       (axios?: AxiosInstance, basePath?: string) => AxiosPromise<string>
     > {
@@ -1040,7 +1054,7 @@ export const DefaultApiFp = function (configuration?: Configuration) {
      */
     async routesLogin(
       userLogin: UserLogin,
-      options?: any
+      options?: AxiosRequestConfig
     ): Promise<
       (axios?: AxiosInstance, basePath?: string) => AxiosPromise<LoginResponse>
     > {
@@ -1063,7 +1077,7 @@ export const DefaultApiFp = function (configuration?: Configuration) {
      */
     async routesMediaLike(
       mediaUuid: string,
-      options?: any
+      options?: AxiosRequestConfig
     ): Promise<
       (axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>
     > {
@@ -1084,7 +1098,7 @@ export const DefaultApiFp = function (configuration?: Configuration) {
      * @throws {RequiredError}
      */
     async routesMediaStructure(
-      options?: any
+      options?: AxiosRequestConfig
     ): Promise<
       (
         axios?: AxiosInstance,
@@ -1108,7 +1122,7 @@ export const DefaultApiFp = function (configuration?: Configuration) {
      */
     async routesMediaUnlike(
       mediaUuid: string,
-      options?: any
+      options?: AxiosRequestConfig
     ): Promise<
       (axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>
     > {
@@ -1127,7 +1141,7 @@ export const DefaultApiFp = function (configuration?: Configuration) {
      * @throws {RequiredError}
      */
     async routesRefreshToken(
-      options?: any
+      options?: AxiosRequestConfig
     ): Promise<
       (axios?: AxiosInstance, basePath?: string) => AxiosPromise<ClaimsEncoded>
     > {
@@ -1146,7 +1160,7 @@ export const DefaultApiFp = function (configuration?: Configuration) {
      * @throws {RequiredError}
      */
     async routesScanMedia(
-      options?: any
+      options?: AxiosRequestConfig
     ): Promise<
       (axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>
     > {
@@ -1170,7 +1184,7 @@ export const DefaultApiFp = function (configuration?: Configuration) {
     async routesUpdateAlbum(
       albumUuid: string,
       albumUpdateData: AlbumUpdateData,
-      options?: any
+      options?: AxiosRequestConfig
     ): Promise<
       (axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>
     > {
@@ -1554,7 +1568,7 @@ export class DefaultApi extends BaseAPI {
    */
   public routesAlbumAddMedia(
     requestParameters: DefaultApiRoutesAlbumAddMediaRequest,
-    options?: any
+    options?: AxiosRequestConfig
   ) {
     return DefaultApiFp(this.configuration)
       .routesAlbumAddMedia(requestParameters.newAlbumMedia, options)
@@ -1570,7 +1584,7 @@ export class DefaultApi extends BaseAPI {
    */
   public routesCreateAlbum(
     requestParameters: DefaultApiRoutesCreateAlbumRequest,
-    options?: any
+    options?: AxiosRequestConfig
   ) {
     return DefaultApiFp(this.configuration)
       .routesCreateAlbum(requestParameters.albumInsertData, options)
@@ -1586,7 +1600,7 @@ export class DefaultApi extends BaseAPI {
    */
   public routesCreateUser(
     requestParameters: DefaultApiRoutesCreateUserRequest,
-    options?: any
+    options?: AxiosRequestConfig
   ) {
     return DefaultApiFp(this.configuration)
       .routesCreateUser(requestParameters.newUser, options)
@@ -1602,7 +1616,7 @@ export class DefaultApi extends BaseAPI {
    */
   public routesDeleteAlbum(
     requestParameters: DefaultApiRoutesDeleteAlbumRequest,
-    options?: any
+    options?: AxiosRequestConfig
   ) {
     return DefaultApiFp(this.configuration)
       .routesDeleteAlbum(requestParameters.albumUuid, options)
@@ -1615,7 +1629,7 @@ export class DefaultApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof DefaultApi
    */
-  public routesGetAlbumList(options?: any) {
+  public routesGetAlbumList(options?: AxiosRequestConfig) {
     return DefaultApiFp(this.configuration)
       .routesGetAlbumList(options)
       .then((request) => request(this.axios, this.basePath));
@@ -1630,7 +1644,7 @@ export class DefaultApi extends BaseAPI {
    */
   public routesGetAlbumStructure(
     requestParameters: DefaultApiRoutesGetAlbumStructureRequest,
-    options?: any
+    options?: AxiosRequestConfig
   ) {
     return DefaultApiFp(this.configuration)
       .routesGetAlbumStructure(requestParameters.albumUuid, options)
@@ -1646,7 +1660,7 @@ export class DefaultApi extends BaseAPI {
    */
   public routesGetMediaByUuid(
     requestParameters: DefaultApiRoutesGetMediaByUuidRequest,
-    options?: any
+    options?: AxiosRequestConfig
   ) {
     return DefaultApiFp(this.configuration)
       .routesGetMediaByUuid(requestParameters.mediaUuid, options)
@@ -1659,7 +1673,7 @@ export class DefaultApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof DefaultApi
    */
-  public routesGetMediaLikedList(options?: any) {
+  public routesGetMediaLikedList(options?: AxiosRequestConfig) {
     return DefaultApiFp(this.configuration)
       .routesGetMediaLikedList(options)
       .then((request) => request(this.axios, this.basePath));
@@ -1671,7 +1685,7 @@ export class DefaultApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof DefaultApi
    */
-  public routesIndex(options?: any) {
+  public routesIndex(options?: AxiosRequestConfig) {
     return DefaultApiFp(this.configuration)
       .routesIndex(options)
       .then((request) => request(this.axios, this.basePath));
@@ -1686,7 +1700,7 @@ export class DefaultApi extends BaseAPI {
    */
   public routesLogin(
     requestParameters: DefaultApiRoutesLoginRequest,
-    options?: any
+    options?: AxiosRequestConfig
   ) {
     return DefaultApiFp(this.configuration)
       .routesLogin(requestParameters.userLogin, options)
@@ -1702,7 +1716,7 @@ export class DefaultApi extends BaseAPI {
    */
   public routesMediaLike(
     requestParameters: DefaultApiRoutesMediaLikeRequest,
-    options?: any
+    options?: AxiosRequestConfig
   ) {
     return DefaultApiFp(this.configuration)
       .routesMediaLike(requestParameters.mediaUuid, options)
@@ -1715,7 +1729,7 @@ export class DefaultApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof DefaultApi
    */
-  public routesMediaStructure(options?: any) {
+  public routesMediaStructure(options?: AxiosRequestConfig) {
     return DefaultApiFp(this.configuration)
       .routesMediaStructure(options)
       .then((request) => request(this.axios, this.basePath));
@@ -1730,7 +1744,7 @@ export class DefaultApi extends BaseAPI {
    */
   public routesMediaUnlike(
     requestParameters: DefaultApiRoutesMediaUnlikeRequest,
-    options?: any
+    options?: AxiosRequestConfig
   ) {
     return DefaultApiFp(this.configuration)
       .routesMediaUnlike(requestParameters.mediaUuid, options)
@@ -1743,7 +1757,7 @@ export class DefaultApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof DefaultApi
    */
-  public routesRefreshToken(options?: any) {
+  public routesRefreshToken(options?: AxiosRequestConfig) {
     return DefaultApiFp(this.configuration)
       .routesRefreshToken(options)
       .then((request) => request(this.axios, this.basePath));
@@ -1755,7 +1769,7 @@ export class DefaultApi extends BaseAPI {
    * @throws {RequiredError}
    * @memberof DefaultApi
    */
-  public routesScanMedia(options?: any) {
+  public routesScanMedia(options?: AxiosRequestConfig) {
     return DefaultApiFp(this.configuration)
       .routesScanMedia(options)
       .then((request) => request(this.axios, this.basePath));
@@ -1770,7 +1784,7 @@ export class DefaultApi extends BaseAPI {
    */
   public routesUpdateAlbum(
     requestParameters: DefaultApiRoutesUpdateAlbumRequest,
-    options?: any
+    options?: AxiosRequestConfig
   ) {
     return DefaultApiFp(this.configuration)
       .routesUpdateAlbum(
