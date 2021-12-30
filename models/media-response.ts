@@ -29,6 +29,12 @@ export interface MediaResponse {
    * @type {string}
    * @memberof MediaResponse
    */
+  description?: string | null;
+  /**
+   *
+   * @type {string}
+   * @memberof MediaResponse
+   */
   filename: string;
   /**
    *

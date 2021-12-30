@@ -82,6 +82,7 @@
     },
     "/album/media": {
       "post": {
+        "description": "Adds media to an album",
         "operationId": "routes_album_add_media",
         "requestBody": {
           "content": {
@@ -173,6 +174,7 @@
     },
     "/album/{album_uuid}/media": {
       "get": {
+        "description": "Gets a list of media in an album",
         "operationId": "routes_get_album_structure",
         "parameters": [
           {
@@ -242,7 +244,18 @@
     },
     "/login/refresh": {
       "post": {
+        "description": "Refreshes sent token",
         "operationId": "routes_refresh_token",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ClaimsEncoded"
+              }
+            }
+          },
+          "required": true
+        },
         "responses": {
           "200": {
             "description": "",
@@ -257,16 +270,12 @@
           "default": {
             "description": ""
           }
-        },
-        "security": [
-          {
-            "BearerAuth": []
-          }
-        ]
+        }
       }
     },
     "/media": {
       "get": {
+        "description": "Gets a list of all media",
         "operationId": "routes_media_structure",
         "responses": {
           "200": {
@@ -321,6 +330,7 @@
     },
     "/media/{media_uuid}": {
       "get": {
+        "description": "Returns a media",
         "operationId": "routes_get_media_by_uuid",
         "parameters": [
           {
@@ -405,8 +415,15 @@
         "description": "Searches for new media",
         "operationId": "routes_scan_media",
         "responses": {
-          "default": {
-            "description": ""
+          "200": {
+            "description": "",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
           }
         },
         "security": [
@@ -418,6 +435,7 @@
     },
     "/user": {
       "post": {
+        "description": "Creates a new user",
         "operationId": "routes_create_user",
         "requestBody": {
           "content": {
@@ -542,6 +560,10 @@
           "date_taken": {
             "type": "string",
             "format": "partial-date-time"
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
           },
           "filename": {
             "type": "string"

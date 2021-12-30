@@ -67,7 +67,7 @@ export const DefaultApiAxiosParamCreator = function (
 ) {
   return {
     /**
-     *
+     * Adds media to an album
      * @param {Array<NewAlbumMedia>} newAlbumMedia
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -177,7 +177,7 @@ export const DefaultApiAxiosParamCreator = function (
       };
     },
     /**
-     *
+     * Creates a new user
      * @param {NewUser} newUser
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -317,7 +317,7 @@ export const DefaultApiAxiosParamCreator = function (
       };
     },
     /**
-     *
+     * Gets a list of media in an album
      * @param {string} albumUuid
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -366,7 +366,7 @@ export const DefaultApiAxiosParamCreator = function (
       };
     },
     /**
-     *
+     * Returns a media
      * @param {string} mediaUuid
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -593,7 +593,7 @@ export const DefaultApiAxiosParamCreator = function (
       };
     },
     /**
-     *
+     * Gets a list of all media
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -684,13 +684,17 @@ export const DefaultApiAxiosParamCreator = function (
       };
     },
     /**
-     *
+     * Refreshes sent token
+     * @param {ClaimsEncoded} claimsEncoded
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     routesRefreshToken: async (
+      claimsEncoded: ClaimsEncoded,
       options: AxiosRequestConfig = {}
     ): Promise<RequestArgs> => {
+      // verify required parameter 'claimsEncoded' is not null or undefined
+      assertParamExists("routesRefreshToken", "claimsEncoded", claimsEncoded);
       const localVarPath = `/login/refresh`;
       // use dummy base URL string because the URL constructor only accepts absolute URLs.
       const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -707,9 +711,7 @@ export const DefaultApiAxiosParamCreator = function (
       const localVarHeaderParameter = {} as any;
       const localVarQueryParameter = {} as any;
 
-      // authentication BearerAuth required
-      // http bearer authentication required
-      await setBearerAuthToObject(localVarHeaderParameter, configuration);
+      localVarHeaderParameter["Content-Type"] = "application/json";
 
       setSearchParams(localVarUrlObj, localVarQueryParameter);
       let headersFromBaseOptions =
@@ -719,6 +721,11 @@ export const DefaultApiAxiosParamCreator = function (
         ...headersFromBaseOptions,
         ...options.headers,
       };
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        claimsEncoded,
+        localVarRequestOptions,
+        configuration
+      );
 
       return {
         url: toPathString(localVarUrlObj),
@@ -842,7 +849,7 @@ export const DefaultApiFp = function (configuration?: Configuration) {
   const localVarAxiosParamCreator = DefaultApiAxiosParamCreator(configuration);
   return {
     /**
-     *
+     * Adds media to an album
      * @param {Array<NewAlbumMedia>} newAlbumMedia
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -890,7 +897,7 @@ export const DefaultApiFp = function (configuration?: Configuration) {
       );
     },
     /**
-     *
+     * Creates a new user
      * @param {NewUser} newUser
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -954,7 +961,7 @@ export const DefaultApiFp = function (configuration?: Configuration) {
       );
     },
     /**
-     *
+     * Gets a list of media in an album
      * @param {string} albumUuid
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -981,7 +988,7 @@ export const DefaultApiFp = function (configuration?: Configuration) {
       );
     },
     /**
-     *
+     * Returns a media
      * @param {string} mediaUuid
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -1093,7 +1100,7 @@ export const DefaultApiFp = function (configuration?: Configuration) {
       );
     },
     /**
-     *
+     * Gets a list of all media
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -1136,17 +1143,22 @@ export const DefaultApiFp = function (configuration?: Configuration) {
       );
     },
     /**
-     *
+     * Refreshes sent token
+     * @param {ClaimsEncoded} claimsEncoded
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async routesRefreshToken(
+      claimsEncoded: ClaimsEncoded,
       options?: AxiosRequestConfig
     ): Promise<
       (axios?: AxiosInstance, basePath?: string) => AxiosPromise<ClaimsEncoded>
     > {
       const localVarAxiosArgs =
-        await localVarAxiosParamCreator.routesRefreshToken(options);
+        await localVarAxiosParamCreator.routesRefreshToken(
+          claimsEncoded,
+          options
+        );
       return createRequestFunction(
         localVarAxiosArgs,
         globalAxios,
@@ -1162,7 +1174,7 @@ export const DefaultApiFp = function (configuration?: Configuration) {
     async routesScanMedia(
       options?: AxiosRequestConfig
     ): Promise<
-      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>
+      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<string>
     > {
       const localVarAxiosArgs = await localVarAxiosParamCreator.routesScanMedia(
         options
@@ -1216,7 +1228,7 @@ export const DefaultApiFactory = function (
   const localVarFp = DefaultApiFp(configuration);
   return {
     /**
-     *
+     * Adds media to an album
      * @param {Array<NewAlbumMedia>} newAlbumMedia
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -1244,7 +1256,7 @@ export const DefaultApiFactory = function (
         .then((request) => request(axios, basePath));
     },
     /**
-     *
+     * Creates a new user
      * @param {NewUser} newUser
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -1276,7 +1288,7 @@ export const DefaultApiFactory = function (
         .then((request) => request(axios, basePath));
     },
     /**
-     *
+     * Gets a list of media in an album
      * @param {string} albumUuid
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -1290,7 +1302,7 @@ export const DefaultApiFactory = function (
         .then((request) => request(axios, basePath));
     },
     /**
-     *
+     * Returns a media
      * @param {string} mediaUuid
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -1346,7 +1358,7 @@ export const DefaultApiFactory = function (
         .then((request) => request(axios, basePath));
     },
     /**
-     *
+     * Gets a list of all media
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
@@ -1367,13 +1379,17 @@ export const DefaultApiFactory = function (
         .then((request) => request(axios, basePath));
     },
     /**
-     *
+     * Refreshes sent token
+     * @param {ClaimsEncoded} claimsEncoded
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    routesRefreshToken(options?: any): AxiosPromise<ClaimsEncoded> {
+    routesRefreshToken(
+      claimsEncoded: ClaimsEncoded,
+      options?: any
+    ): AxiosPromise<ClaimsEncoded> {
       return localVarFp
-        .routesRefreshToken(options)
+        .routesRefreshToken(claimsEncoded, options)
         .then((request) => request(axios, basePath));
     },
     /**
@@ -1381,7 +1397,7 @@ export const DefaultApiFactory = function (
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
-    routesScanMedia(options?: any): AxiosPromise<void> {
+    routesScanMedia(options?: any): AxiosPromise<string> {
       return localVarFp
         .routesScanMedia(options)
         .then((request) => request(axios, basePath));
@@ -1532,6 +1548,20 @@ export interface DefaultApiRoutesMediaUnlikeRequest {
 }
 
 /**
+ * Request parameters for routesRefreshToken operation in DefaultApi.
+ * @export
+ * @interface DefaultApiRoutesRefreshTokenRequest
+ */
+export interface DefaultApiRoutesRefreshTokenRequest {
+  /**
+   *
+   * @type {ClaimsEncoded}
+   * @memberof DefaultApiRoutesRefreshToken
+   */
+  readonly claimsEncoded: ClaimsEncoded;
+}
+
+/**
  * Request parameters for routesUpdateAlbum operation in DefaultApi.
  * @export
  * @interface DefaultApiRoutesUpdateAlbumRequest
@@ -1560,7 +1590,7 @@ export interface DefaultApiRoutesUpdateAlbumRequest {
  */
 export class DefaultApi extends BaseAPI {
   /**
-   *
+   * Adds media to an album
    * @param {DefaultApiRoutesAlbumAddMediaRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
@@ -1592,7 +1622,7 @@ export class DefaultApi extends BaseAPI {
   }
 
   /**
-   *
+   * Creates a new user
    * @param {DefaultApiRoutesCreateUserRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
@@ -1636,7 +1666,7 @@ export class DefaultApi extends BaseAPI {
   }
 
   /**
-   *
+   * Gets a list of media in an album
    * @param {DefaultApiRoutesGetAlbumStructureRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
@@ -1652,7 +1682,7 @@ export class DefaultApi extends BaseAPI {
   }
 
   /**
-   *
+   * Returns a media
    * @param {DefaultApiRoutesGetMediaByUuidRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
@@ -1724,7 +1754,7 @@ export class DefaultApi extends BaseAPI {
   }
 
   /**
-   *
+   * Gets a list of all media
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof DefaultApi
@@ -1752,14 +1782,18 @@ export class DefaultApi extends BaseAPI {
   }
 
   /**
-   *
+   * Refreshes sent token
+   * @param {DefaultApiRoutesRefreshTokenRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    * @memberof DefaultApi
    */
-  public routesRefreshToken(options?: AxiosRequestConfig) {
+  public routesRefreshToken(
+    requestParameters: DefaultApiRoutesRefreshTokenRequest,
+    options?: AxiosRequestConfig
+  ) {
     return DefaultApiFp(this.configuration)
-      .routesRefreshToken(options)
+      .routesRefreshToken(requestParameters.claimsEncoded, options)
       .then((request) => request(this.axios, this.basePath));
   }
 
