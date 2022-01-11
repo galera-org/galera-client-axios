@@ -57,6 +57,8 @@ import { NewAlbumMedia } from "../models";
 // @ts-ignore
 import { NewUser } from "../models";
 // @ts-ignore
+import { SystemInfoPublic } from "../models";
+// @ts-ignore
 import { UserLogin } from "../models";
 /**
  * DefaultApi - axios parameter creator
@@ -775,6 +777,44 @@ export const DefaultApiAxiosParamCreator = function (
       };
     },
     /**
+     * Returns the public system information.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    routesSystemInfoPublic: async (
+      options: AxiosRequestConfig = {}
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/system/info/public`;
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+      let baseOptions;
+      if (configuration) {
+        baseOptions = configuration.baseOptions;
+      }
+
+      const localVarRequestOptions = {
+        method: "GET",
+        ...baseOptions,
+        ...options,
+      };
+      const localVarHeaderParameter = {} as any;
+      const localVarQueryParameter = {} as any;
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter);
+      let headersFromBaseOptions =
+        baseOptions && baseOptions.headers ? baseOptions.headers : {};
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      };
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      };
+    },
+    /**
      * Updates already existing album
      * @param {string} albumUuid
      * @param {AlbumUpdateData} albumUpdateData
@@ -1187,6 +1227,28 @@ export const DefaultApiFp = function (configuration?: Configuration) {
       );
     },
     /**
+     * Returns the public system information.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async routesSystemInfoPublic(
+      options?: AxiosRequestConfig
+    ): Promise<
+      (
+        axios?: AxiosInstance,
+        basePath?: string
+      ) => AxiosPromise<SystemInfoPublic>
+    > {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.routesSystemInfoPublic(options);
+      return createRequestFunction(
+        localVarAxiosArgs,
+        globalAxios,
+        BASE_PATH,
+        configuration
+      );
+    },
+    /**
      * Updates already existing album
      * @param {string} albumUuid
      * @param {AlbumUpdateData} albumUpdateData
@@ -1400,6 +1462,16 @@ export const DefaultApiFactory = function (
     routesScanMedia(options?: any): AxiosPromise<string> {
       return localVarFp
         .routesScanMedia(options)
+        .then((request) => request(axios, basePath));
+    },
+    /**
+     * Returns the public system information.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    routesSystemInfoPublic(options?: any): AxiosPromise<SystemInfoPublic> {
+      return localVarFp
+        .routesSystemInfoPublic(options)
         .then((request) => request(axios, basePath));
     },
     /**
@@ -1806,6 +1878,18 @@ export class DefaultApi extends BaseAPI {
   public routesScanMedia(options?: AxiosRequestConfig) {
     return DefaultApiFp(this.configuration)
       .routesScanMedia(options)
+      .then((request) => request(this.axios, this.basePath));
+  }
+
+  /**
+   * Returns the public system information.
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof DefaultApi
+   */
+  public routesSystemInfoPublic(options?: AxiosRequestConfig) {
+    return DefaultApiFp(this.configuration)
+      .routesSystemInfoPublic(options)
       .then((request) => request(this.axios, this.basePath));
   }
 

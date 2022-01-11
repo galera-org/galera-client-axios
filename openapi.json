@@ -433,6 +433,24 @@
         ]
       }
     },
+    "/system/info/public": {
+      "get": {
+        "description": "Returns the public system information.",
+        "operationId": "routes_system_info_public",
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SystemInfoPublic"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/user": {
       "post": {
         "description": "Creates a new user",
@@ -620,6 +638,29 @@
             "type": "string"
           },
           "username": {
+            "type": "string"
+          }
+        }
+      },
+      "SystemInfoPublic": {
+        "type": "object",
+        "required": [
+          "operatingSystem",
+          "serverName",
+          "serverVersion",
+          "systemArchitecture"
+        ],
+        "properties": {
+          "operatingSystem": {
+            "type": "string"
+          },
+          "serverName": {
+            "type": "string"
+          },
+          "serverVersion": {
+            "type": "string"
+          },
+          "systemArchitecture": {
             "type": "string"
           }
         }

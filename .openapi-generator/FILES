@@ -16,5 +16,6 @@ models/login-response.ts
 models/media-response.ts
 models/new-album-media.ts
 models/new-user.ts
+models/system-info-public.ts
 models/user-info.ts
 models/user-login.ts

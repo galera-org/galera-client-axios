@@ -6,5 +6,6 @@ export * from "./login-response";
 export * from "./media-response";
 export * from "./new-album-media";
 export * from "./new-user";
+export * from "./system-info-public";
 export * from "./user-info";
 export * from "./user-login";
