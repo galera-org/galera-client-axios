@@ -51,6 +51,8 @@ import { ClaimsEncoded } from "../models";
 // @ts-ignore
 import { LoginResponse } from "../models";
 // @ts-ignore
+import { MediaDescription } from "../models";
+// @ts-ignore
 import { MediaResponse } from "../models";
 // @ts-ignore
 import { NewAlbumMedia } from "../models";
@@ -737,19 +739,23 @@ export const DefaultApiAxiosParamCreator = function (
     /**
      * Updates description of a media
      * @param {string} mediaUuid
-     * @param {string} body
+     * @param {MediaDescription} mediaDescription
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     routesMediaUpdateDescription: async (
       mediaUuid: string,
-      body: string,
+      mediaDescription: MediaDescription,
       options: AxiosRequestConfig = {}
     ): Promise<RequestArgs> => {
       // verify required parameter 'mediaUuid' is not null or undefined
       assertParamExists("routesMediaUpdateDescription", "mediaUuid", mediaUuid);
-      // verify required parameter 'body' is not null or undefined
-      assertParamExists("routesMediaUpdateDescription", "body", body);
+      // verify required parameter 'mediaDescription' is not null or undefined
+      assertParamExists(
+        "routesMediaUpdateDescription",
+        "mediaDescription",
+        mediaDescription
+      );
       const localVarPath = `/media/{media_uuid}/description`.replace(
         `{${"media_uuid"}}`,
         encodeURIComponent(String(mediaUuid))
@@ -773,7 +779,7 @@ export const DefaultApiAxiosParamCreator = function (
       // http bearer authentication required
       await setBearerAuthToObject(localVarHeaderParameter, configuration);
 
-      localVarHeaderParameter["Content-Type"] = "application/octet-stream";
+      localVarHeaderParameter["Content-Type"] = "application/json";
 
       setSearchParams(localVarUrlObj, localVarQueryParameter);
       let headersFromBaseOptions =
@@ -784,7 +790,7 @@ export const DefaultApiAxiosParamCreator = function (
         ...options.headers,
       };
       localVarRequestOptions.data = serializeDataIfNeeded(
-        body,
+        mediaDescription,
         localVarRequestOptions,
         configuration
       );
@@ -1318,13 +1324,13 @@ export const DefaultApiFp = function (configuration?: Configuration) {
     /**
      * Updates description of a media
      * @param {string} mediaUuid
-     * @param {string} body
+     * @param {MediaDescription} mediaDescription
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async routesMediaUpdateDescription(
       mediaUuid: string,
-      body: string,
+      mediaDescription: MediaDescription,
       options?: AxiosRequestConfig
     ): Promise<
       (axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>
@@ -1332,7 +1338,7 @@ export const DefaultApiFp = function (configuration?: Configuration) {
       const localVarAxiosArgs =
         await localVarAxiosParamCreator.routesMediaUpdateDescription(
           mediaUuid,
-          body,
+          mediaDescription,
           options
         );
       return createRequestFunction(
@@ -1617,17 +1623,17 @@ export const DefaultApiFactory = function (
     /**
      * Updates description of a media
      * @param {string} mediaUuid
-     * @param {string} body
+     * @param {MediaDescription} mediaDescription
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     routesMediaUpdateDescription(
       mediaUuid: string,
-      body: string,
+      mediaDescription: MediaDescription,
       options?: any
     ): AxiosPromise<void> {
       return localVarFp
-        .routesMediaUpdateDescription(mediaUuid, body, options)
+        .routesMediaUpdateDescription(mediaUuid, mediaDescription, options)
         .then((request) => request(axios, basePath));
     },
     /**
@@ -1838,10 +1844,10 @@ export interface DefaultApiRoutesMediaUpdateDescriptionRequest {
 
   /**
    *
-   * @type {string}
+   * @type {MediaDescription}
    * @memberof DefaultApiRoutesMediaUpdateDescription
    */
-  readonly body: string;
+  readonly mediaDescription: MediaDescription;
 }
 
 /**
@@ -2108,7 +2114,7 @@ export class DefaultApi extends BaseAPI {
     return DefaultApiFp(this.configuration)
       .routesMediaUpdateDescription(
         requestParameters.mediaUuid,
-        requestParameters.body,
+        requestParameters.mediaDescription,
         options
       )
       .then((request) => request(this.axios, this.basePath));

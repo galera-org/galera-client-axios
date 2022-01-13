@@ -13,6 +13,7 @@ models/album-update-data.ts
 models/claims-encoded.ts
 models/index.ts
 models/login-response.ts
+models/media-description.ts
 models/media-response.ts
 models/new-album-media.ts
 models/new-user.ts

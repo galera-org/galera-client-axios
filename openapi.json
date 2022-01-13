@@ -376,9 +376,9 @@
         ],
         "requestBody": {
           "content": {
-            "application/octet-stream": {
+            "application/json": {
               "schema": {
-                "type": "string"
+                "$ref": "#/components/schemas/MediaDescription"
               }
             }
           },
@@ -621,6 +621,15 @@
           },
           "user_info": {
             "$ref": "#/components/schemas/UserInfo"
+          }
+        }
+      },
+      "MediaDescription": {
+        "type": "object",
+        "properties": {
+          "description": {
+            "type": "string",
+            "nullable": true
           }
         }
       },

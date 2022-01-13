@@ -3,6 +3,7 @@ export * from "./album-response";
 export * from "./album-update-data";
 export * from "./claims-encoded";
 export * from "./login-response";
+export * from "./media-description";
 export * from "./media-response";
 export * from "./new-album-media";
 export * from "./new-user";
