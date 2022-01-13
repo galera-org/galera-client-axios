@@ -360,6 +360,66 @@
         ]
       }
     },
+    "/media/{media_uuid}/description": {
+      "put": {
+        "description": "Updates description of a media",
+        "operationId": "routes_media_update_description",
+        "parameters": [
+          {
+            "name": "media_uuid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/octet-stream": {
+              "schema": {
+                "type": "string"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ]
+      },
+      "delete": {
+        "description": "Deletes description of a media",
+        "operationId": "routes_media_delete_description",
+        "parameters": [
+          {
+            "name": "media_uuid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ]
+      }
+    },
     "/media/{media_uuid}/like": {
       "post": {
         "description": "Likes the media.",

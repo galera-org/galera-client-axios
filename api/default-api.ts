@@ -546,6 +546,55 @@ export const DefaultApiAxiosParamCreator = function (
       };
     },
     /**
+     * Deletes description of a media
+     * @param {string} mediaUuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    routesMediaDeleteDescription: async (
+      mediaUuid: string,
+      options: AxiosRequestConfig = {}
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'mediaUuid' is not null or undefined
+      assertParamExists("routesMediaDeleteDescription", "mediaUuid", mediaUuid);
+      const localVarPath = `/media/{media_uuid}/description`.replace(
+        `{${"media_uuid"}}`,
+        encodeURIComponent(String(mediaUuid))
+      );
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+      let baseOptions;
+      if (configuration) {
+        baseOptions = configuration.baseOptions;
+      }
+
+      const localVarRequestOptions = {
+        method: "DELETE",
+        ...baseOptions,
+        ...options,
+      };
+      const localVarHeaderParameter = {} as any;
+      const localVarQueryParameter = {} as any;
+
+      // authentication BearerAuth required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration);
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter);
+      let headersFromBaseOptions =
+        baseOptions && baseOptions.headers ? baseOptions.headers : {};
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      };
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      };
+    },
+    /**
      * Likes the media.
      * @param {string} mediaUuid
      * @param {*} [options] Override http request option.
@@ -679,6 +728,66 @@ export const DefaultApiAxiosParamCreator = function (
         ...headersFromBaseOptions,
         ...options.headers,
       };
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      };
+    },
+    /**
+     * Updates description of a media
+     * @param {string} mediaUuid
+     * @param {string} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    routesMediaUpdateDescription: async (
+      mediaUuid: string,
+      body: string,
+      options: AxiosRequestConfig = {}
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'mediaUuid' is not null or undefined
+      assertParamExists("routesMediaUpdateDescription", "mediaUuid", mediaUuid);
+      // verify required parameter 'body' is not null or undefined
+      assertParamExists("routesMediaUpdateDescription", "body", body);
+      const localVarPath = `/media/{media_uuid}/description`.replace(
+        `{${"media_uuid"}}`,
+        encodeURIComponent(String(mediaUuid))
+      );
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+      let baseOptions;
+      if (configuration) {
+        baseOptions = configuration.baseOptions;
+      }
+
+      const localVarRequestOptions = {
+        method: "PUT",
+        ...baseOptions,
+        ...options,
+      };
+      const localVarHeaderParameter = {} as any;
+      const localVarQueryParameter = {} as any;
+
+      // authentication BearerAuth required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration);
+
+      localVarHeaderParameter["Content-Type"] = "application/octet-stream";
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter);
+      let headersFromBaseOptions =
+        baseOptions && baseOptions.headers ? baseOptions.headers : {};
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      };
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        body,
+        localVarRequestOptions,
+        configuration
+      );
 
       return {
         url: toPathString(localVarUrlObj),
@@ -1117,6 +1226,30 @@ export const DefaultApiFp = function (configuration?: Configuration) {
       );
     },
     /**
+     * Deletes description of a media
+     * @param {string} mediaUuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async routesMediaDeleteDescription(
+      mediaUuid: string,
+      options?: AxiosRequestConfig
+    ): Promise<
+      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>
+    > {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.routesMediaDeleteDescription(
+          mediaUuid,
+          options
+        );
+      return createRequestFunction(
+        localVarAxiosArgs,
+        globalAxios,
+        BASE_PATH,
+        configuration
+      );
+    },
+    /**
      * Likes the media.
      * @param {string} mediaUuid
      * @param {*} [options] Override http request option.
@@ -1175,6 +1308,33 @@ export const DefaultApiFp = function (configuration?: Configuration) {
     > {
       const localVarAxiosArgs =
         await localVarAxiosParamCreator.routesMediaUnlike(mediaUuid, options);
+      return createRequestFunction(
+        localVarAxiosArgs,
+        globalAxios,
+        BASE_PATH,
+        configuration
+      );
+    },
+    /**
+     * Updates description of a media
+     * @param {string} mediaUuid
+     * @param {string} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async routesMediaUpdateDescription(
+      mediaUuid: string,
+      body: string,
+      options?: AxiosRequestConfig
+    ): Promise<
+      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>
+    > {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.routesMediaUpdateDescription(
+          mediaUuid,
+          body,
+          options
+        );
       return createRequestFunction(
         localVarAxiosArgs,
         globalAxios,
@@ -1409,6 +1569,20 @@ export const DefaultApiFactory = function (
         .then((request) => request(axios, basePath));
     },
     /**
+     * Deletes description of a media
+     * @param {string} mediaUuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    routesMediaDeleteDescription(
+      mediaUuid: string,
+      options?: any
+    ): AxiosPromise<void> {
+      return localVarFp
+        .routesMediaDeleteDescription(mediaUuid, options)
+        .then((request) => request(axios, basePath));
+    },
+    /**
      * Likes the media.
      * @param {string} mediaUuid
      * @param {*} [options] Override http request option.
@@ -1438,6 +1612,22 @@ export const DefaultApiFactory = function (
     routesMediaUnlike(mediaUuid: string, options?: any): AxiosPromise<void> {
       return localVarFp
         .routesMediaUnlike(mediaUuid, options)
+        .then((request) => request(axios, basePath));
+    },
+    /**
+     * Updates description of a media
+     * @param {string} mediaUuid
+     * @param {string} body
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    routesMediaUpdateDescription(
+      mediaUuid: string,
+      body: string,
+      options?: any
+    ): AxiosPromise<void> {
+      return localVarFp
+        .routesMediaUpdateDescription(mediaUuid, body, options)
         .then((request) => request(axios, basePath));
     },
     /**
@@ -1592,6 +1782,20 @@ export interface DefaultApiRoutesLoginRequest {
 }
 
 /**
+ * Request parameters for routesMediaDeleteDescription operation in DefaultApi.
+ * @export
+ * @interface DefaultApiRoutesMediaDeleteDescriptionRequest
+ */
+export interface DefaultApiRoutesMediaDeleteDescriptionRequest {
+  /**
+   *
+   * @type {string}
+   * @memberof DefaultApiRoutesMediaDeleteDescription
+   */
+  readonly mediaUuid: string;
+}
+
+/**
  * Request parameters for routesMediaLike operation in DefaultApi.
  * @export
  * @interface DefaultApiRoutesMediaLikeRequest
@@ -1617,6 +1821,27 @@ export interface DefaultApiRoutesMediaUnlikeRequest {
    * @memberof DefaultApiRoutesMediaUnlike
    */
   readonly mediaUuid: string;
+}
+
+/**
+ * Request parameters for routesMediaUpdateDescription operation in DefaultApi.
+ * @export
+ * @interface DefaultApiRoutesMediaUpdateDescriptionRequest
+ */
+export interface DefaultApiRoutesMediaUpdateDescriptionRequest {
+  /**
+   *
+   * @type {string}
+   * @memberof DefaultApiRoutesMediaUpdateDescription
+   */
+  readonly mediaUuid: string;
+
+  /**
+   *
+   * @type {string}
+   * @memberof DefaultApiRoutesMediaUpdateDescription
+   */
+  readonly body: string;
 }
 
 /**
@@ -1810,6 +2035,22 @@ export class DefaultApi extends BaseAPI {
   }
 
   /**
+   * Deletes description of a media
+   * @param {DefaultApiRoutesMediaDeleteDescriptionRequest} requestParameters Request parameters.
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof DefaultApi
+   */
+  public routesMediaDeleteDescription(
+    requestParameters: DefaultApiRoutesMediaDeleteDescriptionRequest,
+    options?: AxiosRequestConfig
+  ) {
+    return DefaultApiFp(this.configuration)
+      .routesMediaDeleteDescription(requestParameters.mediaUuid, options)
+      .then((request) => request(this.axios, this.basePath));
+  }
+
+  /**
    * Likes the media.
    * @param {DefaultApiRoutesMediaLikeRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
@@ -1850,6 +2091,26 @@ export class DefaultApi extends BaseAPI {
   ) {
     return DefaultApiFp(this.configuration)
       .routesMediaUnlike(requestParameters.mediaUuid, options)
+      .then((request) => request(this.axios, this.basePath));
+  }
+
+  /**
+   * Updates description of a media
+   * @param {DefaultApiRoutesMediaUpdateDescriptionRequest} requestParameters Request parameters.
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof DefaultApi
+   */
+  public routesMediaUpdateDescription(
+    requestParameters: DefaultApiRoutesMediaUpdateDescriptionRequest,
+    options?: AxiosRequestConfig
+  ) {
+    return DefaultApiFp(this.configuration)
+      .routesMediaUpdateDescription(
+        requestParameters.mediaUuid,
+        requestParameters.body,
+        options
+      )
       .then((request) => request(this.axios, this.basePath));
   }
 
