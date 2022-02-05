@@ -90,7 +90,7 @@
               "schema": {
                 "type": "array",
                 "items": {
-                  "$ref": "#/components/schemas/NewAlbumMedia"
+                  "$ref": "#/components/schemas/AlbumAddMedia"
                 }
               }
             }
@@ -535,6 +535,21 @@
   },
   "components": {
     "schemas": {
+      "AlbumAddMedia": {
+        "type": "object",
+        "required": [
+          "album_uuid",
+          "media_uuid"
+        ],
+        "properties": {
+          "album_uuid": {
+            "type": "string"
+          },
+          "media_uuid": {
+            "type": "string"
+          }
+        }
+      },
       "AlbumInsertData": {
         "type": "object",
         "required": [
@@ -671,23 +686,6 @@
             "type": "integer",
             "format": "uint32",
             "minimum": 0.0
-          }
-        }
-      },
-      "NewAlbumMedia": {
-        "type": "object",
-        "required": [
-          "album_id",
-          "media_id"
-        ],
-        "properties": {
-          "album_id": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "media_id": {
-            "type": "integer",
-            "format": "int32"
           }
         }
       },
