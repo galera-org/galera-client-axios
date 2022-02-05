@@ -41,6 +41,8 @@ import {
   RequiredError,
 } from "../base";
 // @ts-ignore
+import { AlbumAddMedia } from "../models";
+// @ts-ignore
 import { AlbumInsertData } from "../models";
 // @ts-ignore
 import { AlbumResponse } from "../models";
@@ -54,8 +56,6 @@ import { LoginResponse } from "../models";
 import { MediaDescription } from "../models";
 // @ts-ignore
 import { MediaResponse } from "../models";
-// @ts-ignore
-import { NewAlbumMedia } from "../models";
 // @ts-ignore
 import { NewUser } from "../models";
 // @ts-ignore
@@ -72,16 +72,16 @@ export const DefaultApiAxiosParamCreator = function (
   return {
     /**
      * Adds media to an album
-     * @param {Array<NewAlbumMedia>} newAlbumMedia
+     * @param {Array<AlbumAddMedia>} albumAddMedia
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     routesAlbumAddMedia: async (
-      newAlbumMedia: Array<NewAlbumMedia>,
+      albumAddMedia: Array<AlbumAddMedia>,
       options: AxiosRequestConfig = {}
     ): Promise<RequestArgs> => {
-      // verify required parameter 'newAlbumMedia' is not null or undefined
-      assertParamExists("routesAlbumAddMedia", "newAlbumMedia", newAlbumMedia);
+      // verify required parameter 'albumAddMedia' is not null or undefined
+      assertParamExists("routesAlbumAddMedia", "albumAddMedia", albumAddMedia);
       const localVarPath = `/album/media`;
       // use dummy base URL string because the URL constructor only accepts absolute URLs.
       const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -113,7 +113,7 @@ export const DefaultApiAxiosParamCreator = function (
         ...options.headers,
       };
       localVarRequestOptions.data = serializeDataIfNeeded(
-        newAlbumMedia,
+        albumAddMedia,
         localVarRequestOptions,
         configuration
       );
@@ -1005,19 +1005,19 @@ export const DefaultApiFp = function (configuration?: Configuration) {
   return {
     /**
      * Adds media to an album
-     * @param {Array<NewAlbumMedia>} newAlbumMedia
+     * @param {Array<AlbumAddMedia>} albumAddMedia
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async routesAlbumAddMedia(
-      newAlbumMedia: Array<NewAlbumMedia>,
+      albumAddMedia: Array<AlbumAddMedia>,
       options?: AxiosRequestConfig
     ): Promise<
       (axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>
     > {
       const localVarAxiosArgs =
         await localVarAxiosParamCreator.routesAlbumAddMedia(
-          newAlbumMedia,
+          albumAddMedia,
           options
         );
       return createRequestFunction(
@@ -1457,16 +1457,16 @@ export const DefaultApiFactory = function (
   return {
     /**
      * Adds media to an album
-     * @param {Array<NewAlbumMedia>} newAlbumMedia
+     * @param {Array<AlbumAddMedia>} albumAddMedia
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     routesAlbumAddMedia(
-      newAlbumMedia: Array<NewAlbumMedia>,
+      albumAddMedia: Array<AlbumAddMedia>,
       options?: any
     ): AxiosPromise<void> {
       return localVarFp
-        .routesAlbumAddMedia(newAlbumMedia, options)
+        .routesAlbumAddMedia(albumAddMedia, options)
         .then((request) => request(axios, basePath));
     },
     /**
@@ -1697,10 +1697,10 @@ export const DefaultApiFactory = function (
 export interface DefaultApiRoutesAlbumAddMediaRequest {
   /**
    *
-   * @type {Array<NewAlbumMedia>}
+   * @type {Array<AlbumAddMedia>}
    * @memberof DefaultApiRoutesAlbumAddMedia
    */
-  readonly newAlbumMedia: Array<NewAlbumMedia>;
+  readonly albumAddMedia: Array<AlbumAddMedia>;
 }
 
 /**
@@ -1904,7 +1904,7 @@ export class DefaultApi extends BaseAPI {
     options?: AxiosRequestConfig
   ) {
     return DefaultApiFp(this.configuration)
-      .routesAlbumAddMedia(requestParameters.newAlbumMedia, options)
+      .routesAlbumAddMedia(requestParameters.albumAddMedia, options)
       .then((request) => request(this.axios, this.basePath));
   }
 

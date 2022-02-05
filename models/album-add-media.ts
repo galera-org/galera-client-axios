@@ -15,19 +15,19 @@
 /**
  *
  * @export
- * @interface NewAlbumMedia
+ * @interface AlbumAddMedia
  */
-export interface NewAlbumMedia {
+export interface AlbumAddMedia {
   /**
    *
-   * @type {number}
-   * @memberof NewAlbumMedia
+   * @type {string}
+   * @memberof AlbumAddMedia
    */
-  album_id: number;
+  album_uuid: string;
   /**
    *
-   * @type {number}
-   * @memberof NewAlbumMedia
+   * @type {string}
+   * @memberof AlbumAddMedia
    */
-  media_id: number;
+  media_uuid: string;
 }
