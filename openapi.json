@@ -112,6 +112,95 @@
         ]
       }
     },
+    "/album/share/link/{album_share_link_uuid}": {
+      "get": {
+        "description": "Gets basic information about album share link.",
+        "operationId": "routes_get_album_share_link",
+        "parameters": [
+          {
+            "name": "album_share_link_uuid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AlbumShareLinkBasic"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": ""
+          }
+        }
+      },
+      "put": {
+        "description": "Updates already existing album share link.",
+        "operationId": "routes_update_album_share_link",
+        "parameters": [
+          {
+            "name": "album_share_link_uuid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AlbumShareLinkInsert"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ]
+      },
+      "delete": {
+        "description": "Deletes an album share link.",
+        "operationId": "routes_delete_album_share_link",
+        "parameters": [
+          {
+            "name": "album_share_link_uuid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ]
+      }
+    },
     "/album/{album_uuid}": {
       "put": {
         "description": "Updates already existing album",
@@ -196,6 +285,91 @@
                   "items": {
                     "$ref": "#/components/schemas/MediaResponse"
                   }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "BearerAuth": []
+          },
+          {
+            "BasicSharedAlbumLinkAuth": []
+          }
+        ]
+      }
+    },
+    "/album/{album_uuid}/share/link": {
+      "get": {
+        "description": "Gets a list of album share links.",
+        "operationId": "routes_get_album_share_links",
+        "parameters": [
+          {
+            "name": "album_uuid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SharedAlbumLinkResponse"
+                  }
+                }
+              }
+            }
+          },
+          "default": {
+            "description": ""
+          }
+        },
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ]
+      },
+      "post": {
+        "description": "Creates a new album share link.",
+        "operationId": "routes_create_album_share_link",
+        "parameters": [
+          {
+            "name": "album_uuid",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AlbumShareLinkInsert"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SharedAlbumLinkResponse"
                 }
               }
             }
@@ -356,6 +530,9 @@
         "security": [
           {
             "BearerAuth": []
+          },
+          {
+            "BasicSharedAlbumLinkAuth": []
           }
         ]
       }
@@ -598,6 +775,39 @@
           }
         }
       },
+      "AlbumShareLinkBasic": {
+        "type": "object",
+        "required": [
+          "album_uuid",
+          "is_expired",
+          "is_password_protected"
+        ],
+        "properties": {
+          "album_uuid": {
+            "type": "string"
+          },
+          "is_expired": {
+            "type": "boolean"
+          },
+          "is_password_protected": {
+            "type": "boolean"
+          }
+        }
+      },
+      "AlbumShareLinkInsert": {
+        "type": "object",
+        "properties": {
+          "expiration": {
+            "type": "string",
+            "format": "partial-date-time",
+            "nullable": true
+          },
+          "password": {
+            "type": "string",
+            "nullable": true
+          }
+        }
+      },
       "AlbumUpdateData": {
         "type": "object",
         "properties": {
@@ -709,6 +919,22 @@
           }
         }
       },
+      "SharedAlbumLinkResponse": {
+        "type": "object",
+        "required": [
+          "uuid"
+        ],
+        "properties": {
+          "expiration": {
+            "type": "string",
+            "format": "partial-date-time",
+            "nullable": true
+          },
+          "uuid": {
+            "type": "string"
+          }
+        }
+      },
       "SystemInfoPublic": {
         "type": "object",
         "required": [
@@ -766,6 +992,11 @@
       }
     },
     "securitySchemes": {
+      "BasicSharedAlbumLinkAuth": {
+        "description": "requires a base64 encoded string in format `album_share_link_uuid:password` to access",
+        "type": "http",
+        "scheme": "basic"
+      },
       "BearerAuth": {
         "description": "requires a bearer token to access",
         "type": "http",

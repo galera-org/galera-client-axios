@@ -10,6 +10,8 @@ index.ts
 models/album-add-media.ts
 models/album-insert-data.ts
 models/album-response.ts
+models/album-share-link-basic.ts
+models/album-share-link-insert.ts
 models/album-update-data.ts
 models/claims-encoded.ts
 models/index.ts
@@ -17,6 +19,7 @@ models/login-response.ts
 models/media-description.ts
 models/media-response.ts
 models/new-user.ts
+models/shared-album-link-response.ts
 models/system-info-public.ts
 models/user-info.ts
 models/user-login.ts

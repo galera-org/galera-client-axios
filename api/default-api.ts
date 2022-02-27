@@ -47,6 +47,10 @@ import { AlbumInsertData } from "../models";
 // @ts-ignore
 import { AlbumResponse } from "../models";
 // @ts-ignore
+import { AlbumShareLinkBasic } from "../models";
+// @ts-ignore
+import { AlbumShareLinkInsert } from "../models";
+// @ts-ignore
 import { AlbumUpdateData } from "../models";
 // @ts-ignore
 import { ClaimsEncoded } from "../models";
@@ -58,6 +62,8 @@ import { MediaDescription } from "../models";
 import { MediaResponse } from "../models";
 // @ts-ignore
 import { NewUser } from "../models";
+// @ts-ignore
+import { SharedAlbumLinkResponse } from "../models";
 // @ts-ignore
 import { SystemInfoPublic } from "../models";
 // @ts-ignore
@@ -181,6 +187,64 @@ export const DefaultApiAxiosParamCreator = function (
       };
     },
     /**
+     * Creates a new album share link.
+     * @param {string} albumUuid
+     * @param {AlbumShareLinkInsert} [albumShareLinkInsert]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    routesCreateAlbumShareLink: async (
+      albumUuid: string,
+      albumShareLinkInsert?: AlbumShareLinkInsert,
+      options: AxiosRequestConfig = {}
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'albumUuid' is not null or undefined
+      assertParamExists("routesCreateAlbumShareLink", "albumUuid", albumUuid);
+      const localVarPath = `/album/{album_uuid}/share/link`.replace(
+        `{${"album_uuid"}}`,
+        encodeURIComponent(String(albumUuid))
+      );
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+      let baseOptions;
+      if (configuration) {
+        baseOptions = configuration.baseOptions;
+      }
+
+      const localVarRequestOptions = {
+        method: "POST",
+        ...baseOptions,
+        ...options,
+      };
+      const localVarHeaderParameter = {} as any;
+      const localVarQueryParameter = {} as any;
+
+      // authentication BearerAuth required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration);
+
+      localVarHeaderParameter["Content-Type"] = "application/json";
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter);
+      let headersFromBaseOptions =
+        baseOptions && baseOptions.headers ? baseOptions.headers : {};
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      };
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        albumShareLinkInsert,
+        localVarRequestOptions,
+        configuration
+      );
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      };
+    },
+    /**
      * Creates a new user
      * @param {NewUser} newUser
      * @param {*} [options] Override http request option.
@@ -279,6 +343,59 @@ export const DefaultApiAxiosParamCreator = function (
       };
     },
     /**
+     * Deletes an album share link.
+     * @param {string} albumShareLinkUuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    routesDeleteAlbumShareLink: async (
+      albumShareLinkUuid: string,
+      options: AxiosRequestConfig = {}
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'albumShareLinkUuid' is not null or undefined
+      assertParamExists(
+        "routesDeleteAlbumShareLink",
+        "albumShareLinkUuid",
+        albumShareLinkUuid
+      );
+      const localVarPath = `/album/share/link/{album_share_link_uuid}`.replace(
+        `{${"album_share_link_uuid"}}`,
+        encodeURIComponent(String(albumShareLinkUuid))
+      );
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+      let baseOptions;
+      if (configuration) {
+        baseOptions = configuration.baseOptions;
+      }
+
+      const localVarRequestOptions = {
+        method: "DELETE",
+        ...baseOptions,
+        ...options,
+      };
+      const localVarHeaderParameter = {} as any;
+      const localVarQueryParameter = {} as any;
+
+      // authentication BearerAuth required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration);
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter);
+      let headersFromBaseOptions =
+        baseOptions && baseOptions.headers ? baseOptions.headers : {};
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      };
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      };
+    },
+    /**
      * Retrieves a list of albums of an authenticated user
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -287,6 +404,104 @@ export const DefaultApiAxiosParamCreator = function (
       options: AxiosRequestConfig = {}
     ): Promise<RequestArgs> => {
       const localVarPath = `/album`;
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+      let baseOptions;
+      if (configuration) {
+        baseOptions = configuration.baseOptions;
+      }
+
+      const localVarRequestOptions = {
+        method: "GET",
+        ...baseOptions,
+        ...options,
+      };
+      const localVarHeaderParameter = {} as any;
+      const localVarQueryParameter = {} as any;
+
+      // authentication BearerAuth required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration);
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter);
+      let headersFromBaseOptions =
+        baseOptions && baseOptions.headers ? baseOptions.headers : {};
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      };
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      };
+    },
+    /**
+     * Gets basic information about album share link.
+     * @param {string} albumShareLinkUuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    routesGetAlbumShareLink: async (
+      albumShareLinkUuid: string,
+      options: AxiosRequestConfig = {}
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'albumShareLinkUuid' is not null or undefined
+      assertParamExists(
+        "routesGetAlbumShareLink",
+        "albumShareLinkUuid",
+        albumShareLinkUuid
+      );
+      const localVarPath = `/album/share/link/{album_share_link_uuid}`.replace(
+        `{${"album_share_link_uuid"}}`,
+        encodeURIComponent(String(albumShareLinkUuid))
+      );
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+      let baseOptions;
+      if (configuration) {
+        baseOptions = configuration.baseOptions;
+      }
+
+      const localVarRequestOptions = {
+        method: "GET",
+        ...baseOptions,
+        ...options,
+      };
+      const localVarHeaderParameter = {} as any;
+      const localVarQueryParameter = {} as any;
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter);
+      let headersFromBaseOptions =
+        baseOptions && baseOptions.headers ? baseOptions.headers : {};
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      };
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      };
+    },
+    /**
+     * Gets a list of album share links.
+     * @param {string} albumUuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    routesGetAlbumShareLinks: async (
+      albumUuid: string,
+      options: AxiosRequestConfig = {}
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'albumUuid' is not null or undefined
+      assertParamExists("routesGetAlbumShareLinks", "albumUuid", albumUuid);
+      const localVarPath = `/album/{album_uuid}/share/link`.replace(
+        `{${"album_uuid"}}`,
+        encodeURIComponent(String(albumUuid))
+      );
       // use dummy base URL string because the URL constructor only accepts absolute URLs.
       const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
       let baseOptions;
@@ -351,6 +566,10 @@ export const DefaultApiAxiosParamCreator = function (
       const localVarHeaderParameter = {} as any;
       const localVarQueryParameter = {} as any;
 
+      // authentication BasicSharedAlbumLinkAuth required
+      // http basic authentication required
+      setBasicAuthToObject(localVarRequestOptions, configuration);
+
       // authentication BearerAuth required
       // http bearer authentication required
       await setBearerAuthToObject(localVarHeaderParameter, configuration);
@@ -399,6 +618,10 @@ export const DefaultApiAxiosParamCreator = function (
       };
       const localVarHeaderParameter = {} as any;
       const localVarQueryParameter = {} as any;
+
+      // authentication BasicSharedAlbumLinkAuth required
+      // http basic authentication required
+      setBasicAuthToObject(localVarRequestOptions, configuration);
 
       // authentication BearerAuth required
       // http bearer authentication required
@@ -993,6 +1216,74 @@ export const DefaultApiAxiosParamCreator = function (
         options: localVarRequestOptions,
       };
     },
+    /**
+     * Updates already existing album share link.
+     * @param {string} albumShareLinkUuid
+     * @param {AlbumShareLinkInsert} albumShareLinkInsert
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    routesUpdateAlbumShareLink: async (
+      albumShareLinkUuid: string,
+      albumShareLinkInsert: AlbumShareLinkInsert,
+      options: AxiosRequestConfig = {}
+    ): Promise<RequestArgs> => {
+      // verify required parameter 'albumShareLinkUuid' is not null or undefined
+      assertParamExists(
+        "routesUpdateAlbumShareLink",
+        "albumShareLinkUuid",
+        albumShareLinkUuid
+      );
+      // verify required parameter 'albumShareLinkInsert' is not null or undefined
+      assertParamExists(
+        "routesUpdateAlbumShareLink",
+        "albumShareLinkInsert",
+        albumShareLinkInsert
+      );
+      const localVarPath = `/album/share/link/{album_share_link_uuid}`.replace(
+        `{${"album_share_link_uuid"}}`,
+        encodeURIComponent(String(albumShareLinkUuid))
+      );
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+      let baseOptions;
+      if (configuration) {
+        baseOptions = configuration.baseOptions;
+      }
+
+      const localVarRequestOptions = {
+        method: "PUT",
+        ...baseOptions,
+        ...options,
+      };
+      const localVarHeaderParameter = {} as any;
+      const localVarQueryParameter = {} as any;
+
+      // authentication BearerAuth required
+      // http bearer authentication required
+      await setBearerAuthToObject(localVarHeaderParameter, configuration);
+
+      localVarHeaderParameter["Content-Type"] = "application/json";
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter);
+      let headersFromBaseOptions =
+        baseOptions && baseOptions.headers ? baseOptions.headers : {};
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      };
+      localVarRequestOptions.data = serializeDataIfNeeded(
+        albumShareLinkInsert,
+        localVarRequestOptions,
+        configuration
+      );
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      };
+    },
   };
 };
 
@@ -1052,6 +1343,36 @@ export const DefaultApiFp = function (configuration?: Configuration) {
       );
     },
     /**
+     * Creates a new album share link.
+     * @param {string} albumUuid
+     * @param {AlbumShareLinkInsert} [albumShareLinkInsert]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async routesCreateAlbumShareLink(
+      albumUuid: string,
+      albumShareLinkInsert?: AlbumShareLinkInsert,
+      options?: AxiosRequestConfig
+    ): Promise<
+      (
+        axios?: AxiosInstance,
+        basePath?: string
+      ) => AxiosPromise<SharedAlbumLinkResponse>
+    > {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.routesCreateAlbumShareLink(
+          albumUuid,
+          albumShareLinkInsert,
+          options
+        );
+      return createRequestFunction(
+        localVarAxiosArgs,
+        globalAxios,
+        BASE_PATH,
+        configuration
+      );
+    },
+    /**
      * Creates a new user
      * @param {NewUser} newUser
      * @param {*} [options] Override http request option.
@@ -1094,6 +1415,30 @@ export const DefaultApiFp = function (configuration?: Configuration) {
       );
     },
     /**
+     * Deletes an album share link.
+     * @param {string} albumShareLinkUuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async routesDeleteAlbumShareLink(
+      albumShareLinkUuid: string,
+      options?: AxiosRequestConfig
+    ): Promise<
+      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>
+    > {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.routesDeleteAlbumShareLink(
+          albumShareLinkUuid,
+          options
+        );
+      return createRequestFunction(
+        localVarAxiosArgs,
+        globalAxios,
+        BASE_PATH,
+        configuration
+      );
+    },
+    /**
      * Retrieves a list of albums of an authenticated user
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -1108,6 +1453,60 @@ export const DefaultApiFp = function (configuration?: Configuration) {
     > {
       const localVarAxiosArgs =
         await localVarAxiosParamCreator.routesGetAlbumList(options);
+      return createRequestFunction(
+        localVarAxiosArgs,
+        globalAxios,
+        BASE_PATH,
+        configuration
+      );
+    },
+    /**
+     * Gets basic information about album share link.
+     * @param {string} albumShareLinkUuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async routesGetAlbumShareLink(
+      albumShareLinkUuid: string,
+      options?: AxiosRequestConfig
+    ): Promise<
+      (
+        axios?: AxiosInstance,
+        basePath?: string
+      ) => AxiosPromise<AlbumShareLinkBasic>
+    > {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.routesGetAlbumShareLink(
+          albumShareLinkUuid,
+          options
+        );
+      return createRequestFunction(
+        localVarAxiosArgs,
+        globalAxios,
+        BASE_PATH,
+        configuration
+      );
+    },
+    /**
+     * Gets a list of album share links.
+     * @param {string} albumUuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async routesGetAlbumShareLinks(
+      albumUuid: string,
+      options?: AxiosRequestConfig
+    ): Promise<
+      (
+        axios?: AxiosInstance,
+        basePath?: string
+      ) => AxiosPromise<Array<SharedAlbumLinkResponse>>
+    > {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.routesGetAlbumShareLinks(
+          albumUuid,
+          options
+        );
       return createRequestFunction(
         localVarAxiosArgs,
         globalAxios,
@@ -1441,6 +1840,33 @@ export const DefaultApiFp = function (configuration?: Configuration) {
         configuration
       );
     },
+    /**
+     * Updates already existing album share link.
+     * @param {string} albumShareLinkUuid
+     * @param {AlbumShareLinkInsert} albumShareLinkInsert
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async routesUpdateAlbumShareLink(
+      albumShareLinkUuid: string,
+      albumShareLinkInsert: AlbumShareLinkInsert,
+      options?: AxiosRequestConfig
+    ): Promise<
+      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>
+    > {
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.routesUpdateAlbumShareLink(
+          albumShareLinkUuid,
+          albumShareLinkInsert,
+          options
+        );
+      return createRequestFunction(
+        localVarAxiosArgs,
+        globalAxios,
+        BASE_PATH,
+        configuration
+      );
+    },
   };
 };
 
@@ -1484,6 +1910,22 @@ export const DefaultApiFactory = function (
         .then((request) => request(axios, basePath));
     },
     /**
+     * Creates a new album share link.
+     * @param {string} albumUuid
+     * @param {AlbumShareLinkInsert} [albumShareLinkInsert]
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    routesCreateAlbumShareLink(
+      albumUuid: string,
+      albumShareLinkInsert?: AlbumShareLinkInsert,
+      options?: any
+    ): AxiosPromise<SharedAlbumLinkResponse> {
+      return localVarFp
+        .routesCreateAlbumShareLink(albumUuid, albumShareLinkInsert, options)
+        .then((request) => request(axios, basePath));
+    },
+    /**
      * Creates a new user
      * @param {NewUser} newUser
      * @param {*} [options] Override http request option.
@@ -1506,6 +1948,20 @@ export const DefaultApiFactory = function (
         .then((request) => request(axios, basePath));
     },
     /**
+     * Deletes an album share link.
+     * @param {string} albumShareLinkUuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    routesDeleteAlbumShareLink(
+      albumShareLinkUuid: string,
+      options?: any
+    ): AxiosPromise<void> {
+      return localVarFp
+        .routesDeleteAlbumShareLink(albumShareLinkUuid, options)
+        .then((request) => request(axios, basePath));
+    },
+    /**
      * Retrieves a list of albums of an authenticated user
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
@@ -1513,6 +1969,34 @@ export const DefaultApiFactory = function (
     routesGetAlbumList(options?: any): AxiosPromise<Array<AlbumResponse>> {
       return localVarFp
         .routesGetAlbumList(options)
+        .then((request) => request(axios, basePath));
+    },
+    /**
+     * Gets basic information about album share link.
+     * @param {string} albumShareLinkUuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    routesGetAlbumShareLink(
+      albumShareLinkUuid: string,
+      options?: any
+    ): AxiosPromise<AlbumShareLinkBasic> {
+      return localVarFp
+        .routesGetAlbumShareLink(albumShareLinkUuid, options)
+        .then((request) => request(axios, basePath));
+    },
+    /**
+     * Gets a list of album share links.
+     * @param {string} albumUuid
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    routesGetAlbumShareLinks(
+      albumUuid: string,
+      options?: any
+    ): AxiosPromise<Array<SharedAlbumLinkResponse>> {
+      return localVarFp
+        .routesGetAlbumShareLinks(albumUuid, options)
         .then((request) => request(axios, basePath));
     },
     /**
@@ -1686,6 +2170,26 @@ export const DefaultApiFactory = function (
         .routesUpdateAlbum(albumUuid, albumUpdateData, options)
         .then((request) => request(axios, basePath));
     },
+    /**
+     * Updates already existing album share link.
+     * @param {string} albumShareLinkUuid
+     * @param {AlbumShareLinkInsert} albumShareLinkInsert
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    routesUpdateAlbumShareLink(
+      albumShareLinkUuid: string,
+      albumShareLinkInsert: AlbumShareLinkInsert,
+      options?: any
+    ): AxiosPromise<void> {
+      return localVarFp
+        .routesUpdateAlbumShareLink(
+          albumShareLinkUuid,
+          albumShareLinkInsert,
+          options
+        )
+        .then((request) => request(axios, basePath));
+    },
   };
 };
 
@@ -1718,6 +2222,27 @@ export interface DefaultApiRoutesCreateAlbumRequest {
 }
 
 /**
+ * Request parameters for routesCreateAlbumShareLink operation in DefaultApi.
+ * @export
+ * @interface DefaultApiRoutesCreateAlbumShareLinkRequest
+ */
+export interface DefaultApiRoutesCreateAlbumShareLinkRequest {
+  /**
+   *
+   * @type {string}
+   * @memberof DefaultApiRoutesCreateAlbumShareLink
+   */
+  readonly albumUuid: string;
+
+  /**
+   *
+   * @type {AlbumShareLinkInsert}
+   * @memberof DefaultApiRoutesCreateAlbumShareLink
+   */
+  readonly albumShareLinkInsert?: AlbumShareLinkInsert;
+}
+
+/**
  * Request parameters for routesCreateUser operation in DefaultApi.
  * @export
  * @interface DefaultApiRoutesCreateUserRequest
@@ -1741,6 +2266,48 @@ export interface DefaultApiRoutesDeleteAlbumRequest {
    *
    * @type {string}
    * @memberof DefaultApiRoutesDeleteAlbum
+   */
+  readonly albumUuid: string;
+}
+
+/**
+ * Request parameters for routesDeleteAlbumShareLink operation in DefaultApi.
+ * @export
+ * @interface DefaultApiRoutesDeleteAlbumShareLinkRequest
+ */
+export interface DefaultApiRoutesDeleteAlbumShareLinkRequest {
+  /**
+   *
+   * @type {string}
+   * @memberof DefaultApiRoutesDeleteAlbumShareLink
+   */
+  readonly albumShareLinkUuid: string;
+}
+
+/**
+ * Request parameters for routesGetAlbumShareLink operation in DefaultApi.
+ * @export
+ * @interface DefaultApiRoutesGetAlbumShareLinkRequest
+ */
+export interface DefaultApiRoutesGetAlbumShareLinkRequest {
+  /**
+   *
+   * @type {string}
+   * @memberof DefaultApiRoutesGetAlbumShareLink
+   */
+  readonly albumShareLinkUuid: string;
+}
+
+/**
+ * Request parameters for routesGetAlbumShareLinks operation in DefaultApi.
+ * @export
+ * @interface DefaultApiRoutesGetAlbumShareLinksRequest
+ */
+export interface DefaultApiRoutesGetAlbumShareLinksRequest {
+  /**
+   *
+   * @type {string}
+   * @memberof DefaultApiRoutesGetAlbumShareLinks
    */
   readonly albumUuid: string;
 }
@@ -1886,6 +2453,27 @@ export interface DefaultApiRoutesUpdateAlbumRequest {
 }
 
 /**
+ * Request parameters for routesUpdateAlbumShareLink operation in DefaultApi.
+ * @export
+ * @interface DefaultApiRoutesUpdateAlbumShareLinkRequest
+ */
+export interface DefaultApiRoutesUpdateAlbumShareLinkRequest {
+  /**
+   *
+   * @type {string}
+   * @memberof DefaultApiRoutesUpdateAlbumShareLink
+   */
+  readonly albumShareLinkUuid: string;
+
+  /**
+   *
+   * @type {AlbumShareLinkInsert}
+   * @memberof DefaultApiRoutesUpdateAlbumShareLink
+   */
+  readonly albumShareLinkInsert: AlbumShareLinkInsert;
+}
+
+/**
  * DefaultApi - object-oriented interface
  * @export
  * @class DefaultApi
@@ -1925,6 +2513,26 @@ export class DefaultApi extends BaseAPI {
   }
 
   /**
+   * Creates a new album share link.
+   * @param {DefaultApiRoutesCreateAlbumShareLinkRequest} requestParameters Request parameters.
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof DefaultApi
+   */
+  public routesCreateAlbumShareLink(
+    requestParameters: DefaultApiRoutesCreateAlbumShareLinkRequest,
+    options?: AxiosRequestConfig
+  ) {
+    return DefaultApiFp(this.configuration)
+      .routesCreateAlbumShareLink(
+        requestParameters.albumUuid,
+        requestParameters.albumShareLinkInsert,
+        options
+      )
+      .then((request) => request(this.axios, this.basePath));
+  }
+
+  /**
    * Creates a new user
    * @param {DefaultApiRoutesCreateUserRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
@@ -1957,6 +2565,22 @@ export class DefaultApi extends BaseAPI {
   }
 
   /**
+   * Deletes an album share link.
+   * @param {DefaultApiRoutesDeleteAlbumShareLinkRequest} requestParameters Request parameters.
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof DefaultApi
+   */
+  public routesDeleteAlbumShareLink(
+    requestParameters: DefaultApiRoutesDeleteAlbumShareLinkRequest,
+    options?: AxiosRequestConfig
+  ) {
+    return DefaultApiFp(this.configuration)
+      .routesDeleteAlbumShareLink(requestParameters.albumShareLinkUuid, options)
+      .then((request) => request(this.axios, this.basePath));
+  }
+
+  /**
    * Retrieves a list of albums of an authenticated user
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
@@ -1965,6 +2589,38 @@ export class DefaultApi extends BaseAPI {
   public routesGetAlbumList(options?: AxiosRequestConfig) {
     return DefaultApiFp(this.configuration)
       .routesGetAlbumList(options)
+      .then((request) => request(this.axios, this.basePath));
+  }
+
+  /**
+   * Gets basic information about album share link.
+   * @param {DefaultApiRoutesGetAlbumShareLinkRequest} requestParameters Request parameters.
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof DefaultApi
+   */
+  public routesGetAlbumShareLink(
+    requestParameters: DefaultApiRoutesGetAlbumShareLinkRequest,
+    options?: AxiosRequestConfig
+  ) {
+    return DefaultApiFp(this.configuration)
+      .routesGetAlbumShareLink(requestParameters.albumShareLinkUuid, options)
+      .then((request) => request(this.axios, this.basePath));
+  }
+
+  /**
+   * Gets a list of album share links.
+   * @param {DefaultApiRoutesGetAlbumShareLinksRequest} requestParameters Request parameters.
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof DefaultApi
+   */
+  public routesGetAlbumShareLinks(
+    requestParameters: DefaultApiRoutesGetAlbumShareLinksRequest,
+    options?: AxiosRequestConfig
+  ) {
+    return DefaultApiFp(this.configuration)
+      .routesGetAlbumShareLinks(requestParameters.albumUuid, options)
       .then((request) => request(this.axios, this.basePath));
   }
 
@@ -2175,6 +2831,26 @@ export class DefaultApi extends BaseAPI {
       .routesUpdateAlbum(
         requestParameters.albumUuid,
         requestParameters.albumUpdateData,
+        options
+      )
+      .then((request) => request(this.axios, this.basePath));
+  }
+
+  /**
+   * Updates already existing album share link.
+   * @param {DefaultApiRoutesUpdateAlbumShareLinkRequest} requestParameters Request parameters.
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   * @memberof DefaultApi
+   */
+  public routesUpdateAlbumShareLink(
+    requestParameters: DefaultApiRoutesUpdateAlbumShareLinkRequest,
+    options?: AxiosRequestConfig
+  ) {
+    return DefaultApiFp(this.configuration)
+      .routesUpdateAlbumShareLink(
+        requestParameters.albumShareLinkUuid,
+        requestParameters.albumShareLinkInsert,
         options
       )
       .then((request) => request(this.axios, this.basePath));
