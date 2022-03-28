@@ -19,7 +19,7 @@
     "@openapitools/openapi-generator-cli": "^2.4.26",
     "@types/node": "^16.11.9",
     "husky": "^7.0.2",
-    "prettier": "^2.5.1",
+    "prettier": "^2.6.1",
     "typescript": "^4.5.5"
   }
 }
