@@ -1,0 +1,30 @@
+{
+  "dependencyDashboard": false,
+  "extends": ["config:base", "group:allNonMajor"],
+  "labels": ["dependencies"],
+  "rangeStrategy": "bump",
+  "packageRules": [
+    {
+      "matchManagers": ["npm"],
+      "matchDepTypes": ["dependencies"],
+      "labels": ["dependencies", "javascript"],
+      "groupSlug": "deps",
+      "groupName": "dependencies"
+    },
+    {
+      "matchManagers": ["npm"],
+      "matchDepTypes": ["devDependencies"],
+      "labels": ["dependencies", "javascript"],
+      "groupSlug": "deps-dev",
+      "groupName": "development dependencies",
+      "semanticCommitScope": "deps-dev"
+    },
+    {
+      "matchManagers": ["github-actions"],
+      "labels": ["dependencies", "github_actions"],
+      "groupSlug": "deps-ci",
+      "groupName": "CI dependencies"
+    }
+  ],
+  "semanticCommits": true
+}
