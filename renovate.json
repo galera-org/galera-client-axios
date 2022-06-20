@@ -2,6 +2,7 @@
   "dependencyDashboard": false,
   "extends": ["config:base", "group:allNonMajor"],
   "labels": ["dependencies"],
+  "rangeStrategy": "bump",
   "packageRules": [
     {
       "matchManagers": ["npm"],
