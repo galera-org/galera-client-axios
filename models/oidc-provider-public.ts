@@ -12,11 +12,8 @@
  * Do not edit the class manually.
  */
 
-/**
- * Struct for inserting new users.
- */
-export interface NewUser {
-  email: string;
-  password?: string | null;
-  username: string;
+export interface OidcProviderPublic {
+  display_name: string;
+  key: string;
+  login_url: string;
 }

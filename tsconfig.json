@@ -12,9 +12,7 @@
     "skipLibCheck": true,
     "rootDir": ".",
     "outDir": "dist",
-    "types": [
-      "@types/node"
-    ]
+    "types": ["@types/node"]
   },
   "exclude": ["node_modules", "dist"]
 }

@@ -12,11 +12,10 @@
  * Do not edit the class manually.
  */
 
-/**
- * Struct for inserting new users.
- */
-export interface NewUser {
-  email: string;
-  password?: string | null;
-  username: string;
+// May contain unused imports in some cases
+// @ts-ignore
+import type { OidcProviderPublic } from "./oidc-provider-public";
+
+export interface AuthConfig {
+  oidc: Array<OidcProviderPublic>;
 }

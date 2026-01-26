@@ -1,325 +1,274 @@
 {
-  "openapi": "3.0.0",
+  "openapi": "3.1.0",
   "info": {
     "title": "galera",
+    "description": "",
+    "contact": {
+      "name": "Ondřej Pešek",
+      "email": "iTzBoboCz@users.noreply.github.com"
+    },
+    "license": { "name": "GPL-3.0-only", "identifier": "GPL-3.0-only" },
     "version": "0.1.0"
   },
   "paths": {
-    "/": {
-      "get": {
-        "operationId": "routes_index",
-        "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "string"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
     "/album": {
       "get": {
-        "description": "Retrieves a list of albums of an authenticated user",
+        "summary": "Retrieves a list of albums of an authenticated user",
         "operationId": "routes_get_album_list",
         "responses": {
           "200": {
-            "description": "",
+            "description": "Album list",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/AlbumResponse"
-                  }
+                  "items": { "$ref": "#/components/schemas/AlbumResponse" }
                 }
               }
             }
-          }
+          },
+          "401": { "description": "Unauthorized" }
         },
-        "security": [
-          {
-            "BearerAuth": []
-          }
-        ]
+        "security": [{ "BearerAuth": [] }]
       },
       "post": {
-        "description": "Creates a new album",
+        "summary": "Creates a new album",
         "operationId": "routes_create_album",
         "requestBody": {
           "content": {
             "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/AlbumInsertData"
-              }
+              "schema": { "$ref": "#/components/schemas/AlbumInsertData" }
             }
           },
           "required": true
         },
         "responses": {
           "200": {
-            "description": "",
+            "description": "Album created (or null on failure)",
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/AlbumResponse",
-                  "nullable": true
+                  "oneOf": [
+                    { "type": "null" },
+                    { "$ref": "#/components/schemas/AlbumResponse" }
+                  ]
                 }
               }
             }
-          }
+          },
+          "401": { "description": "Unauthorized" },
+          "500": { "description": "Internal server error" }
         },
-        "security": [
-          {
-            "BearerAuth": []
-          }
-        ]
+        "security": [{ "BearerAuth": [] }]
       }
     },
     "/album/media": {
       "post": {
-        "description": "Adds media to an album",
+        "summary": "Adds media to an album",
         "operationId": "routes_album_add_media",
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
                 "type": "array",
-                "items": {
-                  "$ref": "#/components/schemas/AlbumAddMedia"
-                }
+                "items": { "$ref": "#/components/schemas/AlbumAddMedia" }
               }
             }
           },
           "required": true
         },
         "responses": {
-          "200": {
-            "description": ""
-          },
-          "default": {
-            "description": ""
-          }
+          "200": { "description": "Media added to album" },
+          "400": { "description": "Bad request" },
+          "401": { "description": "Unauthorized" },
+          "403": { "description": "Forbidden" },
+          "500": { "description": "Internal server error" }
         },
-        "security": [
-          {
-            "BearerAuth": []
-          }
-        ]
+        "security": [{ "BearerAuth": [] }]
       }
     },
     "/album/share/link/{album_share_link_uuid}": {
       "get": {
-        "description": "Gets basic information about album share link.",
+        "summary": "Gets basic information about album share link.",
         "operationId": "routes_get_album_share_link",
         "parameters": [
           {
             "name": "album_share_link_uuid",
             "in": "path",
+            "description": "Album Share Link UUID",
             "required": true,
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "responses": {
           "200": {
-            "description": "",
+            "description": "Share link info",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/AlbumShareLinkBasic"
-                }
+                "schema": { "$ref": "#/components/schemas/AlbumShareLinkBasic" }
               }
             }
           },
-          "default": {
-            "description": ""
-          }
-        }
+          "404": { "description": "Not found" },
+          "500": { "description": "Internal server error" }
+        },
+        "security": [{ "BearerAuth": [] }]
       },
       "put": {
-        "description": "Updates already existing album share link.",
+        "summary": "Updates already existing album share link.",
         "operationId": "routes_update_album_share_link",
         "parameters": [
           {
             "name": "album_share_link_uuid",
             "in": "path",
+            "description": "Album Share Link UUID",
             "required": true,
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "requestBody": {
           "content": {
             "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/AlbumShareLinkInsert"
-              }
+              "schema": { "$ref": "#/components/schemas/AlbumShareLinkInsert" }
             }
           },
           "required": true
         },
         "responses": {
-          "default": {
-            "description": ""
-          }
+          "200": { "description": "Album share link updated" },
+          "204": { "description": "No changes" },
+          "401": { "description": "Unauthorized" },
+          "403": { "description": "Forbidden" },
+          "404": { "description": "Not found" },
+          "500": { "description": "Internal server error" }
         },
-        "security": [
-          {
-            "BearerAuth": []
-          }
-        ]
+        "security": [{ "BearerAuth": [] }]
       },
       "delete": {
-        "description": "Deletes an album share link.",
+        "summary": "Deletes an album share link.",
         "operationId": "routes_delete_album_share_link",
         "parameters": [
           {
             "name": "album_share_link_uuid",
             "in": "path",
+            "description": "Album Share Link UUID",
             "required": true,
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "responses": {
-          "default": {
-            "description": ""
-          }
+          "200": { "description": "Album share link deleted" },
+          "204": { "description": "Nothing deleted" },
+          "401": { "description": "Unauthorized" },
+          "403": { "description": "Forbidden" },
+          "404": { "description": "Not found" },
+          "500": { "description": "Internal server error" }
         },
-        "security": [
-          {
-            "BearerAuth": []
-          }
-        ]
+        "security": [{ "BearerAuth": [] }]
       }
     },
     "/album/{album_uuid}": {
       "put": {
-        "description": "Updates already existing album",
+        "summary": "Updates already existing album",
         "operationId": "routes_update_album",
         "parameters": [
           {
             "name": "album_uuid",
             "in": "path",
+            "description": "Album UUID",
             "required": true,
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "requestBody": {
           "content": {
             "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/AlbumUpdateData"
-              }
+              "schema": { "$ref": "#/components/schemas/AlbumUpdateData" }
             }
           },
           "required": true
         },
         "responses": {
-          "default": {
-            "description": ""
-          }
+          "200": { "description": "Album updated" },
+          "204": { "description": "No changes" },
+          "401": { "description": "Unauthorized" },
+          "403": { "description": "Forbidden" },
+          "404": { "description": "Album not found" },
+          "422": { "description": "Unprocessable entity" },
+          "500": { "description": "Internal server error" }
         },
-        "security": [
-          {
-            "BearerAuth": []
-          }
-        ]
+        "security": [{ "BearerAuth": [] }]
       },
       "delete": {
-        "description": "Deletes an album",
+        "summary": "Deletes an album",
         "operationId": "routes_delete_album",
         "parameters": [
           {
             "name": "album_uuid",
             "in": "path",
+            "description": "Album UUID",
             "required": true,
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "responses": {
-          "default": {
-            "description": ""
-          }
+          "200": { "description": "Album deleted" },
+          "401": { "description": "Unauthorized" },
+          "403": { "description": "Forbidden" },
+          "404": { "description": "Album not found" },
+          "500": { "description": "Internal server error" }
         },
-        "security": [
-          {
-            "BearerAuth": []
-          }
-        ]
+        "security": [{ "BearerAuth": [] }]
       }
     },
     "/album/{album_uuid}/media": {
       "get": {
-        "description": "Gets a list of media in an album",
+        "summary": "Gets a list of media in an album",
         "operationId": "routes_get_album_structure",
         "parameters": [
           {
             "name": "album_uuid",
             "in": "path",
+            "description": "Album UUID",
             "required": true,
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "responses": {
           "200": {
-            "description": "",
+            "description": "Album media",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/MediaResponse"
-                  }
+                  "items": { "$ref": "#/components/schemas/MediaResponse" }
                 }
               }
             }
           },
-          "default": {
-            "description": ""
-          }
+          "401": { "description": "Unauthorized" },
+          "404": { "description": "Album not found" },
+          "500": { "description": "Internal server error" }
         },
-        "security": [
-          {
-            "BearerAuth": []
-          },
-          {
-            "BasicSharedAlbumLinkAuth": []
-          }
-        ]
+        "security": [{ "BearerAuth": [] }, { "BasicSharedAlbumLinkAuth": [] }]
       }
     },
     "/album/{album_uuid}/share/link": {
       "get": {
-        "description": "Gets a list of album share links.",
+        "summary": "Gets a list of album share links.",
         "operationId": "routes_get_album_share_links",
         "parameters": [
           {
             "name": "album_uuid",
             "in": "path",
+            "description": "Album UUID",
             "required": true,
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "responses": {
           "200": {
-            "description": "",
+            "description": "Album share links",
             "content": {
               "application/json": {
                 "schema": {
@@ -331,41 +280,36 @@
               }
             }
           },
-          "default": {
-            "description": ""
-          }
+          "401": { "description": "Unauthorized" },
+          "403": { "description": "Forbidden" },
+          "404": { "description": "Album not found" },
+          "500": { "description": "Internal server error" }
         },
-        "security": [
-          {
-            "BearerAuth": []
-          }
-        ]
+        "security": [{ "BearerAuth": [] }]
       },
       "post": {
-        "description": "Creates a new album share link.",
+        "summary": "Creates a new album share link.",
         "operationId": "routes_create_album_share_link",
         "parameters": [
           {
             "name": "album_uuid",
             "in": "path",
+            "description": "Album UUID",
             "required": true,
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "requestBody": {
           "content": {
             "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/AlbumShareLinkInsert"
-              }
+              "schema": { "$ref": "#/components/schemas/AlbumShareLinkInsert" }
             }
-          }
+          },
+          "required": true
         },
         "responses": {
           "200": {
-            "description": "",
+            "description": "Share link created",
             "content": {
               "application/json": {
                 "schema": {
@@ -374,314 +318,348 @@
               }
             }
           },
-          "default": {
-            "description": ""
-          }
+          "401": { "description": "Unauthorized" },
+          "403": { "description": "Forbidden" },
+          "404": { "description": "Album not found" },
+          "500": { "description": "Internal server error" }
         },
-        "security": [
+        "security": [{ "BearerAuth": [] }]
+      }
+    },
+    "/auth/oidc/{provider}/callback": {
+      "get": {
+        "operationId": "routes_oidc_callback",
+        "parameters": [
           {
-            "BearerAuth": []
+            "name": "provider",
+            "in": "path",
+            "description": "OIDC provider key",
+            "required": true,
+            "schema": { "type": "string" }
+          },
+          {
+            "name": "code",
+            "in": "query",
+            "description": "Authorization code",
+            "required": true,
+            "schema": { "type": "string" }
+          },
+          {
+            "name": "state",
+            "in": "query",
+            "description": "CSRF state",
+            "required": true,
+            "schema": { "type": "string" }
           }
-        ]
+        ],
+        "responses": {
+          "200": {
+            "description": "Login successful",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/LoginResponse" }
+              }
+            }
+          },
+          "400": { "description": "Bad request" },
+          "401": { "description": "Authentication failed" },
+          "404": { "description": "Provider not found" },
+          "500": { "description": "Internal server error" }
+        }
+      }
+    },
+    "/auth/oidc/{provider}/login": {
+      "get": {
+        "operationId": "routes_oidc_login",
+        "parameters": [
+          {
+            "name": "provider",
+            "in": "path",
+            "description": "OIDC provider key",
+            "required": true,
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "302": { "description": "Redirect to OIDC provider" },
+          "404": { "description": "OIDC provider not found" }
+        }
+      }
+    },
+    "/health": {
+      "get": {
+        "operationId": "routes_health",
+        "responses": { "200": { "description": "Health check passed" } }
       }
     },
     "/login": {
       "post": {
-        "description": "You must provide either a username or an email together with a password.",
+        "summary": "You must provide either a username or an email together with a password.",
         "operationId": "routes_login",
         "requestBody": {
           "content": {
             "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/UserLogin"
-              }
+              "schema": { "$ref": "#/components/schemas/UserLogin" }
             }
           },
           "required": true
         },
         "responses": {
           "200": {
-            "description": "",
+            "description": "Login successful",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/LoginResponse"
-                }
+                "schema": { "$ref": "#/components/schemas/LoginResponse" }
               }
             }
           },
-          "default": {
-            "description": ""
-          }
+          "400": { "description": "Invalid JSON or wrong shape" },
+          "409": { "description": "Invalid credentials or user conflict" },
+          "500": { "description": "Internal server error" }
         }
       }
     },
     "/login/refresh": {
       "post": {
-        "description": "Refreshes sent token",
+        "summary": "Refreshes sent token",
         "operationId": "routes_refresh_token",
         "requestBody": {
           "content": {
             "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/ClaimsEncoded"
-              }
+              "schema": { "$ref": "#/components/schemas/ClaimsEncoded" }
             }
           },
           "required": true
         },
         "responses": {
           "200": {
-            "description": "",
+            "description": "Token refreshed",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ClaimsEncoded"
-                }
+                "schema": { "$ref": "#/components/schemas/ClaimsEncoded" }
               }
             }
           },
-          "default": {
-            "description": ""
-          }
+          "400": { "description": "Invalid JSON or wrong shape" },
+          "401": { "description": "Unauthorized" },
+          "500": { "description": "Internal server error" }
         }
       }
     },
     "/media": {
       "get": {
-        "description": "Gets a list of all media",
+        "summary": "Gets a list of all media",
         "operationId": "routes_media_structure",
         "responses": {
           "200": {
-            "description": "",
+            "description": "List of media",
             "content": {
               "application/json": {
                 "schema": {
                   "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/MediaResponse"
-                  }
-                }
-              }
-            }
-          }
-        },
-        "security": [
-          {
-            "BearerAuth": []
-          }
-        ]
-      }
-    },
-    "/media/liked": {
-      "get": {
-        "description": "Returns a list of liked media.",
-        "operationId": "routes_get_media_liked_list",
-        "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/MediaResponse"
-                  }
+                  "items": { "$ref": "#/components/schemas/MediaResponse" }
                 }
               }
             }
           },
-          "default": {
-            "description": ""
-          }
+          "401": { "description": "Unauthorized" },
+          "500": { "description": "Internal server error" }
         },
-        "security": [
-          {
-            "BearerAuth": []
-          }
-        ]
+        "security": [{ "BearerAuth": [] }]
+      }
+    },
+    "/media/liked": {
+      "get": {
+        "summary": "Returns a list of liked media.",
+        "operationId": "routes_get_media_liked_list",
+        "responses": {
+          "200": {
+            "description": "Liked media",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": { "$ref": "#/components/schemas/MediaResponse" }
+                }
+              }
+            }
+          },
+          "401": { "description": "Unauthorized" },
+          "500": { "description": "Internal server error" }
+        },
+        "security": [{ "BearerAuth": [] }]
       }
     },
     "/media/{media_uuid}": {
       "get": {
-        "description": "Returns a media",
+        "summary": "Returns a media",
         "operationId": "routes_get_media_by_uuid",
         "parameters": [
           {
             "name": "media_uuid",
             "in": "path",
+            "description": "Media UUID",
             "required": true,
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "responses": {
           "200": {
-            "description": "",
+            "description": "Binary media stream",
             "content": {
-              "application/octet-stream": {}
+              "application/octet-stream": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "integer",
+                    "format": "int32",
+                    "minimum": 0
+                  }
+                }
+              }
             }
           },
-          "404": {
-            "description": ""
-          }
+          "401": { "description": "Unauthorized" },
+          "404": { "description": "Media not found" },
+          "500": { "description": "Internal server error" }
         },
-        "security": [
-          {
-            "BearerAuth": []
-          },
-          {
-            "BasicSharedAlbumLinkAuth": []
-          }
-        ]
+        "security": [{ "BearerAuth": [] }]
       }
     },
     "/media/{media_uuid}/description": {
       "put": {
-        "description": "Updates description of a media",
+        "summary": "Updates description of a media",
         "operationId": "routes_media_update_description",
         "parameters": [
           {
             "name": "media_uuid",
             "in": "path",
+            "description": "Media UUID",
             "required": true,
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "requestBody": {
           "content": {
             "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/MediaDescription"
-              }
+              "schema": { "$ref": "#/components/schemas/MediaDescription" }
             }
           },
           "required": true
         },
         "responses": {
-          "default": {
-            "description": ""
-          }
+          "200": { "description": "Description updated" },
+          "401": { "description": "Unauthorized" },
+          "403": { "description": "Forbidden" },
+          "404": { "description": "Media not found" },
+          "500": { "description": "Internal server error" }
         },
-        "security": [
-          {
-            "BearerAuth": []
-          }
-        ]
+        "security": [{ "BearerAuth": [] }]
       },
       "delete": {
-        "description": "Deletes description of a media",
+        "summary": "Deletes description of a media",
         "operationId": "routes_media_delete_description",
         "parameters": [
           {
             "name": "media_uuid",
             "in": "path",
+            "description": "Media UUID",
             "required": true,
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "responses": {
-          "default": {
-            "description": ""
-          }
+          "200": { "description": "Description deleted" },
+          "401": { "description": "Unauthorized" },
+          "403": { "description": "Forbidden" },
+          "404": { "description": "Media not found" },
+          "500": { "description": "Internal server error" }
         },
-        "security": [
-          {
-            "BearerAuth": []
-          }
-        ]
+        "security": [{ "BearerAuth": [] }]
       }
     },
     "/media/{media_uuid}/like": {
       "post": {
-        "description": "Likes the media.",
+        "summary": "Likes the media.",
         "operationId": "routes_media_like",
         "parameters": [
           {
             "name": "media_uuid",
             "in": "path",
+            "description": "Media UUID",
             "required": true,
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "responses": {
-          "default": {
-            "description": ""
-          }
+          "200": { "description": "Liked a media" },
+          "401": { "description": "Unauthorized" },
+          "404": { "description": "Media not found" },
+          "409": { "description": "Already liked" }
         },
-        "security": [
-          {
-            "BearerAuth": []
-          }
-        ]
+        "security": [{ "BearerAuth": [] }]
       },
       "delete": {
-        "description": "Unlikes the media.",
+        "summary": "Unlikes the media.",
         "operationId": "routes_media_unlike",
         "parameters": [
           {
             "name": "media_uuid",
             "in": "path",
+            "description": "Media UUID",
             "required": true,
-            "schema": {
-              "type": "string"
-            }
+            "schema": { "type": "string" }
           }
         ],
         "responses": {
-          "default": {
-            "description": ""
-          }
+          "200": { "description": "Unliked a media" },
+          "204": { "description": "No changes made" },
+          "404": { "description": "Media not found" },
+          "500": { "description": "Internal server error" }
         },
-        "security": [
-          {
-            "BearerAuth": []
-          }
-        ]
+        "security": [{ "BearerAuth": [] }]
       }
     },
-    "/scan_media": {
+    "/public/config": {
       "get": {
-        "description": "Searches for new media",
-        "operationId": "routes_scan_media",
+        "summary": "Returns server configuration",
+        "operationId": "routes_get_server_config",
         "responses": {
           "200": {
-            "description": "",
+            "description": "Server config",
             "content": {
-              "text/plain": {
+              "application/json": {
                 "schema": {
-                  "type": "string"
+                  "$ref": "#/components/schemas/ServerConfigResponse"
                 }
               }
             }
           }
+        }
+      }
+    },
+    "/scan_media": {
+      "post": {
+        "summary": "Searches for new media",
+        "operationId": "routes_scan_media",
+        "responses": {
+          "200": { "description": "Scan started" },
+          "401": { "description": "Unauthorized" },
+          "500": { "description": "Internal server error" }
         },
-        "security": [
-          {
-            "BearerAuth": []
-          }
-        ]
+        "security": [{ "BearerAuth": [] }]
       }
     },
     "/system/info/public": {
       "get": {
-        "description": "Returns the public system information.",
+        "summary": "Returns the public system information.",
         "operationId": "routes_system_info_public",
         "responses": {
           "200": {
-            "description": "",
+            "description": "System info",
             "content": {
               "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/SystemInfoPublic"
-                }
+                "schema": { "$ref": "#/components/schemas/SystemInfoPublic" }
               }
             }
           }
@@ -690,22 +668,22 @@
     },
     "/user": {
       "post": {
-        "description": "Creates a new user",
+        "summary": "Creates a new user",
         "operationId": "routes_create_user",
         "requestBody": {
           "content": {
             "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/NewUser"
-              }
+              "schema": { "$ref": "#/components/schemas/NewUser" }
             }
           },
           "required": true
         },
         "responses": {
-          "default": {
-            "description": ""
-          }
+          "200": { "description": "User created" },
+          "400": { "description": "Invalid JSON or wrong shape" },
+          "409": { "description": "User already exists" },
+          "422": { "description": "Invalid user data" },
+          "500": { "description": "Internal server error" }
         }
       }
     }
@@ -714,225 +692,127 @@
     "schemas": {
       "AlbumAddMedia": {
         "type": "object",
-        "required": [
-          "album_uuid",
-          "media_uuid"
-        ],
+        "required": ["album_uuid", "media_uuid"],
         "properties": {
-          "album_uuid": {
-            "type": "string"
-          },
-          "media_uuid": {
-            "type": "string"
-          }
+          "album_uuid": { "type": "string" },
+          "media_uuid": { "type": "string" }
         }
       },
       "AlbumInsertData": {
         "type": "object",
-        "required": [
-          "name"
-        ],
+        "required": ["name"],
         "properties": {
-          "description": {
-            "type": "string",
-            "nullable": true
-          },
-          "name": {
-            "type": "string"
-          }
+          "description": { "type": ["string", "null"] },
+          "name": { "type": "string" }
         }
       },
       "AlbumResponse": {
         "type": "object",
-        "required": [
-          "created_at",
-          "link",
-          "name",
-          "owner_id"
-        ],
+        "required": ["owner_id", "name", "created_at", "link"],
         "properties": {
-          "created_at": {
-            "type": "string",
-            "format": "partial-date-time"
-          },
-          "description": {
-            "type": "string",
-            "nullable": true
-          },
-          "link": {
-            "type": "string"
-          },
-          "name": {
-            "type": "string"
-          },
-          "owner_id": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "thumbnail_link": {
-            "type": "string",
-            "nullable": true
-          }
+          "created_at": { "type": "string", "format": "date-time" },
+          "description": { "type": ["string", "null"] },
+          "link": { "type": "string" },
+          "name": { "type": "string" },
+          "owner_id": { "type": "integer", "format": "int32" },
+          "thumbnail_link": { "type": ["string", "null"] }
         }
       },
       "AlbumShareLinkBasic": {
         "type": "object",
-        "required": [
-          "album_uuid",
-          "is_expired",
-          "is_password_protected"
-        ],
+        "required": ["album_uuid", "is_password_protected", "is_expired"],
         "properties": {
-          "album_uuid": {
-            "type": "string"
-          },
-          "is_expired": {
-            "type": "boolean"
-          },
-          "is_password_protected": {
-            "type": "boolean"
-          }
+          "album_uuid": { "type": "string" },
+          "is_expired": { "type": "boolean" },
+          "is_password_protected": { "type": "boolean" }
         }
       },
       "AlbumShareLinkInsert": {
         "type": "object",
         "properties": {
-          "expiration": {
-            "type": "string",
-            "format": "partial-date-time",
-            "nullable": true
-          },
-          "password": {
-            "type": "string",
-            "nullable": true
-          }
+          "expiration": { "type": ["string", "null"], "format": "date-time" },
+          "password": { "type": ["string", "null"] }
         }
       },
       "AlbumUpdateData": {
         "type": "object",
         "properties": {
-          "description": {
-            "type": "string",
-            "nullable": true
-          },
-          "name": {
-            "type": "string",
-            "nullable": true
+          "description": { "type": ["string", "null"] },
+          "name": { "type": ["string", "null"] }
+        }
+      },
+      "AuthConfig": {
+        "type": "object",
+        "required": ["oidc"],
+        "properties": {
+          "oidc": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/OidcProviderPublic" }
           }
         }
       },
       "ClaimsEncoded": {
-        "description": "Encoded bearer token # Example decode an encoded bearer token ``` let encoded_token = Claims::new(1).encode().unwrap();\n\nlet decoded_token = encoded_token.decode(); ```",
         "type": "object",
-        "required": [
-          "encoded_claims"
-        ],
-        "properties": {
-          "encoded_claims": {
-            "type": "string"
-          }
-        }
+        "description": "Encoded bearer token\n# Example\ndecode an encoded bearer token\n```\nlet encoded_token = Claims::new(1).encode().unwrap();\n\nlet decoded_token = encoded_token.decode();\n```",
+        "required": ["encoded_claims"],
+        "properties": { "encoded_claims": { "type": "string" } }
       },
       "LoginResponse": {
-        "description": "Response when logging in.",
         "type": "object",
-        "required": [
-          "bearer_token",
-          "user_info"
-        ],
+        "description": "Response when logging in.",
+        "required": ["user_info", "bearer_token"],
         "properties": {
-          "bearer_token": {
-            "type": "string"
-          },
-          "user_info": {
-            "$ref": "#/components/schemas/UserInfo"
-          }
+          "bearer_token": { "type": "string" },
+          "user_info": { "$ref": "#/components/schemas/UserInfo" }
         }
       },
       "MediaDescription": {
         "type": "object",
-        "properties": {
-          "description": {
-            "type": "string",
-            "nullable": true
-          }
-        }
+        "properties": { "description": { "type": ["string", "null"] } }
       },
       "MediaResponse": {
         "type": "object",
-        "required": [
-          "date_taken",
-          "filename",
-          "height",
-          "owner_id",
-          "uuid",
-          "width"
-        ],
+        "required": ["filename", "owner_id", "width", "height", "uuid"],
         "properties": {
-          "date_taken": {
-            "type": "string",
-            "format": "partial-date-time"
-          },
-          "description": {
-            "type": "string",
-            "nullable": true
-          },
-          "filename": {
-            "type": "string"
-          },
-          "height": {
-            "type": "integer",
-            "format": "uint32",
-            "minimum": 0.0
-          },
-          "owner_id": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "uuid": {
-            "type": "string"
-          },
-          "width": {
-            "type": "integer",
-            "format": "uint32",
-            "minimum": 0.0
-          }
+          "date_taken": { "type": ["string", "null"], "format": "date-time" },
+          "description": { "type": ["string", "null"] },
+          "filename": { "type": "string" },
+          "height": { "type": "integer", "format": "int32", "minimum": 0 },
+          "owner_id": { "type": "integer", "format": "int32" },
+          "uuid": { "type": "string" },
+          "width": { "type": "integer", "format": "int32", "minimum": 0 }
         }
       },
       "NewUser": {
-        "description": "Struct for inserting new users.",
         "type": "object",
-        "required": [
-          "email",
-          "password",
-          "username"
-        ],
+        "description": "Struct for inserting new users.",
+        "required": ["username", "email"],
         "properties": {
-          "email": {
-            "type": "string"
-          },
-          "password": {
-            "type": "string"
-          },
-          "username": {
-            "type": "string"
-          }
+          "email": { "type": "string" },
+          "password": { "type": ["string", "null"] },
+          "username": { "type": "string" }
         }
+      },
+      "OidcProviderPublic": {
+        "type": "object",
+        "required": ["key", "display_name", "login_url"],
+        "properties": {
+          "display_name": { "type": "string" },
+          "key": { "type": "string" },
+          "login_url": { "type": "string" }
+        }
+      },
+      "ServerConfigResponse": {
+        "type": "object",
+        "required": ["auth"],
+        "properties": { "auth": { "$ref": "#/components/schemas/AuthConfig" } }
       },
       "SharedAlbumLinkResponse": {
         "type": "object",
-        "required": [
-          "uuid"
-        ],
+        "required": ["uuid"],
         "properties": {
-          "expiration": {
-            "type": "string",
-            "format": "partial-date-time",
-            "nullable": true
-          },
-          "uuid": {
-            "type": "string"
-          }
+          "expiration": { "type": ["string", "null"], "format": "date-time" },
+          "uuid": { "type": "string" }
         }
       },
       "SystemInfoPublic": {
@@ -944,64 +824,42 @@
           "systemArchitecture"
         ],
         "properties": {
-          "operatingSystem": {
-            "type": "string"
-          },
-          "serverName": {
-            "type": "string"
-          },
-          "serverVersion": {
-            "type": "string"
-          },
-          "systemArchitecture": {
-            "type": "string"
-          }
+          "operatingSystem": { "type": "string" },
+          "serverName": { "type": "string" },
+          "serverVersion": { "type": "string" },
+          "systemArchitecture": { "type": "string" }
         }
       },
       "UserInfo": {
-        "description": "Used for sending information about user.",
         "type": "object",
-        "required": [
-          "email",
-          "username"
-        ],
+        "description": "Used for sending information about user.",
+        "required": ["username", "email"],
         "properties": {
-          "email": {
-            "type": "string"
-          },
-          "username": {
-            "type": "string"
-          }
+          "email": { "type": "string" },
+          "username": { "type": "string" }
         }
       },
       "UserLogin": {
-        "description": "Used for receiving login data.",
         "type": "object",
-        "required": [
-          "password",
-          "username_or_email"
-        ],
+        "description": "Used for receiving login data.",
+        "required": ["username_or_email", "password"],
         "properties": {
-          "password": {
-            "type": "string"
-          },
-          "username_or_email": {
-            "type": "string"
-          }
+          "password": { "type": "string" },
+          "username_or_email": { "type": "string" }
         }
       }
     },
     "securitySchemes": {
       "BasicSharedAlbumLinkAuth": {
-        "description": "requires a base64 encoded string in format `album_share_link_uuid:password` to access",
         "type": "http",
-        "scheme": "basic"
+        "scheme": "basic",
+        "description": "requires a base64 encoded string in format `album_share_link_uuid:password` to access"
       },
       "BearerAuth": {
-        "description": "requires a bearer token to access",
         "type": "http",
         "scheme": "bearer",
-        "bearerFormat": "JWT"
+        "bearerFormat": "JWT",
+        "description": "requires a bearer token to access"
       }
     }
   }
