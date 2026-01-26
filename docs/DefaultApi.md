@@ -565,7 +565,7 @@ const { status, data } = await apiInstance.routesGetAlbumStructure(
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **routesGetMediaByUuid**
-> Array<number> routesGetMediaByUuid()
+> File routesGetMediaByUuid()
 
 
 ### Example
@@ -595,7 +595,7 @@ const { status, data } = await apiInstance.routesGetMediaByUuid(
 
 ### Return type
 
-**Array<number>**
+**File**
 
 ### Authorization
 

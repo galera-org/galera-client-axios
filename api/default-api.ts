@@ -1819,7 +1819,7 @@ export const DefaultApiFp = function (configuration?: Configuration) {
       mediaUuid: string,
       options?: RawAxiosRequestConfig
     ): Promise<
-      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<number>>
+      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<File>
     > {
       const localVarAxiosArgs =
         await localVarAxiosParamCreator.routesGetMediaByUuid(
@@ -2503,7 +2503,7 @@ export const DefaultApiFactory = function (
     routesGetMediaByUuid(
       requestParameters: DefaultApiRoutesGetMediaByUuidRequest,
       options?: RawAxiosRequestConfig
-    ): AxiosPromise<Array<number>> {
+    ): AxiosPromise<File> {
       return localVarFp
         .routesGetMediaByUuid(requestParameters.mediaUuid, options)
         .then((request) => request(axios, basePath));

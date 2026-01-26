@@ -508,14 +508,7 @@
             "description": "Binary media stream",
             "content": {
               "application/octet-stream": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "type": "integer",
-                    "format": "int32",
-                    "minimum": 0
-                  }
-                }
+                "schema": { "$ref": "#/components/schemas/BinaryBody" }
               }
             }
           },
@@ -751,6 +744,7 @@
           }
         }
       },
+      "BinaryBody": { "type": "string", "format": "binary" },
       "ClaimsEncoded": {
         "type": "object",
         "description": "Encoded bearer token\n# Example\ndecode an encoded bearer token\n```\nlet encoded_token = Claims::new(1).encode().unwrap();\n\nlet decoded_token = encoded_token.decode();\n```",
