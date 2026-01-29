@@ -1282,7 +1282,7 @@ export const DefaultApiAxiosParamCreator = function (
       }
 
       const localVarRequestOptions = {
-        method: "POST",
+        method: "GET",
         ...baseOptions,
         ...options,
       };

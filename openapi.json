@@ -10,6 +10,7 @@
     "license": { "name": "GPL-3.0-only", "identifier": "GPL-3.0-only" },
     "version": "0.1.0"
   },
+  "servers": [{ "url": "/" }],
   "paths": {
     "/album": {
       "get": {
@@ -364,7 +365,8 @@
           "400": { "description": "Bad request" },
           "401": { "description": "Authentication failed" },
           "404": { "description": "Provider not found" },
-          "500": { "description": "Internal server error" }
+          "500": { "description": "Internal server error" },
+          "503": { "description": "OIDC is disabled" }
         }
       }
     },
@@ -382,7 +384,8 @@
         ],
         "responses": {
           "302": { "description": "Redirect to OIDC provider" },
-          "404": { "description": "OIDC provider not found" }
+          "404": { "description": "OIDC provider not found" },
+          "503": { "description": "OIDC is disabled" }
         }
       }
     },
@@ -632,7 +635,7 @@
       }
     },
     "/scan_media": {
-      "post": {
+      "get": {
         "summary": "Searches for new media",
         "operationId": "routes_scan_media",
         "responses": {

@@ -27,7 +27,7 @@ All URIs are relative to *http://localhost*
 |[**routesOidcCallback**](#routesoidccallback) | **GET** /auth/oidc/{provider}/callback | |
 |[**routesOidcLogin**](#routesoidclogin) | **GET** /auth/oidc/{provider}/login | |
 |[**routesRefreshToken**](#routesrefreshtoken) | **POST** /login/refresh | Refreshes sent token|
-|[**routesScanMedia**](#routesscanmedia) | **POST** /scan_media | Searches for new media|
+|[**routesScanMedia**](#routesscanmedia) | **GET** /scan_media | Searches for new media|
 |[**routesSystemInfoPublic**](#routessysteminfopublic) | **GET** /system/info/public | Returns the public system information.|
 |[**routesUpdateAlbum**](#routesupdatealbum) | **PUT** /album/{album_uuid} | Updates already existing album|
 |[**routesUpdateAlbumShareLink**](#routesupdatealbumsharelink) | **PUT** /album/share/link/{album_share_link_uuid} | Updates already existing album share link.|
@@ -1122,6 +1122,7 @@ No authorization required
 |**401** | Authentication failed |  -  |
 |**404** | Provider not found |  -  |
 |**500** | Internal server error |  -  |
+|**503** | OIDC is disabled |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1173,6 +1174,7 @@ No authorization required
 |-------------|-------------|------------------|
 |**302** | Redirect to OIDC provider |  -  |
 |**404** | OIDC provider not found |  -  |
+|**503** | OIDC is disabled |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
