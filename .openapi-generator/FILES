@@ -12,6 +12,7 @@ docs/AlbumShareLinkBasic.md
 docs/AlbumShareLinkInsert.md
 docs/AlbumUpdateData.md
 docs/AuthConfig.md
+docs/AuthPolicyPublic.md
 docs/ClaimsEncoded.md
 docs/DefaultApi.md
 docs/LoginResponse.md
@@ -33,6 +34,7 @@ models/album-share-link-basic.ts
 models/album-share-link-insert.ts
 models/album-update-data.ts
 models/auth-config.ts
+models/auth-policy-public.ts
 models/claims-encoded.ts
 models/index.ts
 models/login-response.ts

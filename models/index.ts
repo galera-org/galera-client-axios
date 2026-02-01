@@ -5,6 +5,7 @@ export * from "./album-share-link-basic";
 export * from "./album-share-link-insert";
 export * from "./album-update-data";
 export * from "./auth-config";
+export * from "./auth-policy-public";
 export * from "./claims-encoded";
 export * from "./login-response";
 export * from "./media-description";

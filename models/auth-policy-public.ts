@@ -12,14 +12,7 @@
  * Do not edit the class manually.
  */
 
-// May contain unused imports in some cases
-// @ts-ignore
-import type { AuthPolicyPublic } from "./auth-policy-public";
-// May contain unused imports in some cases
-// @ts-ignore
-import type { OidcProviderPublic } from "./oidc-provider-public";
-
-export interface AuthConfig {
-  oidc: Array<OidcProviderPublic>;
-  policy: AuthPolicyPublic;
+export interface AuthPolicyPublic {
+  disable_local_auth: boolean;
+  disable_local_signups: boolean;
 }

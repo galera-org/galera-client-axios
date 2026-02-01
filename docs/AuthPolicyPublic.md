@@ -1,21 +1,21 @@
-# AuthConfig
+# AuthPolicyPublic
 
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**oidc** | [**Array&lt;OidcProviderPublic&gt;**](OidcProviderPublic.md) |  | [default to undefined]
-**policy** | [**AuthPolicyPublic**](AuthPolicyPublic.md) |  | [default to undefined]
+**disable_local_auth** | **boolean** |  | [default to undefined]
+**disable_local_signups** | **boolean** |  | [default to undefined]
 
 ## Example
 
 ```typescript
-import { AuthConfig } from './api';
+import { AuthPolicyPublic } from './api';
 
-const instance: AuthConfig = {
-    oidc,
-    policy,
+const instance: AuthPolicyPublic = {
+    disable_local_auth,
+    disable_local_signups,
 };
 ```
 

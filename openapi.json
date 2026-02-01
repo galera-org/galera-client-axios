@@ -739,12 +739,21 @@
       },
       "AuthConfig": {
         "type": "object",
-        "required": ["oidc"],
+        "required": ["oidc", "policy"],
         "properties": {
           "oidc": {
             "type": "array",
             "items": { "$ref": "#/components/schemas/OidcProviderPublic" }
-          }
+          },
+          "policy": { "$ref": "#/components/schemas/AuthPolicyPublic" }
+        }
+      },
+      "AuthPolicyPublic": {
+        "type": "object",
+        "required": ["disable_local_signups", "disable_local_auth"],
+        "properties": {
+          "disable_local_auth": { "type": "boolean" },
+          "disable_local_signups": { "type": "boolean" }
         }
       },
       "BinaryBody": { "type": "string", "format": "binary" },
