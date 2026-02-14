@@ -12,10 +12,7 @@
  * Do not edit the class manually.
  */
 
-/**
- * Struct for inserting new users.
- */
-export interface NewUser {
+export interface UserInsert {
   email: string;
   password?: string | null;
   username: string;

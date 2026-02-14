@@ -52,21 +52,19 @@ import type { AlbumShareLinkInsert } from "../models";
 // @ts-ignore
 import type { AlbumUpdateData } from "../models";
 // @ts-ignore
-import type { ClaimsEncoded } from "../models";
-// @ts-ignore
 import type { LoginResponse } from "../models";
 // @ts-ignore
 import type { MediaDescription } from "../models";
 // @ts-ignore
 import type { MediaResponse } from "../models";
 // @ts-ignore
-import type { NewUser } from "../models";
-// @ts-ignore
 import type { ServerConfigResponse } from "../models";
 // @ts-ignore
 import type { SharedAlbumLinkResponse } from "../models";
 // @ts-ignore
 import type { SystemInfoPublic } from "../models";
+// @ts-ignore
+import type { UserInsert } from "../models";
 // @ts-ignore
 import type { UserLogin } from "../models";
 /**
@@ -258,16 +256,16 @@ export const DefaultApiAxiosParamCreator = function (
     /**
      *
      * @summary Creates a new user
-     * @param {NewUser} newUser
+     * @param {UserInsert} userInsert
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     routesCreateUser: async (
-      newUser: NewUser,
+      userInsert: UserInsert,
       options: RawAxiosRequestConfig = {}
     ): Promise<RequestArgs> => {
-      // verify required parameter 'newUser' is not null or undefined
-      assertParamExists("routesCreateUser", "newUser", newUser);
+      // verify required parameter 'userInsert' is not null or undefined
+      assertParamExists("routesCreateUser", "userInsert", userInsert);
       const localVarPath = `/user`;
       // use dummy base URL string because the URL constructor only accepts absolute URLs.
       const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -295,7 +293,7 @@ export const DefaultApiAxiosParamCreator = function (
         ...options.headers,
       };
       localVarRequestOptions.data = serializeDataIfNeeded(
-        newUser,
+        userInsert,
         localVarRequestOptions,
         configuration
       );
@@ -807,7 +805,7 @@ export const DefaultApiAxiosParamCreator = function (
     ): Promise<RequestArgs> => {
       // verify required parameter 'userLogin' is not null or undefined
       assertParamExists("routesLogin", "userLogin", userLogin);
-      const localVarPath = `/login`;
+      const localVarPath = `/auth/login`;
       // use dummy base URL string because the URL constructor only accepts absolute URLs.
       const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
       let baseOptions;
@@ -839,6 +837,45 @@ export const DefaultApiAxiosParamCreator = function (
         localVarRequestOptions,
         configuration
       );
+
+      return {
+        url: toPathString(localVarUrlObj),
+        options: localVarRequestOptions,
+      };
+    },
+    /**
+     *
+     * @summary Invalidates the session.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    routesLogout: async (
+      options: RawAxiosRequestConfig = {}
+    ): Promise<RequestArgs> => {
+      const localVarPath = `/auth/logout`;
+      // use dummy base URL string because the URL constructor only accepts absolute URLs.
+      const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+      let baseOptions;
+      if (configuration) {
+        baseOptions = configuration.baseOptions;
+      }
+
+      const localVarRequestOptions = {
+        method: "POST",
+        ...baseOptions,
+        ...options,
+      };
+      const localVarHeaderParameter = {} as any;
+      const localVarQueryParameter = {} as any;
+
+      setSearchParams(localVarUrlObj, localVarQueryParameter);
+      let headersFromBaseOptions =
+        baseOptions && baseOptions.headers ? baseOptions.headers : {};
+      localVarRequestOptions.headers = {
+        ...localVarHeaderParameter,
+        ...headersFromBaseOptions,
+        ...options.headers,
+      };
 
       return {
         url: toPathString(localVarUrlObj),
@@ -1215,18 +1252,14 @@ export const DefaultApiAxiosParamCreator = function (
     },
     /**
      *
-     * @summary Refreshes sent token
-     * @param {ClaimsEncoded} claimsEncoded
+     * @summary Issues a new access token when a valid refresh token is attached
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     routesRefreshToken: async (
-      claimsEncoded: ClaimsEncoded,
       options: RawAxiosRequestConfig = {}
     ): Promise<RequestArgs> => {
-      // verify required parameter 'claimsEncoded' is not null or undefined
-      assertParamExists("routesRefreshToken", "claimsEncoded", claimsEncoded);
-      const localVarPath = `/login/refresh`;
+      const localVarPath = `/auth/refresh`;
       // use dummy base URL string because the URL constructor only accepts absolute URLs.
       const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
       let baseOptions;
@@ -1242,7 +1275,6 @@ export const DefaultApiAxiosParamCreator = function (
       const localVarHeaderParameter = {} as any;
       const localVarQueryParameter = {} as any;
 
-      localVarHeaderParameter["Content-Type"] = "application/json";
       localVarHeaderParameter["Accept"] = "application/json";
 
       setSearchParams(localVarUrlObj, localVarQueryParameter);
@@ -1253,11 +1285,6 @@ export const DefaultApiAxiosParamCreator = function (
         ...headersFromBaseOptions,
         ...options.headers,
       };
-      localVarRequestOptions.data = serializeDataIfNeeded(
-        claimsEncoded,
-        localVarRequestOptions,
-        configuration
-      );
 
       return {
         url: toPathString(localVarUrlObj),
@@ -1593,18 +1620,18 @@ export const DefaultApiFp = function (configuration?: Configuration) {
     /**
      *
      * @summary Creates a new user
-     * @param {NewUser} newUser
+     * @param {UserInsert} userInsert
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async routesCreateUser(
-      newUser: NewUser,
+      userInsert: UserInsert,
       options?: RawAxiosRequestConfig
     ): Promise<
       (axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>
     > {
       const localVarAxiosArgs =
-        await localVarAxiosParamCreator.routesCreateUser(newUser, options);
+        await localVarAxiosParamCreator.routesCreateUser(userInsert, options);
       const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
       const localVarOperationServerBasePath =
         operationServerMap["DefaultApi.routesCreateUser"]?.[
@@ -1955,6 +1982,33 @@ export const DefaultApiFp = function (configuration?: Configuration) {
     },
     /**
      *
+     * @summary Invalidates the session.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    async routesLogout(
+      options?: RawAxiosRequestConfig
+    ): Promise<
+      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>
+    > {
+      const localVarAxiosArgs = await localVarAxiosParamCreator.routesLogout(
+        options
+      );
+      const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
+      const localVarOperationServerBasePath =
+        operationServerMap["DefaultApi.routesLogout"]?.[
+          localVarOperationServerIndex
+        ]?.url;
+      return (axios, basePath) =>
+        createRequestFunction(
+          localVarAxiosArgs,
+          globalAxios,
+          BASE_PATH,
+          configuration
+        )(axios, localVarOperationServerBasePath || basePath);
+    },
+    /**
+     *
      * @summary Deletes description of a media
      * @param {string} mediaUuid Media UUID
      * @param {*} [options] Override http request option.
@@ -2172,22 +2226,17 @@ export const DefaultApiFp = function (configuration?: Configuration) {
     },
     /**
      *
-     * @summary Refreshes sent token
-     * @param {ClaimsEncoded} claimsEncoded
+     * @summary Issues a new access token when a valid refresh token is attached
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     async routesRefreshToken(
-      claimsEncoded: ClaimsEncoded,
       options?: RawAxiosRequestConfig
     ): Promise<
-      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<ClaimsEncoded>
+      (axios?: AxiosInstance, basePath?: string) => AxiosPromise<LoginResponse>
     > {
       const localVarAxiosArgs =
-        await localVarAxiosParamCreator.routesRefreshToken(
-          claimsEncoded,
-          options
-        );
+        await localVarAxiosParamCreator.routesRefreshToken(options);
       const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
       const localVarOperationServerBasePath =
         operationServerMap["DefaultApi.routesRefreshToken"]?.[
@@ -2399,7 +2448,7 @@ export const DefaultApiFactory = function (
       options?: RawAxiosRequestConfig
     ): AxiosPromise<void> {
       return localVarFp
-        .routesCreateUser(requestParameters.newUser, options)
+        .routesCreateUser(requestParameters.userInsert, options)
         .then((request) => request(axios, basePath));
     },
     /**
@@ -2561,6 +2610,17 @@ export const DefaultApiFactory = function (
     },
     /**
      *
+     * @summary Invalidates the session.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     */
+    routesLogout(options?: RawAxiosRequestConfig): AxiosPromise<void> {
+      return localVarFp
+        .routesLogout(options)
+        .then((request) => request(axios, basePath));
+    },
+    /**
+     *
      * @summary Deletes description of a media
      * @param {DefaultApiRoutesMediaDeleteDescriptionRequest} requestParameters Request parameters.
      * @param {*} [options] Override http request option.
@@ -2671,17 +2731,15 @@ export const DefaultApiFactory = function (
     },
     /**
      *
-     * @summary Refreshes sent token
-     * @param {DefaultApiRoutesRefreshTokenRequest} requestParameters Request parameters.
+     * @summary Issues a new access token when a valid refresh token is attached
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      */
     routesRefreshToken(
-      requestParameters: DefaultApiRoutesRefreshTokenRequest,
       options?: RawAxiosRequestConfig
-    ): AxiosPromise<ClaimsEncoded> {
+    ): AxiosPromise<LoginResponse> {
       return localVarFp
-        .routesRefreshToken(requestParameters.claimsEncoded, options)
+        .routesRefreshToken(options)
         .then((request) => request(axios, basePath));
     },
     /**
@@ -2779,7 +2837,7 @@ export interface DefaultApiRoutesCreateAlbumShareLinkRequest {
  * Request parameters for routesCreateUser operation in DefaultApi.
  */
 export interface DefaultApiRoutesCreateUserRequest {
-  readonly newUser: NewUser;
+  readonly userInsert: UserInsert;
 }
 
 /**
@@ -2922,13 +2980,6 @@ export interface DefaultApiRoutesOidcLoginRequest {
 }
 
 /**
- * Request parameters for routesRefreshToken operation in DefaultApi.
- */
-export interface DefaultApiRoutesRefreshTokenRequest {
-  readonly claimsEncoded: ClaimsEncoded;
-}
-
-/**
  * Request parameters for routesUpdateAlbum operation in DefaultApi.
  */
 export interface DefaultApiRoutesUpdateAlbumRequest {
@@ -3020,7 +3071,7 @@ export class DefaultApi extends BaseAPI {
     options?: RawAxiosRequestConfig
   ) {
     return DefaultApiFp(this.configuration)
-      .routesCreateUser(requestParameters.newUser, options)
+      .routesCreateUser(requestParameters.userInsert, options)
       .then((request) => request(this.axios, this.basePath));
   }
 
@@ -3185,6 +3236,18 @@ export class DefaultApi extends BaseAPI {
 
   /**
    *
+   * @summary Invalidates the session.
+   * @param {*} [options] Override http request option.
+   * @throws {RequiredError}
+   */
+  public routesLogout(options?: RawAxiosRequestConfig) {
+    return DefaultApiFp(this.configuration)
+      .routesLogout(options)
+      .then((request) => request(this.axios, this.basePath));
+  }
+
+  /**
+   *
    * @summary Deletes description of a media
    * @param {DefaultApiRoutesMediaDeleteDescriptionRequest} requestParameters Request parameters.
    * @param {*} [options] Override http request option.
@@ -3300,17 +3363,13 @@ export class DefaultApi extends BaseAPI {
 
   /**
    *
-   * @summary Refreshes sent token
-   * @param {DefaultApiRoutesRefreshTokenRequest} requestParameters Request parameters.
+   * @summary Issues a new access token when a valid refresh token is attached
    * @param {*} [options] Override http request option.
    * @throws {RequiredError}
    */
-  public routesRefreshToken(
-    requestParameters: DefaultApiRoutesRefreshTokenRequest,
-    options?: RawAxiosRequestConfig
-  ) {
+  public routesRefreshToken(options?: RawAxiosRequestConfig) {
     return DefaultApiFp(this.configuration)
-      .routesRefreshToken(requestParameters.claimsEncoded, options)
+      .routesRefreshToken(options)
       .then((request) => request(this.axios, this.basePath));
   }
 

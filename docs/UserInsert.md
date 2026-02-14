@@ -1,6 +1,5 @@
-# NewUser
+# UserInsert
 
-Struct for inserting new users.
 
 ## Properties
 
@@ -13,9 +12,9 @@ Name | Type | Description | Notes
 ## Example
 
 ```typescript
-import { NewUser } from './api';
+import { UserInsert } from './api';
 
-const instance: NewUser = {
+const instance: UserInsert = {
     email,
     password,
     username,

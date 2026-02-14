@@ -327,6 +327,41 @@
         "security": [{ "BearerAuth": [] }]
       }
     },
+    "/auth/login": {
+      "post": {
+        "summary": "You must provide either a username or an email together with a password.",
+        "operationId": "routes_login",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/UserLogin" }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Login successful",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/LoginResponse" }
+              }
+            }
+          },
+          "400": { "description": "Invalid JSON or wrong shape" },
+          "409": { "description": "Invalid credentials or user conflict" },
+          "500": { "description": "Internal server error" },
+          "503": { "description": "Local auth is disabled" }
+        }
+      }
+    },
+    "/auth/logout": {
+      "post": {
+        "summary": "Invalidates the session.",
+        "operationId": "routes_logout",
+        "responses": { "204": { "description": "Logout succesful" } }
+      }
+    },
     "/auth/oidc/{provider}/callback": {
       "get": {
         "operationId": "routes_oidc_callback",
@@ -389,64 +424,30 @@
         }
       }
     },
-    "/health": {
-      "get": {
-        "operationId": "routes_health",
-        "responses": { "200": { "description": "Health check passed" } }
-      }
-    },
-    "/login": {
+    "/auth/refresh": {
       "post": {
-        "summary": "You must provide either a username or an email together with a password.",
-        "operationId": "routes_login",
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": { "$ref": "#/components/schemas/UserLogin" }
-            }
-          },
-          "required": true
-        },
+        "summary": "Issues a new access token when a valid refresh token is attached",
+        "operationId": "routes_refresh_token",
         "responses": {
           "200": {
-            "description": "Login successful",
+            "description": "Token refreshed",
             "content": {
               "application/json": {
                 "schema": { "$ref": "#/components/schemas/LoginResponse" }
               }
             }
           },
-          "400": { "description": "Invalid JSON or wrong shape" },
-          "409": { "description": "Invalid credentials or user conflict" },
+          "401": {
+            "description": "Unauthorized (missing/invalid/expired refresh_token cookie)"
+          },
           "500": { "description": "Internal server error" }
         }
       }
     },
-    "/login/refresh": {
-      "post": {
-        "summary": "Refreshes sent token",
-        "operationId": "routes_refresh_token",
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": { "$ref": "#/components/schemas/ClaimsEncoded" }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "Token refreshed",
-            "content": {
-              "application/json": {
-                "schema": { "$ref": "#/components/schemas/ClaimsEncoded" }
-              }
-            }
-          },
-          "400": { "description": "Invalid JSON or wrong shape" },
-          "401": { "description": "Unauthorized" },
-          "500": { "description": "Internal server error" }
-        }
+    "/health": {
+      "get": {
+        "operationId": "routes_health",
+        "responses": { "200": { "description": "Health check passed" } }
       }
     },
     "/media": {
@@ -669,7 +670,7 @@
         "requestBody": {
           "content": {
             "application/json": {
-              "schema": { "$ref": "#/components/schemas/NewUser" }
+              "schema": { "$ref": "#/components/schemas/UserInsert" }
             }
           },
           "required": true
@@ -679,7 +680,8 @@
           "400": { "description": "Invalid JSON or wrong shape" },
           "409": { "description": "User already exists" },
           "422": { "description": "Invalid user data" },
-          "500": { "description": "Internal server error" }
+          "500": { "description": "Internal server error" },
+          "503": { "description": "Either local auth or signups are disabled" }
         }
       }
     }
@@ -757,12 +759,6 @@
         }
       },
       "BinaryBody": { "type": "string", "format": "binary" },
-      "ClaimsEncoded": {
-        "type": "object",
-        "description": "Encoded bearer token\n# Example\ndecode an encoded bearer token\n```\nlet encoded_token = Claims::new(1).encode().unwrap();\n\nlet decoded_token = encoded_token.decode();\n```",
-        "required": ["encoded_claims"],
-        "properties": { "encoded_claims": { "type": "string" } }
-      },
       "LoginResponse": {
         "type": "object",
         "description": "Response when logging in.",
@@ -787,16 +783,6 @@
           "owner_id": { "type": "integer", "format": "int32" },
           "uuid": { "type": "string" },
           "width": { "type": "integer", "format": "int32", "minimum": 0 }
-        }
-      },
-      "NewUser": {
-        "type": "object",
-        "description": "Struct for inserting new users.",
-        "required": ["username", "email"],
-        "properties": {
-          "email": { "type": "string" },
-          "password": { "type": ["string", "null"] },
-          "username": { "type": "string" }
         }
       },
       "OidcProviderPublic": {
@@ -842,6 +828,15 @@
         "required": ["username", "email"],
         "properties": {
           "email": { "type": "string" },
+          "username": { "type": "string" }
+        }
+      },
+      "UserInsert": {
+        "type": "object",
+        "required": ["username", "email"],
+        "properties": {
+          "email": { "type": "string" },
+          "password": { "type": ["string", "null"] },
           "username": { "type": "string" }
         }
       },

@@ -18,7 +18,8 @@ All URIs are relative to *http://localhost*
 |[**routesGetMediaLikedList**](#routesgetmedialikedlist) | **GET** /media/liked | Returns a list of liked media.|
 |[**routesGetServerConfig**](#routesgetserverconfig) | **GET** /public/config | Returns server configuration|
 |[**routesHealth**](#routeshealth) | **GET** /health | |
-|[**routesLogin**](#routeslogin) | **POST** /login | You must provide either a username or an email together with a password.|
+|[**routesLogin**](#routeslogin) | **POST** /auth/login | You must provide either a username or an email together with a password.|
+|[**routesLogout**](#routeslogout) | **POST** /auth/logout | Invalidates the session.|
 |[**routesMediaDeleteDescription**](#routesmediadeletedescription) | **DELETE** /media/{media_uuid}/description | Deletes description of a media|
 |[**routesMediaLike**](#routesmedialike) | **POST** /media/{media_uuid}/like | Likes the media.|
 |[**routesMediaStructure**](#routesmediastructure) | **GET** /media | Gets a list of all media|
@@ -26,7 +27,7 @@ All URIs are relative to *http://localhost*
 |[**routesMediaUpdateDescription**](#routesmediaupdatedescription) | **PUT** /media/{media_uuid}/description | Updates description of a media|
 |[**routesOidcCallback**](#routesoidccallback) | **GET** /auth/oidc/{provider}/callback | |
 |[**routesOidcLogin**](#routesoidclogin) | **GET** /auth/oidc/{provider}/login | |
-|[**routesRefreshToken**](#routesrefreshtoken) | **POST** /login/refresh | Refreshes sent token|
+|[**routesRefreshToken**](#routesrefreshtoken) | **POST** /auth/refresh | Issues a new access token when a valid refresh token is attached|
 |[**routesScanMedia**](#routesscanmedia) | **GET** /scan_media | Searches for new media|
 |[**routesSystemInfoPublic**](#routessysteminfopublic) | **GET** /system/info/public | Returns the public system information.|
 |[**routesUpdateAlbum**](#routesupdatealbum) | **PUT** /album/{album_uuid} | Updates already existing album|
@@ -198,7 +199,7 @@ const { status, data } = await apiInstance.routesCreateAlbumShareLink(
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **routesCreateUser**
-> routesCreateUser(newUser)
+> routesCreateUser(userInsert)
 
 
 ### Example
@@ -207,16 +208,16 @@ const { status, data } = await apiInstance.routesCreateAlbumShareLink(
 import {
     DefaultApi,
     Configuration,
-    NewUser
+    UserInsert
 } from './api';
 
 const configuration = new Configuration();
 const apiInstance = new DefaultApi(configuration);
 
-let newUser: NewUser; //
+let userInsert: UserInsert; //
 
 const { status, data } = await apiInstance.routesCreateUser(
-    newUser
+    userInsert
 );
 ```
 
@@ -224,7 +225,7 @@ const { status, data } = await apiInstance.routesCreateUser(
 
 |Name | Type | Description  | Notes|
 |------------- | ------------- | ------------- | -------------|
-| **newUser** | **NewUser**|  | |
+| **userInsert** | **UserInsert**|  | |
 
 
 ### Return type
@@ -249,6 +250,7 @@ No authorization required
 |**409** | User already exists |  -  |
 |**422** | Invalid user data |  -  |
 |**500** | Internal server error |  -  |
+|**503** | Either local auth or signups are disabled |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -799,6 +801,50 @@ No authorization required
 |**400** | Invalid JSON or wrong shape |  -  |
 |**409** | Invalid credentials or user conflict |  -  |
 |**500** | Internal server error |  -  |
+|**503** | Local auth is disabled |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **routesLogout**
+> routesLogout()
+
+
+### Example
+
+```typescript
+import {
+    DefaultApi,
+    Configuration
+} from './api';
+
+const configuration = new Configuration();
+const apiInstance = new DefaultApi(configuration);
+
+const { status, data } = await apiInstance.routesLogout();
+```
+
+### Parameters
+This endpoint does not have any parameters.
+
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: Not defined
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+|**204** | Logout succesful |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1179,7 +1225,7 @@ No authorization required
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **routesRefreshToken**
-> ClaimsEncoded routesRefreshToken(claimsEncoded)
+> LoginResponse routesRefreshToken()
 
 
 ### Example
@@ -1187,30 +1233,22 @@ No authorization required
 ```typescript
 import {
     DefaultApi,
-    Configuration,
-    ClaimsEncoded
+    Configuration
 } from './api';
 
 const configuration = new Configuration();
 const apiInstance = new DefaultApi(configuration);
 
-let claimsEncoded: ClaimsEncoded; //
-
-const { status, data } = await apiInstance.routesRefreshToken(
-    claimsEncoded
-);
+const { status, data } = await apiInstance.routesRefreshToken();
 ```
 
 ### Parameters
-
-|Name | Type | Description  | Notes|
-|------------- | ------------- | ------------- | -------------|
-| **claimsEncoded** | **ClaimsEncoded**|  | |
+This endpoint does not have any parameters.
 
 
 ### Return type
 
-**ClaimsEncoded**
+**LoginResponse**
 
 ### Authorization
 
@@ -1218,7 +1256,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 
@@ -1226,8 +1264,7 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 |**200** | Token refreshed |  -  |
-|**400** | Invalid JSON or wrong shape |  -  |
-|**401** | Unauthorized |  -  |
+|**401** | Unauthorized (missing/invalid/expired refresh_token cookie) |  -  |
 |**500** | Internal server error |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
