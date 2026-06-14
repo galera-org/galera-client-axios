@@ -1,9 +1,9 @@
 {
   "compilerOptions": {
     "declaration": true,
-    "target": "es6",
-    "module": "es6",
-    "moduleResolution": "node",
+    "target": "es2025",
+    "module": "nodenext",
+    "moduleResolution": "nodenext",
     "strict": true,
     "sourceMap": true,
     "resolveJsonModule": true,
