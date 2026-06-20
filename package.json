@@ -1,25 +1,28 @@
 {
-  "name": "@galera/client-axios",
-  "version": "0.2.0-alpha.18",
-  "private": true,
+  "name": "@galera/api-client",
+  "version": "0.2.0",
+  "private": false,
   "description": "",
-  "main": "index.ts",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "build": "tsc",
-    "lint:check": "prettier --check --ignore-path .gitignore .",
-    "lint:fixall": "prettier --write --ignore-path .gitignore .",
-    "generate": "TS_POST_PROCESS_FILE='npx prettier --write' openapi-generator-cli generate -i openapi.json -g typescript-axios --additional-properties=supportsES6=true --additional-properties=useSingleRequestParameter=true --additional-properties=withSeparateModelsAndApi=true --additional-properties=modelPackage=models --additional-properties=apiPackage=api --enable-post-process-file",
-    "prepare": "husky install"
+    "lint:check": "biome check .",
+    "lint:fixall": "biome check --write .",
+    "generate": "TS_POST_PROCESS_FILE='npx @biomejs/biome format --write' openapi-generator-cli generate -i openapi.json -g typescript-axios --additional-properties=supportsES6=true --additional-properties=useSingleRequestParameter=true --additional-properties=withSeparateModelsAndApi=true --additional-properties=modelPackage=models --additional-properties=apiPackage=api --enable-post-process-file -o ./src"
   },
   "author": "Ondřej Pešek",
   "license": "MIT",
   "devDependencies": {
-    "@commitlint/cli": "17.6.5",
-    "@commitlint/config-conventional": "17.6.5",
+    "@biomejs/biome": "2.5",
     "@openapitools/openapi-generator-cli": "2.38",
     "@types/node": "24",
-    "husky": "^7.0.2",
-    "prettier": "2",
     "typescript": "6"
   }
 }

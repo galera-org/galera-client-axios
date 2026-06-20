@@ -1934,9 +1934,8 @@ export const DefaultApiFp = function (configuration?: Configuration) {
     ): Promise<
       (axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>
     > {
-      const localVarAxiosArgs = await localVarAxiosParamCreator.routesHealth(
-        options
-      );
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.routesHealth(options);
       const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
       const localVarOperationServerBasePath =
         operationServerMap["DefaultApi.routesHealth"]?.[
@@ -1991,9 +1990,8 @@ export const DefaultApiFp = function (configuration?: Configuration) {
     ): Promise<
       (axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>
     > {
-      const localVarAxiosArgs = await localVarAxiosParamCreator.routesLogout(
-        options
-      );
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.routesLogout(options);
       const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
       const localVarOperationServerBasePath =
         operationServerMap["DefaultApi.routesLogout"]?.[
@@ -2261,9 +2259,8 @@ export const DefaultApiFp = function (configuration?: Configuration) {
     ): Promise<
       (axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>
     > {
-      const localVarAxiosArgs = await localVarAxiosParamCreator.routesScanMedia(
-        options
-      );
+      const localVarAxiosArgs =
+        await localVarAxiosParamCreator.routesScanMedia(options);
       const localVarOperationServerIndex = configuration?.serverIndex ?? 0;
       const localVarOperationServerBasePath =
         operationServerMap["DefaultApi.routesScanMedia"]?.[
