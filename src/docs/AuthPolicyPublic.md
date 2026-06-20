@@ -1,22 +1,36 @@
+
 # AuthPolicyPublic
 
 
 ## Properties
 
-Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
-**disable_local_auth** | **boolean** |  | [default to undefined]
-**disable_local_signups** | **boolean** |  | [default to undefined]
+Name | Type
+------------ | -------------
+`disable_local_auth` | boolean
+`disable_local_signups` | boolean
 
 ## Example
 
 ```typescript
-import { AuthPolicyPublic } from './api';
+import type { AuthPolicyPublic } from ''
 
-const instance: AuthPolicyPublic = {
-    disable_local_auth,
-    disable_local_signups,
-};
+// TODO: Update the object below with actual values
+const example = {
+  "disable_local_auth": null,
+  "disable_local_signups": null,
+} satisfies AuthPolicyPublic
+
+console.log(example)
+
+// Convert the instance to a JSON string
+const exampleJSON: string = JSON.stringify(example)
+console.log(exampleJSON)
+
+// Parse the JSON string back to an object
+const exampleParsed = JSON.parse(exampleJSON) as AuthPolicyPublic
+console.log(exampleParsed)
 ```
 
-[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+
+

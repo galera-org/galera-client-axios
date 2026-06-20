@@ -1,24 +1,38 @@
+
 # UserInsert
 
 
 ## Properties
 
-Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
-**email** | **string** |  | [default to undefined]
-**password** | **string** |  | [optional] [default to undefined]
-**username** | **string** |  | [default to undefined]
+Name | Type
+------------ | -------------
+`email` | string
+`password` | string
+`username` | string
 
 ## Example
 
 ```typescript
-import { UserInsert } from './api';
+import type { UserInsert } from ''
 
-const instance: UserInsert = {
-    email,
-    password,
-    username,
-};
+// TODO: Update the object below with actual values
+const example = {
+  "email": null,
+  "password": null,
+  "username": null,
+} satisfies UserInsert
+
+console.log(example)
+
+// Convert the instance to a JSON string
+const exampleJSON: string = JSON.stringify(example)
+console.log(exampleJSON)
+
+// Parse the JSON string back to an object
+const exampleParsed = JSON.parse(exampleJSON) as UserInsert
+console.log(exampleParsed)
 ```
 
-[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
+
+

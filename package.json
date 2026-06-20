@@ -1,6 +1,6 @@
 {
   "name": "@galera/api-client",
-  "version": "0.2.1",
+  "version": "0.3.0-alpha.1",
   "private": false,
   "description": "",
   "main": "dist/index.js",
@@ -15,7 +15,7 @@
     "build": "tsc",
     "lint:check": "biome check .",
     "lint:fixall": "biome check --write .",
-    "generate": "TS_POST_PROCESS_FILE='npx @biomejs/biome format --write' openapi-generator-cli generate -i openapi.json -g typescript-axios --additional-properties=supportsES6=true --additional-properties=useSingleRequestParameter=true --additional-properties=withSeparateModelsAndApi=true --additional-properties=modelPackage=models --additional-properties=apiPackage=api --enable-post-process-file -o ./src"
+    "generate": "TS_POST_PROCESS_FILE='npx @biomejs/biome format --write' openapi-generator-cli generate -i openapi.json -g typescript-fetch --additional-properties=supportsES6=true --additional-properties=useSingleRequestParameter=true --additional-properties=modelPropertyNaming=original --enable-post-process-file -o ./src"
   },
   "author": "Ondřej Pešek",
   "license": "MIT",

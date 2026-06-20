@@ -2,69 +2,89 @@
 
 All URIs are relative to *http://localhost*
 
-|Method | HTTP request | Description|
+| Method | HTTP request | Description |
 |------------- | ------------- | -------------|
-|[**routesAlbumAddMedia**](#routesalbumaddmedia) | **POST** /album/media | Adds media to an album|
-|[**routesCreateAlbum**](#routescreatealbum) | **POST** /album | Creates a new album|
-|[**routesCreateAlbumShareLink**](#routescreatealbumsharelink) | **POST** /album/{album_uuid}/share/link | Creates a new album share link.|
-|[**routesCreateUser**](#routescreateuser) | **POST** /user | Creates a new user|
-|[**routesDeleteAlbum**](#routesdeletealbum) | **DELETE** /album/{album_uuid} | Deletes an album|
-|[**routesDeleteAlbumShareLink**](#routesdeletealbumsharelink) | **DELETE** /album/share/link/{album_share_link_uuid} | Deletes an album share link.|
-|[**routesGetAlbumList**](#routesgetalbumlist) | **GET** /album | Retrieves a list of albums of an authenticated user|
-|[**routesGetAlbumShareLink**](#routesgetalbumsharelink) | **GET** /album/share/link/{album_share_link_uuid} | Gets basic information about album share link.|
-|[**routesGetAlbumShareLinks**](#routesgetalbumsharelinks) | **GET** /album/{album_uuid}/share/link | Gets a list of album share links.|
-|[**routesGetAlbumStructure**](#routesgetalbumstructure) | **GET** /album/{album_uuid}/media | Gets a list of media in an album|
-|[**routesGetMediaByUuid**](#routesgetmediabyuuid) | **GET** /media/{media_uuid} | Returns a media|
-|[**routesGetMediaLikedList**](#routesgetmedialikedlist) | **GET** /media/liked | Returns a list of liked media.|
-|[**routesGetServerConfig**](#routesgetserverconfig) | **GET** /public/config | Returns server configuration|
-|[**routesHealth**](#routeshealth) | **GET** /health | |
-|[**routesLogin**](#routeslogin) | **POST** /auth/login | You must provide either a username or an email together with a password.|
-|[**routesLogout**](#routeslogout) | **POST** /auth/logout | Invalidates the session.|
-|[**routesMediaDeleteDescription**](#routesmediadeletedescription) | **DELETE** /media/{media_uuid}/description | Deletes description of a media|
-|[**routesMediaLike**](#routesmedialike) | **POST** /media/{media_uuid}/like | Likes the media.|
-|[**routesMediaStructure**](#routesmediastructure) | **GET** /media | Gets a list of all media|
-|[**routesMediaUnlike**](#routesmediaunlike) | **DELETE** /media/{media_uuid}/like | Unlikes the media.|
-|[**routesMediaUpdateDescription**](#routesmediaupdatedescription) | **PUT** /media/{media_uuid}/description | Updates description of a media|
-|[**routesOidcCallback**](#routesoidccallback) | **GET** /auth/oidc/{provider}/callback | |
-|[**routesOidcLogin**](#routesoidclogin) | **GET** /auth/oidc/{provider}/login | |
-|[**routesRefreshToken**](#routesrefreshtoken) | **POST** /auth/refresh | Issues a new access token when a valid refresh token is attached|
-|[**routesScanMedia**](#routesscanmedia) | **GET** /scan_media | Searches for new media|
-|[**routesSystemInfoPublic**](#routessysteminfopublic) | **GET** /system/info/public | Returns the public system information.|
-|[**routesUpdateAlbum**](#routesupdatealbum) | **PUT** /album/{album_uuid} | Updates already existing album|
-|[**routesUpdateAlbumShareLink**](#routesupdatealbumsharelink) | **PUT** /album/share/link/{album_share_link_uuid} | Updates already existing album share link.|
+| [**routesAlbumAddMedia**](DefaultApi.md#routesalbumaddmedia) | **POST** /album/media | Adds media to an album |
+| [**routesCreateAlbum**](DefaultApi.md#routescreatealbum) | **POST** /album | Creates a new album |
+| [**routesCreateAlbumShareLink**](DefaultApi.md#routescreatealbumsharelink) | **POST** /album/{album_uuid}/share/link | Creates a new album share link. |
+| [**routesCreateUser**](DefaultApi.md#routescreateuser) | **POST** /user | Creates a new user |
+| [**routesDeleteAlbum**](DefaultApi.md#routesdeletealbum) | **DELETE** /album/{album_uuid} | Deletes an album |
+| [**routesDeleteAlbumShareLink**](DefaultApi.md#routesdeletealbumsharelink) | **DELETE** /album/share/link/{album_share_link_uuid} | Deletes an album share link. |
+| [**routesGetAlbumList**](DefaultApi.md#routesgetalbumlist) | **GET** /album | Retrieves a list of albums of an authenticated user |
+| [**routesGetAlbumShareLink**](DefaultApi.md#routesgetalbumsharelink) | **GET** /album/share/link/{album_share_link_uuid} | Gets basic information about album share link. |
+| [**routesGetAlbumShareLinks**](DefaultApi.md#routesgetalbumsharelinks) | **GET** /album/{album_uuid}/share/link | Gets a list of album share links. |
+| [**routesGetAlbumStructure**](DefaultApi.md#routesgetalbumstructure) | **GET** /album/{album_uuid}/media | Gets a list of media in an album |
+| [**routesGetMediaByUuid**](DefaultApi.md#routesgetmediabyuuid) | **GET** /media/{media_uuid} | Returns a media |
+| [**routesGetMediaLikedList**](DefaultApi.md#routesgetmedialikedlist) | **GET** /media/liked | Returns a list of liked media. |
+| [**routesGetServerConfig**](DefaultApi.md#routesgetserverconfig) | **GET** /public/config | Returns server configuration |
+| [**routesHealth**](DefaultApi.md#routeshealth) | **GET** /health |  |
+| [**routesLogin**](DefaultApi.md#routeslogin) | **POST** /auth/login | You must provide either a username or an email together with a password. |
+| [**routesLogout**](DefaultApi.md#routeslogout) | **POST** /auth/logout | Invalidates the session. |
+| [**routesMediaDeleteDescription**](DefaultApi.md#routesmediadeletedescription) | **DELETE** /media/{media_uuid}/description | Deletes description of a media |
+| [**routesMediaLike**](DefaultApi.md#routesmedialike) | **POST** /media/{media_uuid}/like | Likes the media. |
+| [**routesMediaStructure**](DefaultApi.md#routesmediastructure) | **GET** /media | Gets a list of all media |
+| [**routesMediaUnlike**](DefaultApi.md#routesmediaunlike) | **DELETE** /media/{media_uuid}/like | Unlikes the media. |
+| [**routesMediaUpdateDescription**](DefaultApi.md#routesmediaupdatedescription) | **PUT** /media/{media_uuid}/description | Updates description of a media |
+| [**routesOidcCallback**](DefaultApi.md#routesoidccallback) | **GET** /auth/oidc/{provider}/callback |  |
+| [**routesOidcLogin**](DefaultApi.md#routesoidclogin) | **GET** /auth/oidc/{provider}/login |  |
+| [**routesRefreshToken**](DefaultApi.md#routesrefreshtoken) | **POST** /auth/refresh | Issues a new access token when a valid refresh token is attached |
+| [**routesScanMedia**](DefaultApi.md#routesscanmedia) | **GET** /scan_media | Searches for new media |
+| [**routesSystemInfoPublic**](DefaultApi.md#routessysteminfopublic) | **GET** /system/info/public | Returns the public system information. |
+| [**routesUpdateAlbum**](DefaultApi.md#routesupdatealbum) | **PUT** /album/{album_uuid} | Updates already existing album |
+| [**routesUpdateAlbumShareLink**](DefaultApi.md#routesupdatealbumsharelink) | **PUT** /album/share/link/{album_share_link_uuid} | Updates already existing album share link. |
 
-# **routesAlbumAddMedia**
+
+
+## routesAlbumAddMedia
+
 > routesAlbumAddMedia(albumAddMedia)
 
+Adds media to an album
 
 ### Example
 
-```typescript
+```ts
 import {
-    DefaultApi,
-    Configuration
-} from './api';
+  Configuration,
+  DefaultApi,
+} from '';
+import type { RoutesAlbumAddMediaRequest } from '';
 
-const configuration = new Configuration();
-const apiInstance = new DefaultApi(configuration);
+async function example() {
+  console.log("🚀 Testing  SDK...");
+  const config = new Configuration({ 
+    // Configure HTTP bearer authorization: BearerAuth
+    accessToken: "YOUR BEARER TOKEN",
+  });
+  const api = new DefaultApi(config);
 
-let albumAddMedia: Array<AlbumAddMedia>; //
+  const body = {
+    // Array<AlbumAddMedia>
+    albumAddMedia: ...,
+  } satisfies RoutesAlbumAddMediaRequest;
 
-const { status, data } = await apiInstance.routesAlbumAddMedia(
-    albumAddMedia
-);
+  try {
+    const data = await api.routesAlbumAddMedia(body);
+    console.log(data);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+// Run the test
+example().catch(console.error);
 ```
 
 ### Parameters
 
-|Name | Type | Description  | Notes|
-|------------- | ------------- | ------------- | -------------|
-| **albumAddMedia** | **Array<AlbumAddMedia>**|  | |
 
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **albumAddMedia** | `Array<AlbumAddMedia>` |  | |
 
 ### Return type
 
-void (empty response body)
+`void` (Empty response body)
 
 ### Authorization
 
@@ -72,54 +92,72 @@ void (empty response body)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
- - **Accept**: Not defined
+- **Content-Type**: `application/json`
+- **Accept**: Not defined
 
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-|**200** | Media added to album |  -  |
-|**400** | Bad request |  -  |
-|**401** | Unauthorized |  -  |
-|**403** | Forbidden |  -  |
-|**500** | Internal server error |  -  |
+| **200** | Media added to album |  -  |
+| **400** | Bad request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Forbidden |  -  |
+| **500** | Internal server error |  -  |
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
-# **routesCreateAlbum**
+
+## routesCreateAlbum
+
 > AlbumResponse routesCreateAlbum(albumInsertData)
 
+Creates a new album
 
 ### Example
 
-```typescript
+```ts
 import {
-    DefaultApi,
-    Configuration,
-    AlbumInsertData
-} from './api';
+  Configuration,
+  DefaultApi,
+} from '';
+import type { RoutesCreateAlbumRequest } from '';
 
-const configuration = new Configuration();
-const apiInstance = new DefaultApi(configuration);
+async function example() {
+  console.log("🚀 Testing  SDK...");
+  const config = new Configuration({ 
+    // Configure HTTP bearer authorization: BearerAuth
+    accessToken: "YOUR BEARER TOKEN",
+  });
+  const api = new DefaultApi(config);
 
-let albumInsertData: AlbumInsertData; //
+  const body = {
+    // AlbumInsertData
+    albumInsertData: ...,
+  } satisfies RoutesCreateAlbumRequest;
 
-const { status, data } = await apiInstance.routesCreateAlbum(
-    albumInsertData
-);
+  try {
+    const data = await api.routesCreateAlbum(body);
+    console.log(data);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+// Run the test
+example().catch(console.error);
 ```
 
 ### Parameters
 
-|Name | Type | Description  | Notes|
-|------------- | ------------- | ------------- | -------------|
-| **albumInsertData** | **AlbumInsertData**|  | |
 
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **albumInsertData** | [AlbumInsertData](AlbumInsertData.md) |  | |
 
 ### Return type
 
-**AlbumResponse**
+[**AlbumResponse**](AlbumResponse.md)
 
 ### Authorization
 
@@ -127,55 +165,73 @@ const { status, data } = await apiInstance.routesCreateAlbum(
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
- - **Accept**: application/json
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
 
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-|**200** | Album created (or null on failure) |  -  |
-|**401** | Unauthorized |  -  |
-|**500** | Internal server error |  -  |
+| **200** | Album created (or null on failure) |  -  |
+| **401** | Unauthorized |  -  |
+| **500** | Internal server error |  -  |
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
-# **routesCreateAlbumShareLink**
-> SharedAlbumLinkResponse routesCreateAlbumShareLink(albumShareLinkInsert)
 
+## routesCreateAlbumShareLink
+
+> SharedAlbumLinkResponse routesCreateAlbumShareLink(albumUuid, albumShareLinkInsert)
+
+Creates a new album share link.
 
 ### Example
 
-```typescript
+```ts
 import {
-    DefaultApi,
-    Configuration,
-    AlbumShareLinkInsert
-} from './api';
+  Configuration,
+  DefaultApi,
+} from '';
+import type { RoutesCreateAlbumShareLinkRequest } from '';
 
-const configuration = new Configuration();
-const apiInstance = new DefaultApi(configuration);
+async function example() {
+  console.log("🚀 Testing  SDK...");
+  const config = new Configuration({ 
+    // Configure HTTP bearer authorization: BearerAuth
+    accessToken: "YOUR BEARER TOKEN",
+  });
+  const api = new DefaultApi(config);
 
-let albumUuid: string; //Album UUID (default to undefined)
-let albumShareLinkInsert: AlbumShareLinkInsert; //
+  const body = {
+    // string | Album UUID
+    albumUuid: albumUuid_example,
+    // AlbumShareLinkInsert
+    albumShareLinkInsert: ...,
+  } satisfies RoutesCreateAlbumShareLinkRequest;
 
-const { status, data } = await apiInstance.routesCreateAlbumShareLink(
-    albumUuid,
-    albumShareLinkInsert
-);
+  try {
+    const data = await api.routesCreateAlbumShareLink(body);
+    console.log(data);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+// Run the test
+example().catch(console.error);
 ```
 
 ### Parameters
 
-|Name | Type | Description  | Notes|
-|------------- | ------------- | ------------- | -------------|
-| **albumShareLinkInsert** | **AlbumShareLinkInsert**|  | |
-| **albumUuid** | [**string**] | Album UUID | defaults to undefined|
 
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **albumUuid** | `string` | Album UUID | [Defaults to `undefined`] |
+| **albumShareLinkInsert** | [AlbumShareLinkInsert](AlbumShareLinkInsert.md) |  | |
 
 ### Return type
 
-**SharedAlbumLinkResponse**
+[**SharedAlbumLinkResponse**](SharedAlbumLinkResponse.md)
 
 ### Authorization
 
@@ -183,54 +239,68 @@ const { status, data } = await apiInstance.routesCreateAlbumShareLink(
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
- - **Accept**: application/json
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
 
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-|**200** | Share link created |  -  |
-|**401** | Unauthorized |  -  |
-|**403** | Forbidden |  -  |
-|**404** | Album not found |  -  |
-|**500** | Internal server error |  -  |
+| **200** | Share link created |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Forbidden |  -  |
+| **404** | Album not found |  -  |
+| **500** | Internal server error |  -  |
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
-# **routesCreateUser**
+
+## routesCreateUser
+
 > routesCreateUser(userInsert)
 
+Creates a new user
 
 ### Example
 
-```typescript
+```ts
 import {
-    DefaultApi,
-    Configuration,
-    UserInsert
-} from './api';
+  Configuration,
+  DefaultApi,
+} from '';
+import type { RoutesCreateUserRequest } from '';
 
-const configuration = new Configuration();
-const apiInstance = new DefaultApi(configuration);
+async function example() {
+  console.log("🚀 Testing  SDK...");
+  const api = new DefaultApi();
 
-let userInsert: UserInsert; //
+  const body = {
+    // UserInsert
+    userInsert: ...,
+  } satisfies RoutesCreateUserRequest;
 
-const { status, data } = await apiInstance.routesCreateUser(
-    userInsert
-);
+  try {
+    const data = await api.routesCreateUser(body);
+    console.log(data);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+// Run the test
+example().catch(console.error);
 ```
 
 ### Parameters
 
-|Name | Type | Description  | Notes|
-|------------- | ------------- | ------------- | -------------|
-| **userInsert** | **UserInsert**|  | |
 
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **userInsert** | [UserInsert](UserInsert.md) |  | |
 
 ### Return type
 
-void (empty response body)
+`void` (Empty response body)
 
 ### Authorization
 
@@ -238,54 +308,73 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
- - **Accept**: Not defined
+- **Content-Type**: `application/json`
+- **Accept**: Not defined
 
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-|**200** | User created |  -  |
-|**400** | Invalid JSON or wrong shape |  -  |
-|**409** | User already exists |  -  |
-|**422** | Invalid user data |  -  |
-|**500** | Internal server error |  -  |
-|**503** | Either local auth or signups are disabled |  -  |
+| **200** | User created |  -  |
+| **400** | Invalid JSON or wrong shape |  -  |
+| **409** | User already exists |  -  |
+| **422** | Invalid user data |  -  |
+| **500** | Internal server error |  -  |
+| **503** | Either local auth or signups are disabled |  -  |
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
-# **routesDeleteAlbum**
-> routesDeleteAlbum()
 
+## routesDeleteAlbum
+
+> routesDeleteAlbum(albumUuid)
+
+Deletes an album
 
 ### Example
 
-```typescript
+```ts
 import {
-    DefaultApi,
-    Configuration
-} from './api';
+  Configuration,
+  DefaultApi,
+} from '';
+import type { RoutesDeleteAlbumRequest } from '';
 
-const configuration = new Configuration();
-const apiInstance = new DefaultApi(configuration);
+async function example() {
+  console.log("🚀 Testing  SDK...");
+  const config = new Configuration({ 
+    // Configure HTTP bearer authorization: BearerAuth
+    accessToken: "YOUR BEARER TOKEN",
+  });
+  const api = new DefaultApi(config);
 
-let albumUuid: string; //Album UUID (default to undefined)
+  const body = {
+    // string | Album UUID
+    albumUuid: albumUuid_example,
+  } satisfies RoutesDeleteAlbumRequest;
 
-const { status, data } = await apiInstance.routesDeleteAlbum(
-    albumUuid
-);
+  try {
+    const data = await api.routesDeleteAlbum(body);
+    console.log(data);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+// Run the test
+example().catch(console.error);
 ```
 
 ### Parameters
 
-|Name | Type | Description  | Notes|
-|------------- | ------------- | ------------- | -------------|
-| **albumUuid** | [**string**] | Album UUID | defaults to undefined|
 
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **albumUuid** | `string` | Album UUID | [Defaults to `undefined`] |
 
 ### Return type
 
-void (empty response body)
+`void` (Empty response body)
 
 ### Authorization
 
@@ -293,53 +382,72 @@ void (empty response body)
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: Not defined
+- **Content-Type**: Not defined
+- **Accept**: Not defined
 
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-|**200** | Album deleted |  -  |
-|**401** | Unauthorized |  -  |
-|**403** | Forbidden |  -  |
-|**404** | Album not found |  -  |
-|**500** | Internal server error |  -  |
+| **200** | Album deleted |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Forbidden |  -  |
+| **404** | Album not found |  -  |
+| **500** | Internal server error |  -  |
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
-# **routesDeleteAlbumShareLink**
-> routesDeleteAlbumShareLink()
 
+## routesDeleteAlbumShareLink
+
+> routesDeleteAlbumShareLink(albumShareLinkUuid)
+
+Deletes an album share link.
 
 ### Example
 
-```typescript
+```ts
 import {
-    DefaultApi,
-    Configuration
-} from './api';
+  Configuration,
+  DefaultApi,
+} from '';
+import type { RoutesDeleteAlbumShareLinkRequest } from '';
 
-const configuration = new Configuration();
-const apiInstance = new DefaultApi(configuration);
+async function example() {
+  console.log("🚀 Testing  SDK...");
+  const config = new Configuration({ 
+    // Configure HTTP bearer authorization: BearerAuth
+    accessToken: "YOUR BEARER TOKEN",
+  });
+  const api = new DefaultApi(config);
 
-let albumShareLinkUuid: string; //Album Share Link UUID (default to undefined)
+  const body = {
+    // string | Album Share Link UUID
+    albumShareLinkUuid: albumShareLinkUuid_example,
+  } satisfies RoutesDeleteAlbumShareLinkRequest;
 
-const { status, data } = await apiInstance.routesDeleteAlbumShareLink(
-    albumShareLinkUuid
-);
+  try {
+    const data = await api.routesDeleteAlbumShareLink(body);
+    console.log(data);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+// Run the test
+example().catch(console.error);
 ```
 
 ### Parameters
 
-|Name | Type | Description  | Notes|
-|------------- | ------------- | ------------- | -------------|
-| **albumShareLinkUuid** | [**string**] | Album Share Link UUID | defaults to undefined|
 
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **albumShareLinkUuid** | `string` | Album Share Link UUID | [Defaults to `undefined`] |
 
 ### Return type
 
-void (empty response body)
+`void` (Empty response body)
 
 ### Authorization
 
@@ -347,47 +455,65 @@ void (empty response body)
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: Not defined
+- **Content-Type**: Not defined
+- **Accept**: Not defined
 
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-|**200** | Album share link deleted |  -  |
-|**204** | Nothing deleted |  -  |
-|**401** | Unauthorized |  -  |
-|**403** | Forbidden |  -  |
-|**404** | Not found |  -  |
-|**500** | Internal server error |  -  |
+| **200** | Album share link deleted |  -  |
+| **204** | Nothing deleted |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Forbidden |  -  |
+| **404** | Not found |  -  |
+| **500** | Internal server error |  -  |
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
-# **routesGetAlbumList**
-> Array<AlbumResponse> routesGetAlbumList()
 
+## routesGetAlbumList
+
+> Array&lt;AlbumResponse&gt; routesGetAlbumList()
+
+Retrieves a list of albums of an authenticated user
 
 ### Example
 
-```typescript
+```ts
 import {
-    DefaultApi,
-    Configuration
-} from './api';
+  Configuration,
+  DefaultApi,
+} from '';
+import type { RoutesGetAlbumListRequest } from '';
 
-const configuration = new Configuration();
-const apiInstance = new DefaultApi(configuration);
+async function example() {
+  console.log("🚀 Testing  SDK...");
+  const config = new Configuration({ 
+    // Configure HTTP bearer authorization: BearerAuth
+    accessToken: "YOUR BEARER TOKEN",
+  });
+  const api = new DefaultApi(config);
 
-const { status, data } = await apiInstance.routesGetAlbumList();
+  try {
+    const data = await api.routesGetAlbumList();
+    console.log(data);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+// Run the test
+example().catch(console.error);
 ```
 
 ### Parameters
-This endpoint does not have any parameters.
 
+This endpoint does not need any parameter.
 
 ### Return type
 
-**Array<AlbumResponse>**
+[**Array&lt;AlbumResponse&gt;**](AlbumResponse.md)
 
 ### Authorization
 
@@ -395,50 +521,69 @@ This endpoint does not have any parameters.
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
 
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-|**200** | Album list |  -  |
-|**401** | Unauthorized |  -  |
+| **200** | Album list |  -  |
+| **401** | Unauthorized |  -  |
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
-# **routesGetAlbumShareLink**
-> AlbumShareLinkBasic routesGetAlbumShareLink()
 
+## routesGetAlbumShareLink
+
+> AlbumShareLinkBasic routesGetAlbumShareLink(albumShareLinkUuid)
+
+Gets basic information about album share link.
 
 ### Example
 
-```typescript
+```ts
 import {
-    DefaultApi,
-    Configuration
-} from './api';
+  Configuration,
+  DefaultApi,
+} from '';
+import type { RoutesGetAlbumShareLinkRequest } from '';
 
-const configuration = new Configuration();
-const apiInstance = new DefaultApi(configuration);
+async function example() {
+  console.log("🚀 Testing  SDK...");
+  const config = new Configuration({ 
+    // Configure HTTP bearer authorization: BearerAuth
+    accessToken: "YOUR BEARER TOKEN",
+  });
+  const api = new DefaultApi(config);
 
-let albumShareLinkUuid: string; //Album Share Link UUID (default to undefined)
+  const body = {
+    // string | Album Share Link UUID
+    albumShareLinkUuid: albumShareLinkUuid_example,
+  } satisfies RoutesGetAlbumShareLinkRequest;
 
-const { status, data } = await apiInstance.routesGetAlbumShareLink(
-    albumShareLinkUuid
-);
+  try {
+    const data = await api.routesGetAlbumShareLink(body);
+    console.log(data);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+// Run the test
+example().catch(console.error);
 ```
 
 ### Parameters
 
-|Name | Type | Description  | Notes|
-|------------- | ------------- | ------------- | -------------|
-| **albumShareLinkUuid** | [**string**] | Album Share Link UUID | defaults to undefined|
 
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **albumShareLinkUuid** | `string` | Album Share Link UUID | [Defaults to `undefined`] |
 
 ### Return type
 
-**AlbumShareLinkBasic**
+[**AlbumShareLinkBasic**](AlbumShareLinkBasic.md)
 
 ### Authorization
 
@@ -446,51 +591,70 @@ const { status, data } = await apiInstance.routesGetAlbumShareLink(
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
 
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-|**200** | Share link info |  -  |
-|**404** | Not found |  -  |
-|**500** | Internal server error |  -  |
+| **200** | Share link info |  -  |
+| **404** | Not found |  -  |
+| **500** | Internal server error |  -  |
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
-# **routesGetAlbumShareLinks**
-> Array<SharedAlbumLinkResponse> routesGetAlbumShareLinks()
 
+## routesGetAlbumShareLinks
+
+> Array&lt;SharedAlbumLinkResponse&gt; routesGetAlbumShareLinks(albumUuid)
+
+Gets a list of album share links.
 
 ### Example
 
-```typescript
+```ts
 import {
-    DefaultApi,
-    Configuration
-} from './api';
+  Configuration,
+  DefaultApi,
+} from '';
+import type { RoutesGetAlbumShareLinksRequest } from '';
 
-const configuration = new Configuration();
-const apiInstance = new DefaultApi(configuration);
+async function example() {
+  console.log("🚀 Testing  SDK...");
+  const config = new Configuration({ 
+    // Configure HTTP bearer authorization: BearerAuth
+    accessToken: "YOUR BEARER TOKEN",
+  });
+  const api = new DefaultApi(config);
 
-let albumUuid: string; //Album UUID (default to undefined)
+  const body = {
+    // string | Album UUID
+    albumUuid: albumUuid_example,
+  } satisfies RoutesGetAlbumShareLinksRequest;
 
-const { status, data } = await apiInstance.routesGetAlbumShareLinks(
-    albumUuid
-);
+  try {
+    const data = await api.routesGetAlbumShareLinks(body);
+    console.log(data);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+// Run the test
+example().catch(console.error);
 ```
 
 ### Parameters
 
-|Name | Type | Description  | Notes|
-|------------- | ------------- | ------------- | -------------|
-| **albumUuid** | [**string**] | Album UUID | defaults to undefined|
 
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **albumUuid** | `string` | Album UUID | [Defaults to `undefined`] |
 
 ### Return type
 
-**Array<SharedAlbumLinkResponse>**
+[**Array&lt;SharedAlbumLinkResponse&gt;**](SharedAlbumLinkResponse.md)
 
 ### Authorization
 
@@ -498,53 +662,75 @@ const { status, data } = await apiInstance.routesGetAlbumShareLinks(
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
 
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-|**200** | Album share links |  -  |
-|**401** | Unauthorized |  -  |
-|**403** | Forbidden |  -  |
-|**404** | Album not found |  -  |
-|**500** | Internal server error |  -  |
+| **200** | Album share links |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Forbidden |  -  |
+| **404** | Album not found |  -  |
+| **500** | Internal server error |  -  |
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
-# **routesGetAlbumStructure**
-> Array<MediaResponse> routesGetAlbumStructure()
 
+## routesGetAlbumStructure
+
+> Array&lt;MediaResponse&gt; routesGetAlbumStructure(albumUuid)
+
+Gets a list of media in an album
 
 ### Example
 
-```typescript
+```ts
 import {
-    DefaultApi,
-    Configuration
-} from './api';
+  Configuration,
+  DefaultApi,
+} from '';
+import type { RoutesGetAlbumStructureRequest } from '';
 
-const configuration = new Configuration();
-const apiInstance = new DefaultApi(configuration);
+async function example() {
+  console.log("🚀 Testing  SDK...");
+  const config = new Configuration({ 
+    // To configure HTTP basic authorization: BasicSharedAlbumLinkAuth
+    username: "YOUR USERNAME",
+    password: "YOUR PASSWORD",
+    // Configure HTTP bearer authorization: BearerAuth
+    accessToken: "YOUR BEARER TOKEN",
+  });
+  const api = new DefaultApi(config);
 
-let albumUuid: string; //Album UUID (default to undefined)
+  const body = {
+    // string | Album UUID
+    albumUuid: albumUuid_example,
+  } satisfies RoutesGetAlbumStructureRequest;
 
-const { status, data } = await apiInstance.routesGetAlbumStructure(
-    albumUuid
-);
+  try {
+    const data = await api.routesGetAlbumStructure(body);
+    console.log(data);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+// Run the test
+example().catch(console.error);
 ```
 
 ### Parameters
 
-|Name | Type | Description  | Notes|
-|------------- | ------------- | ------------- | -------------|
-| **albumUuid** | [**string**] | Album UUID | defaults to undefined|
 
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **albumUuid** | `string` | Album UUID | [Defaults to `undefined`] |
 
 ### Return type
 
-**Array<MediaResponse>**
+[**Array&lt;MediaResponse&gt;**](MediaResponse.md)
 
 ### Authorization
 
@@ -552,52 +738,71 @@ const { status, data } = await apiInstance.routesGetAlbumStructure(
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
 
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-|**200** | Album media |  -  |
-|**401** | Unauthorized |  -  |
-|**404** | Album not found |  -  |
-|**500** | Internal server error |  -  |
+| **200** | Album media |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Album not found |  -  |
+| **500** | Internal server error |  -  |
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
-# **routesGetMediaByUuid**
-> File routesGetMediaByUuid()
 
+## routesGetMediaByUuid
+
+> Blob routesGetMediaByUuid(mediaUuid)
+
+Returns a media
 
 ### Example
 
-```typescript
+```ts
 import {
-    DefaultApi,
-    Configuration
-} from './api';
+  Configuration,
+  DefaultApi,
+} from '';
+import type { RoutesGetMediaByUuidRequest } from '';
 
-const configuration = new Configuration();
-const apiInstance = new DefaultApi(configuration);
+async function example() {
+  console.log("🚀 Testing  SDK...");
+  const config = new Configuration({ 
+    // Configure HTTP bearer authorization: BearerAuth
+    accessToken: "YOUR BEARER TOKEN",
+  });
+  const api = new DefaultApi(config);
 
-let mediaUuid: string; //Media UUID (default to undefined)
+  const body = {
+    // string | Media UUID
+    mediaUuid: mediaUuid_example,
+  } satisfies RoutesGetMediaByUuidRequest;
 
-const { status, data } = await apiInstance.routesGetMediaByUuid(
-    mediaUuid
-);
+  try {
+    const data = await api.routesGetMediaByUuid(body);
+    console.log(data);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+// Run the test
+example().catch(console.error);
 ```
 
 ### Parameters
 
-|Name | Type | Description  | Notes|
+
+| Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **mediaUuid** | [**string**] | Media UUID | defaults to undefined|
-
+| **mediaUuid** | `string` | Media UUID | [Defaults to `undefined`] |
 
 ### Return type
 
-**File**
+**Blob**
 
 ### Authorization
 
@@ -605,45 +810,63 @@ const { status, data } = await apiInstance.routesGetMediaByUuid(
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/octet-stream
+- **Content-Type**: Not defined
+- **Accept**: `application/octet-stream`
 
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-|**200** | Binary media stream |  -  |
-|**401** | Unauthorized |  -  |
-|**404** | Media not found |  -  |
-|**500** | Internal server error |  -  |
+| **200** | Binary media stream |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Media not found |  -  |
+| **500** | Internal server error |  -  |
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
-# **routesGetMediaLikedList**
-> Array<MediaResponse> routesGetMediaLikedList()
 
+## routesGetMediaLikedList
+
+> Array&lt;MediaResponse&gt; routesGetMediaLikedList()
+
+Returns a list of liked media.
 
 ### Example
 
-```typescript
+```ts
 import {
-    DefaultApi,
-    Configuration
-} from './api';
+  Configuration,
+  DefaultApi,
+} from '';
+import type { RoutesGetMediaLikedListRequest } from '';
 
-const configuration = new Configuration();
-const apiInstance = new DefaultApi(configuration);
+async function example() {
+  console.log("🚀 Testing  SDK...");
+  const config = new Configuration({ 
+    // Configure HTTP bearer authorization: BearerAuth
+    accessToken: "YOUR BEARER TOKEN",
+  });
+  const api = new DefaultApi(config);
 
-const { status, data } = await apiInstance.routesGetMediaLikedList();
+  try {
+    const data = await api.routesGetMediaLikedList();
+    console.log(data);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+// Run the test
+example().catch(console.error);
 ```
 
 ### Parameters
-This endpoint does not have any parameters.
 
+This endpoint does not need any parameter.
 
 ### Return type
 
-**Array<MediaResponse>**
+[**Array&lt;MediaResponse&gt;**](MediaResponse.md)
 
 ### Authorization
 
@@ -651,44 +874,58 @@ This endpoint does not have any parameters.
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
 
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-|**200** | Liked media |  -  |
-|**401** | Unauthorized |  -  |
-|**500** | Internal server error |  -  |
+| **200** | Liked media |  -  |
+| **401** | Unauthorized |  -  |
+| **500** | Internal server error |  -  |
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
-# **routesGetServerConfig**
+
+## routesGetServerConfig
+
 > ServerConfigResponse routesGetServerConfig()
 
+Returns server configuration
 
 ### Example
 
-```typescript
+```ts
 import {
-    DefaultApi,
-    Configuration
-} from './api';
+  Configuration,
+  DefaultApi,
+} from '';
+import type { RoutesGetServerConfigRequest } from '';
 
-const configuration = new Configuration();
-const apiInstance = new DefaultApi(configuration);
+async function example() {
+  console.log("🚀 Testing  SDK...");
+  const api = new DefaultApi();
 
-const { status, data } = await apiInstance.routesGetServerConfig();
+  try {
+    const data = await api.routesGetServerConfig();
+    console.log(data);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+// Run the test
+example().catch(console.error);
 ```
 
 ### Parameters
-This endpoint does not have any parameters.
 
+This endpoint does not need any parameter.
 
 ### Return type
 
-**ServerConfigResponse**
+[**ServerConfigResponse**](ServerConfigResponse.md)
 
 ### Authorization
 
@@ -696,42 +933,56 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
 
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-|**200** | Server config |  -  |
+| **200** | Server config |  -  |
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
-# **routesHealth**
+
+## routesHealth
+
 > routesHealth()
 
 
+
 ### Example
 
-```typescript
+```ts
 import {
-    DefaultApi,
-    Configuration
-} from './api';
+  Configuration,
+  DefaultApi,
+} from '';
+import type { RoutesHealthRequest } from '';
 
-const configuration = new Configuration();
-const apiInstance = new DefaultApi(configuration);
+async function example() {
+  console.log("🚀 Testing  SDK...");
+  const api = new DefaultApi();
 
-const { status, data } = await apiInstance.routesHealth();
+  try {
+    const data = await api.routesHealth();
+    console.log(data);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+// Run the test
+example().catch(console.error);
 ```
 
 ### Parameters
-This endpoint does not have any parameters.
 
+This endpoint does not need any parameter.
 
 ### Return type
 
-void (empty response body)
+`void` (Empty response body)
 
 ### Authorization
 
@@ -739,50 +990,64 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: Not defined
+- **Content-Type**: Not defined
+- **Accept**: Not defined
 
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-|**200** | Health check passed |  -  |
+| **200** | Health check passed |  -  |
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
-# **routesLogin**
+
+## routesLogin
+
 > LoginResponse routesLogin(userLogin)
 
+You must provide either a username or an email together with a password.
 
 ### Example
 
-```typescript
+```ts
 import {
-    DefaultApi,
-    Configuration,
-    UserLogin
-} from './api';
+  Configuration,
+  DefaultApi,
+} from '';
+import type { RoutesLoginRequest } from '';
 
-const configuration = new Configuration();
-const apiInstance = new DefaultApi(configuration);
+async function example() {
+  console.log("🚀 Testing  SDK...");
+  const api = new DefaultApi();
 
-let userLogin: UserLogin; //
+  const body = {
+    // UserLogin
+    userLogin: ...,
+  } satisfies RoutesLoginRequest;
 
-const { status, data } = await apiInstance.routesLogin(
-    userLogin
-);
+  try {
+    const data = await api.routesLogin(body);
+    console.log(data);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+// Run the test
+example().catch(console.error);
 ```
 
 ### Parameters
 
-|Name | Type | Description  | Notes|
-|------------- | ------------- | ------------- | -------------|
-| **userLogin** | **UserLogin**|  | |
 
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **userLogin** | [UserLogin](UserLogin.md) |  | |
 
 ### Return type
 
-**LoginResponse**
+[**LoginResponse**](LoginResponse.md)
 
 ### Authorization
 
@@ -790,46 +1055,60 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
- - **Accept**: application/json
+- **Content-Type**: `application/json`
+- **Accept**: `application/json`
 
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-|**200** | Login successful |  -  |
-|**400** | Invalid JSON or wrong shape |  -  |
-|**409** | Invalid credentials or user conflict |  -  |
-|**500** | Internal server error |  -  |
-|**503** | Local auth is disabled |  -  |
+| **200** | Login successful |  -  |
+| **400** | Invalid JSON or wrong shape |  -  |
+| **409** | Invalid credentials or user conflict |  -  |
+| **500** | Internal server error |  -  |
+| **503** | Local auth is disabled |  -  |
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
-# **routesLogout**
+
+## routesLogout
+
 > routesLogout()
 
+Invalidates the session.
 
 ### Example
 
-```typescript
+```ts
 import {
-    DefaultApi,
-    Configuration
-} from './api';
+  Configuration,
+  DefaultApi,
+} from '';
+import type { RoutesLogoutRequest } from '';
 
-const configuration = new Configuration();
-const apiInstance = new DefaultApi(configuration);
+async function example() {
+  console.log("🚀 Testing  SDK...");
+  const api = new DefaultApi();
 
-const { status, data } = await apiInstance.routesLogout();
+  try {
+    const data = await api.routesLogout();
+    console.log(data);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+// Run the test
+example().catch(console.error);
 ```
 
 ### Parameters
-This endpoint does not have any parameters.
 
+This endpoint does not need any parameter.
 
 ### Return type
 
-void (empty response body)
+`void` (Empty response body)
 
 ### Authorization
 
@@ -837,49 +1116,68 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: Not defined
+- **Content-Type**: Not defined
+- **Accept**: Not defined
 
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-|**204** | Logout succesful |  -  |
+| **204** | Logout succesful |  -  |
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
-# **routesMediaDeleteDescription**
-> routesMediaDeleteDescription()
 
+## routesMediaDeleteDescription
+
+> routesMediaDeleteDescription(mediaUuid)
+
+Deletes description of a media
 
 ### Example
 
-```typescript
+```ts
 import {
-    DefaultApi,
-    Configuration
-} from './api';
+  Configuration,
+  DefaultApi,
+} from '';
+import type { RoutesMediaDeleteDescriptionRequest } from '';
 
-const configuration = new Configuration();
-const apiInstance = new DefaultApi(configuration);
+async function example() {
+  console.log("🚀 Testing  SDK...");
+  const config = new Configuration({ 
+    // Configure HTTP bearer authorization: BearerAuth
+    accessToken: "YOUR BEARER TOKEN",
+  });
+  const api = new DefaultApi(config);
 
-let mediaUuid: string; //Media UUID (default to undefined)
+  const body = {
+    // string | Media UUID
+    mediaUuid: mediaUuid_example,
+  } satisfies RoutesMediaDeleteDescriptionRequest;
 
-const { status, data } = await apiInstance.routesMediaDeleteDescription(
-    mediaUuid
-);
+  try {
+    const data = await api.routesMediaDeleteDescription(body);
+    console.log(data);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+// Run the test
+example().catch(console.error);
 ```
 
 ### Parameters
 
-|Name | Type | Description  | Notes|
-|------------- | ------------- | ------------- | -------------|
-| **mediaUuid** | [**string**] | Media UUID | defaults to undefined|
 
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **mediaUuid** | `string` | Media UUID | [Defaults to `undefined`] |
 
 ### Return type
 
-void (empty response body)
+`void` (Empty response body)
 
 ### Authorization
 
@@ -887,53 +1185,72 @@ void (empty response body)
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: Not defined
+- **Content-Type**: Not defined
+- **Accept**: Not defined
 
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-|**200** | Description deleted |  -  |
-|**401** | Unauthorized |  -  |
-|**403** | Forbidden |  -  |
-|**404** | Media not found |  -  |
-|**500** | Internal server error |  -  |
+| **200** | Description deleted |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Forbidden |  -  |
+| **404** | Media not found |  -  |
+| **500** | Internal server error |  -  |
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
-# **routesMediaLike**
-> routesMediaLike()
 
+## routesMediaLike
+
+> routesMediaLike(mediaUuid)
+
+Likes the media.
 
 ### Example
 
-```typescript
+```ts
 import {
-    DefaultApi,
-    Configuration
-} from './api';
+  Configuration,
+  DefaultApi,
+} from '';
+import type { RoutesMediaLikeRequest } from '';
 
-const configuration = new Configuration();
-const apiInstance = new DefaultApi(configuration);
+async function example() {
+  console.log("🚀 Testing  SDK...");
+  const config = new Configuration({ 
+    // Configure HTTP bearer authorization: BearerAuth
+    accessToken: "YOUR BEARER TOKEN",
+  });
+  const api = new DefaultApi(config);
 
-let mediaUuid: string; //Media UUID (default to undefined)
+  const body = {
+    // string | Media UUID
+    mediaUuid: mediaUuid_example,
+  } satisfies RoutesMediaLikeRequest;
 
-const { status, data } = await apiInstance.routesMediaLike(
-    mediaUuid
-);
+  try {
+    const data = await api.routesMediaLike(body);
+    console.log(data);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+// Run the test
+example().catch(console.error);
 ```
 
 ### Parameters
 
-|Name | Type | Description  | Notes|
-|------------- | ------------- | ------------- | -------------|
-| **mediaUuid** | [**string**] | Media UUID | defaults to undefined|
 
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **mediaUuid** | `string` | Media UUID | [Defaults to `undefined`] |
 
 ### Return type
 
-void (empty response body)
+`void` (Empty response body)
 
 ### Authorization
 
@@ -941,45 +1258,63 @@ void (empty response body)
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: Not defined
+- **Content-Type**: Not defined
+- **Accept**: Not defined
 
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-|**200** | Liked a media |  -  |
-|**401** | Unauthorized |  -  |
-|**404** | Media not found |  -  |
-|**409** | Already liked |  -  |
+| **200** | Liked a media |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Media not found |  -  |
+| **409** | Already liked |  -  |
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
-# **routesMediaStructure**
-> Array<MediaResponse> routesMediaStructure()
 
+## routesMediaStructure
+
+> Array&lt;MediaResponse&gt; routesMediaStructure()
+
+Gets a list of all media
 
 ### Example
 
-```typescript
+```ts
 import {
-    DefaultApi,
-    Configuration
-} from './api';
+  Configuration,
+  DefaultApi,
+} from '';
+import type { RoutesMediaStructureRequest } from '';
 
-const configuration = new Configuration();
-const apiInstance = new DefaultApi(configuration);
+async function example() {
+  console.log("🚀 Testing  SDK...");
+  const config = new Configuration({ 
+    // Configure HTTP bearer authorization: BearerAuth
+    accessToken: "YOUR BEARER TOKEN",
+  });
+  const api = new DefaultApi(config);
 
-const { status, data } = await apiInstance.routesMediaStructure();
+  try {
+    const data = await api.routesMediaStructure();
+    console.log(data);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+// Run the test
+example().catch(console.error);
 ```
 
 ### Parameters
-This endpoint does not have any parameters.
 
+This endpoint does not need any parameter.
 
 ### Return type
 
-**Array<MediaResponse>**
+[**Array&lt;MediaResponse&gt;**](MediaResponse.md)
 
 ### Authorization
 
@@ -987,51 +1322,70 @@ This endpoint does not have any parameters.
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
 
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-|**200** | List of media |  -  |
-|**401** | Unauthorized |  -  |
-|**500** | Internal server error |  -  |
+| **200** | List of media |  -  |
+| **401** | Unauthorized |  -  |
+| **500** | Internal server error |  -  |
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
-# **routesMediaUnlike**
-> routesMediaUnlike()
 
+## routesMediaUnlike
+
+> routesMediaUnlike(mediaUuid)
+
+Unlikes the media.
 
 ### Example
 
-```typescript
+```ts
 import {
-    DefaultApi,
-    Configuration
-} from './api';
+  Configuration,
+  DefaultApi,
+} from '';
+import type { RoutesMediaUnlikeRequest } from '';
 
-const configuration = new Configuration();
-const apiInstance = new DefaultApi(configuration);
+async function example() {
+  console.log("🚀 Testing  SDK...");
+  const config = new Configuration({ 
+    // Configure HTTP bearer authorization: BearerAuth
+    accessToken: "YOUR BEARER TOKEN",
+  });
+  const api = new DefaultApi(config);
 
-let mediaUuid: string; //Media UUID (default to undefined)
+  const body = {
+    // string | Media UUID
+    mediaUuid: mediaUuid_example,
+  } satisfies RoutesMediaUnlikeRequest;
 
-const { status, data } = await apiInstance.routesMediaUnlike(
-    mediaUuid
-);
+  try {
+    const data = await api.routesMediaUnlike(body);
+    console.log(data);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+// Run the test
+example().catch(console.error);
 ```
 
 ### Parameters
 
-|Name | Type | Description  | Notes|
-|------------- | ------------- | ------------- | -------------|
-| **mediaUuid** | [**string**] | Media UUID | defaults to undefined|
 
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **mediaUuid** | `string` | Media UUID | [Defaults to `undefined`] |
 
 ### Return type
 
-void (empty response body)
+`void` (Empty response body)
 
 ### Authorization
 
@@ -1039,56 +1393,74 @@ void (empty response body)
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: Not defined
+- **Content-Type**: Not defined
+- **Accept**: Not defined
 
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-|**200** | Unliked a media |  -  |
-|**204** | No changes made |  -  |
-|**404** | Media not found |  -  |
-|**500** | Internal server error |  -  |
+| **200** | Unliked a media |  -  |
+| **204** | No changes made |  -  |
+| **404** | Media not found |  -  |
+| **500** | Internal server error |  -  |
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
-# **routesMediaUpdateDescription**
-> routesMediaUpdateDescription(mediaDescription)
 
+## routesMediaUpdateDescription
+
+> routesMediaUpdateDescription(mediaUuid, mediaDescription)
+
+Updates description of a media
 
 ### Example
 
-```typescript
+```ts
 import {
-    DefaultApi,
-    Configuration,
-    MediaDescription
-} from './api';
+  Configuration,
+  DefaultApi,
+} from '';
+import type { RoutesMediaUpdateDescriptionRequest } from '';
 
-const configuration = new Configuration();
-const apiInstance = new DefaultApi(configuration);
+async function example() {
+  console.log("🚀 Testing  SDK...");
+  const config = new Configuration({ 
+    // Configure HTTP bearer authorization: BearerAuth
+    accessToken: "YOUR BEARER TOKEN",
+  });
+  const api = new DefaultApi(config);
 
-let mediaUuid: string; //Media UUID (default to undefined)
-let mediaDescription: MediaDescription; //
+  const body = {
+    // string | Media UUID
+    mediaUuid: mediaUuid_example,
+    // MediaDescription
+    mediaDescription: ...,
+  } satisfies RoutesMediaUpdateDescriptionRequest;
 
-const { status, data } = await apiInstance.routesMediaUpdateDescription(
-    mediaUuid,
-    mediaDescription
-);
+  try {
+    const data = await api.routesMediaUpdateDescription(body);
+    console.log(data);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+// Run the test
+example().catch(console.error);
 ```
 
 ### Parameters
 
-|Name | Type | Description  | Notes|
-|------------- | ------------- | ------------- | -------------|
-| **mediaDescription** | **MediaDescription**|  | |
-| **mediaUuid** | [**string**] | Media UUID | defaults to undefined|
 
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **mediaUuid** | `string` | Media UUID | [Defaults to `undefined`] |
+| **mediaDescription** | [MediaDescription](MediaDescription.md) |  | |
 
 ### Return type
 
-void (empty response body)
+`void` (Empty response body)
 
 ### Authorization
 
@@ -1096,59 +1468,74 @@ void (empty response body)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
- - **Accept**: Not defined
+- **Content-Type**: `application/json`
+- **Accept**: Not defined
 
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-|**200** | Description updated |  -  |
-|**401** | Unauthorized |  -  |
-|**403** | Forbidden |  -  |
-|**404** | Media not found |  -  |
-|**500** | Internal server error |  -  |
+| **200** | Description updated |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Forbidden |  -  |
+| **404** | Media not found |  -  |
+| **500** | Internal server error |  -  |
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
-# **routesOidcCallback**
-> LoginResponse routesOidcCallback()
+
+## routesOidcCallback
+
+> LoginResponse routesOidcCallback(provider, code, state)
+
 
 
 ### Example
 
-```typescript
+```ts
 import {
-    DefaultApi,
-    Configuration
-} from './api';
+  Configuration,
+  DefaultApi,
+} from '';
+import type { RoutesOidcCallbackRequest } from '';
 
-const configuration = new Configuration();
-const apiInstance = new DefaultApi(configuration);
+async function example() {
+  console.log("🚀 Testing  SDK...");
+  const api = new DefaultApi();
 
-let provider: string; //OIDC provider key (default to undefined)
-let code: string; //Authorization code (default to undefined)
-let state: string; //CSRF state (default to undefined)
+  const body = {
+    // string | OIDC provider key
+    provider: provider_example,
+    // string | Authorization code
+    code: code_example,
+    // string | CSRF state
+    state: state_example,
+  } satisfies RoutesOidcCallbackRequest;
 
-const { status, data } = await apiInstance.routesOidcCallback(
-    provider,
-    code,
-    state
-);
+  try {
+    const data = await api.routesOidcCallback(body);
+    console.log(data);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+// Run the test
+example().catch(console.error);
 ```
 
 ### Parameters
 
-|Name | Type | Description  | Notes|
-|------------- | ------------- | ------------- | -------------|
-| **provider** | [**string**] | OIDC provider key | defaults to undefined|
-| **code** | [**string**] | Authorization code | defaults to undefined|
-| **state** | [**string**] | CSRF state | defaults to undefined|
 
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **provider** | `string` | OIDC provider key | [Defaults to `undefined`] |
+| **code** | `string` | Authorization code | [Defaults to `undefined`] |
+| **state** | `string` | CSRF state | [Defaults to `undefined`] |
 
 ### Return type
 
-**LoginResponse**
+[**LoginResponse**](LoginResponse.md)
 
 ### Authorization
 
@@ -1156,54 +1543,69 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
 
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-|**200** | Login successful |  -  |
-|**400** | Bad request |  -  |
-|**401** | Authentication failed |  -  |
-|**404** | Provider not found |  -  |
-|**500** | Internal server error |  -  |
-|**503** | OIDC is disabled |  -  |
+| **200** | Login successful |  -  |
+| **400** | Bad request |  -  |
+| **401** | Authentication failed |  -  |
+| **404** | Provider not found |  -  |
+| **500** | Internal server error |  -  |
+| **503** | OIDC is disabled |  -  |
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
-# **routesOidcLogin**
-> routesOidcLogin()
+
+## routesOidcLogin
+
+> routesOidcLogin(provider)
+
 
 
 ### Example
 
-```typescript
+```ts
 import {
-    DefaultApi,
-    Configuration
-} from './api';
+  Configuration,
+  DefaultApi,
+} from '';
+import type { RoutesOidcLoginRequest } from '';
 
-const configuration = new Configuration();
-const apiInstance = new DefaultApi(configuration);
+async function example() {
+  console.log("🚀 Testing  SDK...");
+  const api = new DefaultApi();
 
-let provider: string; //OIDC provider key (default to undefined)
+  const body = {
+    // string | OIDC provider key
+    provider: provider_example,
+  } satisfies RoutesOidcLoginRequest;
 
-const { status, data } = await apiInstance.routesOidcLogin(
-    provider
-);
+  try {
+    const data = await api.routesOidcLogin(body);
+    console.log(data);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+// Run the test
+example().catch(console.error);
 ```
 
 ### Parameters
 
-|Name | Type | Description  | Notes|
-|------------- | ------------- | ------------- | -------------|
-| **provider** | [**string**] | OIDC provider key | defaults to undefined|
 
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **provider** | `string` | OIDC provider key | [Defaults to `undefined`] |
 
 ### Return type
 
-void (empty response body)
+`void` (Empty response body)
 
 ### Authorization
 
@@ -1211,44 +1613,58 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: Not defined
+- **Content-Type**: Not defined
+- **Accept**: Not defined
 
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-|**302** | Redirect to OIDC provider |  -  |
-|**404** | OIDC provider not found |  -  |
-|**503** | OIDC is disabled |  -  |
+| **302** | Redirect to OIDC provider |  -  |
+| **404** | OIDC provider not found |  -  |
+| **503** | OIDC is disabled |  -  |
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
-# **routesRefreshToken**
+
+## routesRefreshToken
+
 > LoginResponse routesRefreshToken()
 
+Issues a new access token when a valid refresh token is attached
 
 ### Example
 
-```typescript
+```ts
 import {
-    DefaultApi,
-    Configuration
-} from './api';
+  Configuration,
+  DefaultApi,
+} from '';
+import type { RoutesRefreshTokenRequest } from '';
 
-const configuration = new Configuration();
-const apiInstance = new DefaultApi(configuration);
+async function example() {
+  console.log("🚀 Testing  SDK...");
+  const api = new DefaultApi();
 
-const { status, data } = await apiInstance.routesRefreshToken();
+  try {
+    const data = await api.routesRefreshToken();
+    console.log(data);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+// Run the test
+example().catch(console.error);
 ```
 
 ### Parameters
-This endpoint does not have any parameters.
 
+This endpoint does not need any parameter.
 
 ### Return type
 
-**LoginResponse**
+[**LoginResponse**](LoginResponse.md)
 
 ### Authorization
 
@@ -1256,44 +1672,62 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
 
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-|**200** | Token refreshed |  -  |
-|**401** | Unauthorized (missing/invalid/expired refresh_token cookie) |  -  |
-|**500** | Internal server error |  -  |
+| **200** | Token refreshed |  -  |
+| **401** | Unauthorized (missing/invalid/expired refresh_token cookie) |  -  |
+| **500** | Internal server error |  -  |
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
-# **routesScanMedia**
+
+## routesScanMedia
+
 > routesScanMedia()
 
+Searches for new media
 
 ### Example
 
-```typescript
+```ts
 import {
-    DefaultApi,
-    Configuration
-} from './api';
+  Configuration,
+  DefaultApi,
+} from '';
+import type { RoutesScanMediaRequest } from '';
 
-const configuration = new Configuration();
-const apiInstance = new DefaultApi(configuration);
+async function example() {
+  console.log("🚀 Testing  SDK...");
+  const config = new Configuration({ 
+    // Configure HTTP bearer authorization: BearerAuth
+    accessToken: "YOUR BEARER TOKEN",
+  });
+  const api = new DefaultApi(config);
 
-const { status, data } = await apiInstance.routesScanMedia();
+  try {
+    const data = await api.routesScanMedia();
+    console.log(data);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+// Run the test
+example().catch(console.error);
 ```
 
 ### Parameters
-This endpoint does not have any parameters.
 
+This endpoint does not need any parameter.
 
 ### Return type
 
-void (empty response body)
+`void` (Empty response body)
 
 ### Authorization
 
@@ -1301,44 +1735,58 @@ void (empty response body)
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: Not defined
+- **Content-Type**: Not defined
+- **Accept**: Not defined
 
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-|**200** | Scan started |  -  |
-|**401** | Unauthorized |  -  |
-|**500** | Internal server error |  -  |
+| **200** | Scan started |  -  |
+| **401** | Unauthorized |  -  |
+| **500** | Internal server error |  -  |
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
-# **routesSystemInfoPublic**
+
+## routesSystemInfoPublic
+
 > SystemInfoPublic routesSystemInfoPublic()
 
+Returns the public system information.
 
 ### Example
 
-```typescript
+```ts
 import {
-    DefaultApi,
-    Configuration
-} from './api';
+  Configuration,
+  DefaultApi,
+} from '';
+import type { RoutesSystemInfoPublicRequest } from '';
 
-const configuration = new Configuration();
-const apiInstance = new DefaultApi(configuration);
+async function example() {
+  console.log("🚀 Testing  SDK...");
+  const api = new DefaultApi();
 
-const { status, data } = await apiInstance.routesSystemInfoPublic();
+  try {
+    const data = await api.routesSystemInfoPublic();
+    console.log(data);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+// Run the test
+example().catch(console.error);
 ```
 
 ### Parameters
-This endpoint does not have any parameters.
 
+This endpoint does not need any parameter.
 
 ### Return type
 
-**SystemInfoPublic**
+[**SystemInfoPublic**](SystemInfoPublic.md)
 
 ### Authorization
 
@@ -1346,53 +1794,71 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
- - **Accept**: application/json
+- **Content-Type**: Not defined
+- **Accept**: `application/json`
 
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-|**200** | System info |  -  |
+| **200** | System info |  -  |
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
-# **routesUpdateAlbum**
-> routesUpdateAlbum(albumUpdateData)
 
+## routesUpdateAlbum
+
+> routesUpdateAlbum(albumUuid, albumUpdateData)
+
+Updates already existing album
 
 ### Example
 
-```typescript
+```ts
 import {
-    DefaultApi,
-    Configuration,
-    AlbumUpdateData
-} from './api';
+  Configuration,
+  DefaultApi,
+} from '';
+import type { RoutesUpdateAlbumRequest } from '';
 
-const configuration = new Configuration();
-const apiInstance = new DefaultApi(configuration);
+async function example() {
+  console.log("🚀 Testing  SDK...");
+  const config = new Configuration({ 
+    // Configure HTTP bearer authorization: BearerAuth
+    accessToken: "YOUR BEARER TOKEN",
+  });
+  const api = new DefaultApi(config);
 
-let albumUuid: string; //Album UUID (default to undefined)
-let albumUpdateData: AlbumUpdateData; //
+  const body = {
+    // string | Album UUID
+    albumUuid: albumUuid_example,
+    // AlbumUpdateData
+    albumUpdateData: ...,
+  } satisfies RoutesUpdateAlbumRequest;
 
-const { status, data } = await apiInstance.routesUpdateAlbum(
-    albumUuid,
-    albumUpdateData
-);
+  try {
+    const data = await api.routesUpdateAlbum(body);
+    console.log(data);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+// Run the test
+example().catch(console.error);
 ```
 
 ### Parameters
 
-|Name | Type | Description  | Notes|
-|------------- | ------------- | ------------- | -------------|
-| **albumUpdateData** | **AlbumUpdateData**|  | |
-| **albumUuid** | [**string**] | Album UUID | defaults to undefined|
 
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **albumUuid** | `string` | Album UUID | [Defaults to `undefined`] |
+| **albumUpdateData** | [AlbumUpdateData](AlbumUpdateData.md) |  | |
 
 ### Return type
 
-void (empty response body)
+`void` (Empty response body)
 
 ### Authorization
 
@@ -1400,59 +1866,77 @@ void (empty response body)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
- - **Accept**: Not defined
+- **Content-Type**: `application/json`
+- **Accept**: Not defined
 
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-|**200** | Album updated |  -  |
-|**204** | No changes |  -  |
-|**401** | Unauthorized |  -  |
-|**403** | Forbidden |  -  |
-|**404** | Album not found |  -  |
-|**422** | Unprocessable entity |  -  |
-|**500** | Internal server error |  -  |
+| **200** | Album updated |  -  |
+| **204** | No changes |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Forbidden |  -  |
+| **404** | Album not found |  -  |
+| **422** | Unprocessable entity |  -  |
+| **500** | Internal server error |  -  |
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
-# **routesUpdateAlbumShareLink**
-> routesUpdateAlbumShareLink(albumShareLinkInsert)
 
+## routesUpdateAlbumShareLink
+
+> routesUpdateAlbumShareLink(albumShareLinkUuid, albumShareLinkInsert)
+
+Updates already existing album share link.
 
 ### Example
 
-```typescript
+```ts
 import {
-    DefaultApi,
-    Configuration,
-    AlbumShareLinkInsert
-} from './api';
+  Configuration,
+  DefaultApi,
+} from '';
+import type { RoutesUpdateAlbumShareLinkRequest } from '';
 
-const configuration = new Configuration();
-const apiInstance = new DefaultApi(configuration);
+async function example() {
+  console.log("🚀 Testing  SDK...");
+  const config = new Configuration({ 
+    // Configure HTTP bearer authorization: BearerAuth
+    accessToken: "YOUR BEARER TOKEN",
+  });
+  const api = new DefaultApi(config);
 
-let albumShareLinkUuid: string; //Album Share Link UUID (default to undefined)
-let albumShareLinkInsert: AlbumShareLinkInsert; //
+  const body = {
+    // string | Album Share Link UUID
+    albumShareLinkUuid: albumShareLinkUuid_example,
+    // AlbumShareLinkInsert
+    albumShareLinkInsert: ...,
+  } satisfies RoutesUpdateAlbumShareLinkRequest;
 
-const { status, data } = await apiInstance.routesUpdateAlbumShareLink(
-    albumShareLinkUuid,
-    albumShareLinkInsert
-);
+  try {
+    const data = await api.routesUpdateAlbumShareLink(body);
+    console.log(data);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+// Run the test
+example().catch(console.error);
 ```
 
 ### Parameters
 
-|Name | Type | Description  | Notes|
-|------------- | ------------- | ------------- | -------------|
-| **albumShareLinkInsert** | **AlbumShareLinkInsert**|  | |
-| **albumShareLinkUuid** | [**string**] | Album Share Link UUID | defaults to undefined|
 
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **albumShareLinkUuid** | `string` | Album Share Link UUID | [Defaults to `undefined`] |
+| **albumShareLinkInsert** | [AlbumShareLinkInsert](AlbumShareLinkInsert.md) |  | |
 
 ### Return type
 
-void (empty response body)
+`void` (Empty response body)
 
 ### Authorization
 
@@ -1460,19 +1944,19 @@ void (empty response body)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
- - **Accept**: Not defined
+- **Content-Type**: `application/json`
+- **Accept**: Not defined
 
 
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-|**200** | Album share link updated |  -  |
-|**204** | No changes |  -  |
-|**401** | Unauthorized |  -  |
-|**403** | Forbidden |  -  |
-|**404** | Not found |  -  |
-|**500** | Internal server error |  -  |
+| **200** | Album share link updated |  -  |
+| **204** | No changes |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Forbidden |  -  |
+| **404** | Not found |  -  |
+| **500** | Internal server error |  -  |
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](../README.md#api-endpoints) [[Back to Model list]](../README.md#models) [[Back to README]](../README.md)
 
