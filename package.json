@@ -23,6 +23,6 @@
     "@biomejs/biome": "2.5",
     "@openapitools/openapi-generator-cli": "2.38",
     "@types/node": "24",
-    "typescript": "6"
+    "typescript": "7.0.2"
   }
 }
